@@ -248,19 +248,23 @@ class SearchService {
     
     for (const result of vectorResults) {
       if (result.score >= threshold) {
-        // 노트 메타데이터 조회
-        const noteMetadata = this.getNoteMetadata(result.id);
+        // 벡터 결과의 메타데이터를 직접 사용
+        const metadata = result.metadata || {};
         
-        if (noteMetadata) {
-          processedResults.push({
-            id: result.id,
-            score: result.score,
-            metadata: noteMetadata,
-            matchType: 'semantic',
-            highlights: this.extractSemanticHighlights(query, result.metadata),
-            vectorMetadata: result.metadata
-          });
-        }
+        processedResults.push({
+          id: result.id,
+          score: result.score,
+          metadata: {
+            title: metadata.title || 'Unknown Title',
+            tags: metadata.tags || [],
+            filePath: metadata.filePath || metadata.originalFilePath || result.id,
+            content: metadata.content || '',
+            chunkIndex: metadata.chunkIndex || 0
+          },
+          matchType: 'semantic',
+          highlights: this.extractSemanticHighlights(query, metadata),
+          vectorMetadata: metadata
+        });
       }
     }
     

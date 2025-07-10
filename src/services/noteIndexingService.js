@@ -464,6 +464,13 @@ class NoteIndexingService {
   }
 
   /**
+   * 인덱스된 노트 목록 반환
+   */
+  getIndexedNotes() {
+    return this.indexedNotes;
+  }
+
+  /**
    * 인덱스 통계 조회
    */
   getIndexStats() {

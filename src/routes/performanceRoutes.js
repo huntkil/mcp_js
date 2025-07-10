@@ -1,5 +1,7 @@
 import express from 'express';
 import performanceOptimizer from '../services/performanceOptimizer.js';
+import vectorDatabase from '../services/vectorDatabase.js';
+import noteIndexingService from '../services/noteIndexingService.js';
 import logger from '../utils/logger.js';
 
 const router = express.Router();
@@ -679,6 +681,68 @@ router.post('/config', async (req, res) => {
     });
   } catch (error) {
     logger.error(`성능 설정 변경 오류: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /api/performance/vector-stats:
+ *   get:
+ *     summary: 벡터 데이터베이스 통계
+ *     description: 벡터 데이터베이스와 인덱싱 상태를 조회합니다.
+ *     tags: [Performance]
+ *     responses:
+ *       200:
+ *         description: 벡터 통계 조회 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 vectorDatabase:
+ *                   type: object
+ *                   properties:
+ *                     totalVectors:
+ *                       type: number
+ *                     indexSize:
+ *                       type: string
+ *                     lastUpdated:
+ *                       type: string
+ *                 indexing:
+ *                   type: object
+ *                   properties:
+ *                     totalNotes:
+ *                       type: number
+ *                     totalChunks:
+ *                       type: number
+ *                     lastIndexed:
+ *                       type: string
+ *       500:
+ *         description: 서버 오류
+ */
+router.get('/vector-stats', async (req, res) => {
+  try {
+    logger.info('벡터 데이터베이스 통계 조회');
+    
+    // 벡터 데이터베이스 통계
+    const vectorStats = await vectorDatabase.getStats();
+    
+    // 인덱싱 통계
+    const indexStats = noteIndexingService.getIndexStats();
+    
+    res.json({
+      success: true,
+      vectorDatabase: vectorStats,
+      indexing: indexStats
+    });
+  } catch (error) {
+    logger.error(`벡터 통계 조회 오류: ${error.message}`);
     res.status(500).json({
       success: false,
       error: error.message

@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2025-07-10T07:34:50.103Z",
+  "notes": {
+    "/Users/gukho/Desktop/git/mcp_js/test-vault/ai-technology.md": {
+      "fileHash": "7832b91e781f57c281dbf9dd169b90c4",
+      "metadata": {
+        "title": "AI 기술의 발전",
+        "tags": [
+          "AI",
+          "기술",
+          "머신러닝",
+          "딥러닝"
+        ],
+        "aliases": [],
+        "created": "2024-01-15T00:00:00.000Z",
+        "modified": "2025-07-10T06:52:35.975Z",
+        "filePath": "/Users/gukho/Desktop/git/mcp_js/test-vault/ai-technology.md",
+        "fileName": "ai-technology.md",
+        "fileSize": 2005,
+        "wordCount": 216
+      },
+      "indexedAt": "2025-07-10T06:52:35.976Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Desktop/git/mcp_js/test-vault/machine-learning.md": {
+      "fileHash": "14db0157ce48a8d3f74397783ef2607e",
+      "metadata": {
+        "title": "머신러닝 기초",
+        "tags": [
+          "머신러닝",
+          "AI",
+          "알고리즘",
+          "데이터"
+        ],
+        "aliases": [],
+        "created": "2024-01-16T00:00:00.000Z",
+        "modified": "2025-07-10T06:52:35.975Z",
+        "filePath": "/Users/gukho/Desktop/git/mcp_js/test-vault/machine-learning.md",
+        "fileName": "machine-learning.md",
+        "fileSize": 3127,
+        "wordCount": 380
+      },
+      "indexedAt": "2025-07-10T06:52:35.977Z",
+      "version": "1.0.0"
+    }
+  }
+}

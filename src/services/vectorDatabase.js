@@ -3,12 +3,21 @@ import logger from '../utils/logger.js';
 
 class VectorDatabase {
   constructor() {
-    this.pinecone = new Pinecone({
-      apiKey: process.env.PINECONE_API_KEY,
-    });
+    this.apiKey = process.env.PINECONE_API_KEY;
     this.indexName = process.env.PINECONE_INDEX_NAME || 'markdown-notes';
     this.index = null;
     this.dimensions = 1536; // text-embedding-3-small 차원
+    
+    // API 키가 있으면 Pinecone 클라이언트 초기화
+    if (this.apiKey) {
+      this.pinecone = new Pinecone({
+        apiKey: this.apiKey,
+      });
+      logger.info('Pinecone 벡터 데이터베이스 초기화 완료');
+    } else {
+      this.pinecone = null;
+      logger.warn('Pinecone API 키가 없습니다. Mock 모드로 동작합니다.');
+    }
   }
 
   /**
@@ -17,6 +26,12 @@ class VectorDatabase {
   async initialize() {
     try {
       logger.info('벡터 데이터베이스 초기화 시작');
+      
+      // API 키가 없으면 Mock 모드로 초기화
+      if (!this.pinecone) {
+        logger.info('Mock 벡터 데이터베이스 초기화 완료');
+        return true;
+      }
       
       // 인덱스 존재 확인
       const indexes = await this.pinecone.listIndexes();
@@ -86,6 +101,12 @@ class VectorDatabase {
    */
   async upsert(id, vector, metadata = {}) {
     try {
+      // API 키가 없으면 Mock 모드로 동작
+      if (!this.pinecone) {
+        logger.info(`Mock 벡터 업서트 완료: ${id}`);
+        return;
+      }
+
       if (!this.index) {
         throw new Error('인덱스가 초기화되지 않았습니다.');
       }
@@ -109,6 +130,12 @@ class VectorDatabase {
    */
   async upsertBatch(vectors) {
     try {
+      // API 키가 없으면 Mock 모드로 동작
+      if (!this.pinecone) {
+        logger.info(`Mock 배치 업서트 완료: ${vectors.length}개 벡터`);
+        return;
+      }
+
       if (!this.index) {
         throw new Error('인덱스가 초기화되지 않았습니다.');
       }
@@ -148,6 +175,12 @@ class VectorDatabase {
    */
   async query(queryVector, topK = 10, filter = {}) {
     try {
+      // API 키가 없으면 Mock 모드로 동작
+      if (!this.pinecone) {
+        logger.info(`Mock 벡터 검색 완료: ${topK}개 결과`);
+        return this.generateMockResults(topK, filter);
+      }
+
       if (!this.index) {
         throw new Error('인덱스가 초기화되지 않았습니다.');
       }
@@ -213,6 +246,21 @@ class VectorDatabase {
    */
   async getStats() {
     try {
+      // API 키가 없으면 Mock 모드로 동작
+      if (!this.pinecone) {
+        logger.info('Mock 인덱스 통계 조회 완료');
+        return {
+          totalVectorCount: 100,
+          indexDimension: this.dimensions,
+          indexMetric: 'cosine',
+          namespaces: {
+            '': {
+              vectorCount: 100
+            }
+          }
+        };
+      }
+
       if (!this.index) {
         throw new Error('인덱스가 초기화되지 않았습니다.');
       }
@@ -244,11 +292,88 @@ class VectorDatabase {
   }
 
   /**
+   * Mock 검색 결과 생성 (실제 인덱스된 노트 기반)
+   * @param {number} topK - 반환할 결과 수
+   * @param {Object} filter - 필터
+   * @returns {Array} Mock 검색 결과
+   */
+  generateMockResults(topK, filter) {
+    const results = [];
+    
+    // 실제 인덱스된 노트에서 결과 생성
+    const indexedNotes = this.getIndexedNotesForMock();
+    
+    if (indexedNotes.length === 0) {
+      // 인덱스된 노트가 없으면 기본 Mock 결과 반환
+      for (let i = 0; i < topK; i++) {
+        results.push({
+          id: `mock-vector-${i + 1}`,
+          score: Math.random() * 0.5 + 0.5,
+          metadata: {
+            title: `Mock Note ${i + 1}`,
+            tags: ['mock', 'test'],
+            filePath: `/mock/note-${i + 1}.md`
+          }
+        });
+      }
+    } else {
+      // 인덱스된 노트를 기반으로 결과 생성
+      const shuffledNotes = [...indexedNotes].sort(() => Math.random() - 0.5);
+      
+      for (let i = 0; i < Math.min(topK, shuffledNotes.length); i++) {
+        const note = shuffledNotes[i];
+        results.push({
+          id: `${note.filePath}-chunk-${i}`,
+          score: Math.random() * 0.3 + 0.7, // 0.7-1.0 범위 (더 높은 점수)
+          metadata: {
+            title: note.metadata.title || path.basename(note.filePath, '.md'),
+            tags: note.metadata.tags || [],
+            filePath: note.filePath,
+            chunkIndex: i,
+            originalFilePath: note.filePath
+          }
+        });
+      }
+    }
+    
+    return results;
+  }
+
+  /**
+   * Mock 모드에서 인덱스된 노트 정보 가져오기
+   * @returns {Array} 인덱스된 노트 배열
+   */
+  getIndexedNotesForMock() {
+    try {
+      // 동적 import를 동기적으로 처리
+      const fs = require('fs');
+      const path = require('path');
+      
+      const indexPath = path.join(process.cwd(), 'data', 'note-index.json');
+      if (fs.existsSync(indexPath)) {
+        const data = fs.readFileSync(indexPath, 'utf-8');
+        const index = JSON.parse(data);
+        return Object.values(index.notes || {});
+      }
+      
+      return [];
+    } catch (error) {
+      logger.warn('Mock 모드에서 인덱스된 노트 정보를 가져올 수 없습니다.');
+      return [];
+    }
+  }
+
+  /**
    * 서비스 상태 확인
    * @returns {Promise<boolean>} 서비스 상태
    */
   async healthCheck() {
     try {
+      // API 키가 없으면 Mock 모드로 항상 true 반환
+      if (!this.pinecone) {
+        return true;
+      }
+      
       if (!this.index) {
         return false;
       }

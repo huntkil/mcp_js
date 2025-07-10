@@ -3,11 +3,20 @@ import logger from '../utils/logger.js';
 
 class EmbeddingService {
   constructor() {
-    this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
+    this.apiKey = process.env.OPENAI_API_KEY;
     this.model = 'text-embedding-3-small'; // 최신 임베딩 모델
     this.dimensions = 1536; // text-embedding-3-small의 차원
+    
+    // API 키가 있으면 OpenAI 클라이언트 초기화
+    if (this.apiKey) {
+      this.openai = new OpenAI({
+        apiKey: this.apiKey,
+      });
+      logger.info('OpenAI 임베딩 서비스 초기화 완료');
+    } else {
+      this.openai = null;
+      logger.warn('OpenAI API 키가 없습니다. Mock 모드로 동작합니다.');
+    }
   }
 
   /**
@@ -19,6 +28,12 @@ class EmbeddingService {
     try {
       if (!text || text.trim().length === 0) {
         throw new Error('텍스트가 비어있습니다.');
+      }
+
+      // API 키가 없으면 Mock 임베딩 생성
+      if (!this.openai) {
+        logger.info(`Mock 텍스트 임베딩 시작: ${text.substring(0, 100)}...`);
+        return this.generateMockEmbedding(text);
       }
 
       logger.info(`텍스트 임베딩 시작: ${text.substring(0, 100)}...`);
@@ -48,6 +63,12 @@ class EmbeddingService {
     try {
       if (!texts || texts.length === 0) {
         throw new Error('텍스트 배열이 비어있습니다.');
+      }
+
+      // API 키가 없으면 Mock 임베딩 생성
+      if (!this.openai) {
+        logger.info(`Mock 배치 임베딩 시작: ${texts.length}개 텍스트`);
+        return texts.map(text => this.generateMockEmbedding(text));
       }
 
       logger.info(`배치 임베딩 시작: ${texts.length}개 텍스트`);
@@ -118,6 +139,26 @@ class EmbeddingService {
     }
     
     return chunks;
+  }
+
+  /**
+   * Mock 임베딩 생성 (API 키가 없을 때 사용)
+   * @param {string} text - 텍스트
+   * @returns {number[]} Mock 임베딩 벡터
+   */
+  generateMockEmbedding(text) {
+    // 텍스트 기반 해시 생성
+    const hash = text.split('').reduce((a, b) => {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+    
+    // 1536차원 벡터 생성
+    const embedding = new Array(this.dimensions).fill(0).map((_, i) => {
+      return Math.sin(hash + i) * 0.1;
+    });
+    
+    return embedding;
   }
 
   /**

@@ -1,5 +1,6 @@
 import express from 'express';
 import advancedFeatures from '../services/advancedFeatures.js';
+import noteIndexingService from '../services/noteIndexingService.js';
 import logger from '../utils/logger.js';
 
 const router = express.Router();
@@ -598,6 +599,106 @@ router.post('/features/configure', async (req, res) => {
     });
   } catch (error) {
     logger.error(`고급 기능 설정 변경 오류: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /api/advanced/index-vault:
+ *   post:
+ *     summary: Vault 인덱싱
+ *     description: Obsidian Vault의 모든 노트를 벡터 데이터베이스에 인덱싱합니다.
+ *     tags: [Advanced Features]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - vaultPath
+ *             properties:
+ *               vaultPath:
+ *                 type: string
+ *                 description: Obsidian Vault 경로
+ *                 example: "/path/to/vault"
+ *               options:
+ *                 type: object
+ *                 description: 인덱싱 옵션
+ *                 properties:
+ *                   forceReindex:
+ *                     type: boolean
+ *                     description: 강제 재인덱싱 여부
+ *                     default: false
+ *                   batchSize:
+ *                     type: integer
+ *                     description: 배치 크기
+ *                     default: 50
+ *                   includeAttachments:
+ *                     type: boolean
+ *                     description: 첨부파일 포함 여부
+ *                     default: false
+ *                   maxFileSize:
+ *                     type: integer
+ *                     description: 최대 파일 크기 (bytes)
+ *                     default: 1048576
+ *     responses:
+ *       200:
+ *         description: 인덱싱 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 indexed:
+ *                   type: integer
+ *                 skipped:
+ *                   type: integer
+ *                 errors:
+ *                   type: integer
+ *                 duration:
+ *                   type: number
+ *       400:
+ *         description: 잘못된 요청
+ *       500:
+ *         description: 서버 오류
+ */
+router.post('/index-vault', async (req, res) => {
+  try {
+    const { vaultPath, options = {} } = req.body;
+    
+    if (!vaultPath || typeof vaultPath !== 'string') {
+      return res.status(400).json({
+        success: false,
+        error: 'Vault 경로가 필요합니다.'
+      });
+    }
+    
+    logger.info(`Vault 인덱싱 요청: ${vaultPath}`);
+    
+    const startTime = Date.now();
+    
+    // 노트 인덱싱 서비스 초기화
+    await noteIndexingService.initialize(vaultPath);
+    
+    // Vault 인덱싱 수행
+    const result = await noteIndexingService.indexVault(vaultPath, options);
+    
+    const duration = Date.now() - startTime;
+    
+    res.json({
+      success: true,
+      ...result,
+      duration
+    });
+  } catch (error) {
+    logger.error(`Vault 인덱싱 오류: ${error.message}`);
     res.status(500).json({
       success: false,
       error: error.message
