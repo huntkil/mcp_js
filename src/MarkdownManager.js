@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import { join, dirname, resolve } from 'path';
 import { glob } from 'glob';
 import matter from 'gray-matter';
+import logger from './logger.js';
 
 export class MarkdownManager {
     constructor(basePath = process.cwd()) {
@@ -200,7 +201,7 @@ export class MarkdownManager {
                             }
                             match = regex.test(line);
                         } catch (error) {
-                            console.error(`Invalid regex pattern: ${query}`, error.message);
+                            logger.error(`Invalid regex pattern: ${query}`, error.message);
                             return; // 이 라인은 건너뛰기
                         }
                     }
@@ -215,7 +216,7 @@ export class MarkdownManager {
                     }
                 });
             } catch (error) {
-                console.error(`Error searching in ${file}:`, error.message);
+                logger.error(`Error searching in ${file}:`, error.message);
             }
         }
         

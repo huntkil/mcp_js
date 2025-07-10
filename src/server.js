@@ -1,6 +1,7 @@
 import express from 'express';
 import { MarkdownManager } from './MarkdownManager.js';
 import { ObsidianManager } from './ObsidianManager.js';
+import logger from './logger.js';
 
 const app = express();
 app.use(express.json());
@@ -149,16 +150,16 @@ app.post('/tools/markdown/manageFrontmatter', async (req, res) => {
 
 // 서버 시작
 app.listen(port, () => {
-  console.log(`Markdown MCP HTTP Server running at http://localhost:${port}`);
-  console.log('Available endpoints:');
-  console.log('  GET  / - 서버 상태 확인');
-  console.log('  GET  /tools - 사용 가능한 툴 목록');
-  console.log('  POST /tools/obsidian/* - Obsidian 관련 툴');
-  console.log('  POST /tools/markdown/* - Markdown 관련 툴');
+  logger.info(`Markdown MCP HTTP Server running at http://localhost:${port}`);
+  logger.info('Available endpoints:');
+  logger.info('  GET  / - 서버 상태 확인');
+  logger.info('  GET  /tools - 사용 가능한 툴 목록');
+  logger.info('  POST /tools/obsidian/* - Obsidian 관련 툴');
+  logger.info('  POST /tools/markdown/* - Markdown 관련 툴');
 });
 
 // Graceful shutdown
 process.on('SIGINT', () => {
-  console.log('\nShutting down server...');
+  logger.info('\nShutting down server...');
   process.exit(0);
 }); 

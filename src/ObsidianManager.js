@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import { join, dirname, resolve, basename, extname } from 'path';
 import { glob } from 'glob';
 import matter from 'gray-matter';
+import logger from './logger.js';
 
 export class ObsidianManager {
     constructor(basePath) {
@@ -105,7 +106,7 @@ export class ObsidianManager {
                     }
                 });
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -140,7 +141,7 @@ export class ObsidianManager {
                     }
                 });
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -165,7 +166,7 @@ export class ObsidianManager {
                     tagSet.add(match[1]);
                 }
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -217,7 +218,7 @@ export class ObsidianManager {
                     }
                 }
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -468,7 +469,7 @@ export class ObsidianManager {
                     });
                 }
             } catch (error) {
-                console.error(`Error checking daily note ${filePath}:`, error.message);
+                logger.error(`Error checking daily note ${filePath}:`, error.message);
             }
         }
         
@@ -533,7 +534,7 @@ export class ObsidianManager {
                     });
                 }
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -719,7 +720,7 @@ export class ObsidianManager {
                         }
                     }
                 } catch (error) {
-                    console.error(`Error reading file ${mdFile}:`, error.message);
+                    logger.error(`Error reading file ${mdFile}:`, error.message);
                 }
             }
         }
@@ -849,7 +850,7 @@ export class ObsidianManager {
                 });
                 
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -995,7 +996,7 @@ export class ObsidianManager {
                         daysAgo: Math.floor((new Date() - stats.mtime) / (1000 * 60 * 60 * 24))
                     });
                 } catch (error) {
-                    console.error(`Error reading file ${file}:`, error.message);
+                    logger.error(`Error reading file ${file}:`, error.message);
                 }
             }
         }
@@ -1041,7 +1042,7 @@ export class ObsidianManager {
                         daysAgo: Math.floor((new Date() - stats.birthtime) / (1000 * 60 * 60 * 24))
                     });
                 } catch (error) {
-                    console.error(`Error reading file ${file}:`, error.message);
+                    logger.error(`Error reading file ${file}:`, error.message);
                 }
             }
         }
@@ -1118,7 +1119,7 @@ export class ObsidianManager {
                     if (isModified) activity.dailyActivity[dateKey].modified++;
                     
                 } catch (error) {
-                    console.error(`Error reading file ${file}:`, error.message);
+                    logger.error(`Error reading file ${file}:`, error.message);
                 }
             }
         }
@@ -1261,7 +1262,7 @@ export class ObsidianManager {
                     }
                 }
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -1324,7 +1325,7 @@ export class ObsidianManager {
                     }
                 }
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -1543,7 +1544,7 @@ export class ObsidianManager {
                 }
                 
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -1586,7 +1587,7 @@ export class ObsidianManager {
                 }
                 
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -1703,7 +1704,7 @@ export class ObsidianManager {
                     level: section.level
                 });
             } catch (error) {
-                console.error(`Error creating section file ${targetPath}:`, error.message);
+                logger.error(`Error creating section file ${targetPath}:`, error.message);
             }
         }
         
@@ -1750,7 +1751,7 @@ export class ObsidianManager {
                     }
                 }
             } catch (error) {
-                console.error(`Error reading file ${file}:`, error.message);
+                logger.error(`Error reading file ${file}:`, error.message);
             }
         }
         
@@ -2140,7 +2141,7 @@ export class ObsidianManager {
                         similarities.push(similarity);
                     }
                 } catch (error) {
-                    console.error(`Error calculating similarity for ${relativePath}:`, error.message);
+                    logger.error(`Error calculating similarity for ${relativePath}:`, error.message);
                 }
             }
         }
@@ -2177,7 +2178,7 @@ export class ObsidianManager {
                             processed.add(otherNote.file2);
                         }
                     } catch (error) {
-                        console.error(`Error calculating group similarity:`, error.message);
+                        logger.error(`Error calculating group similarity:`, error.message);
                     }
                 }
             }
