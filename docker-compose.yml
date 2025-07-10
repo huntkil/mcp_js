@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  markdown-mcp-server:
+    build: .
+    container_name: markdown-mcp-server
+    volumes:
+      - ./workspace:/app/workspace
+    working_dir: /app/workspace
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # For stdio transport, we don't expose ports
+    # but we can add HTTP transport in the future
+    # ports:
+    #   - "3000:3000" 
