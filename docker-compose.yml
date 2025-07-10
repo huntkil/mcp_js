@@ -1,16 +1,50 @@
 version: '3.8'
 
 services:
-  markdown-mcp-server:
+  # Node.js MCP Server
+  mcp-server:
     build: .
-    container_name: markdown-mcp-server
-    volumes:
-      - ./workspace:/app/workspace
-    working_dir: /app/workspace
+    ports:
+      - "3000:3000"
     environment:
-      - NODE_ENV=production
-    restart: unless-stopped
-    # For stdio transport, we don't expose ports
-    # but we can add HTTP transport in the future
-    # ports:
-    #   - "3000:3000" 
+      - NODE_ENV=development
+      - PORT=3000
+      - PYTHON_EMBEDDING_URL=http://embedding-server:8000
+      - EMBEDDING_MODE=python
+      - VECTOR_DB_MODE=local
+      - OBSIDIAN_VAULT_PATH=/vault
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ${OBSIDIAN_VAULT_PATH}:/vault:ro
+    depends_on:
+      - embedding-server
+    networks:
+      - mcp-network
+
+  # Python Embedding Server
+  embedding-server:
+    build:
+      context: ./embedding-server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./embedding-server:/app
+      - embedding-models:/root/.cache/torch
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  embedding-models:
+
+networks:
+  mcp-network:
+    driver: bridge 

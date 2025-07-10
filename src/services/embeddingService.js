@@ -1,15 +1,43 @@
 import logger from '../utils/logger.js';
 import localEmbeddingService from './localEmbeddingService.js';
+import pythonEmbeddingService from './pythonEmbeddingService.js';
 
 class EmbeddingService {
   constructor() {
     this.model = 'local-embedding-v1';
     this.dimensions = 1536;
     this.localService = localEmbeddingService;
+    this.pythonService = pythonEmbeddingService;
+    this.usePythonService = false;
+    
+    // Python 서비스 사용 가능 여부 확인
+    this.checkPythonService();
   }
 
   /**
-   * 텍스트를 벡터로 변환 (로컬 임베딩 사용)
+   * Python 임베딩 서비스 사용 가능 여부 확인
+   */
+  async checkPythonService() {
+    try {
+      await this.pythonService.checkHealth();
+      this.usePythonService = this.pythonService.isAvailable;
+      
+      if (this.usePythonService) {
+        const modelInfo = this.pythonService.modelInfo;
+        this.model = modelInfo?.model_name || 'python-embedding';
+        this.dimensions = modelInfo?.dimension || 768;
+        logger.info(`Python 임베딩 서비스 활성화: ${this.model} (${this.dimensions}D)`);
+      } else {
+        logger.info('Python 임베딩 서비스 사용 불가, 로컬 임베딩 서비스 사용');
+      }
+    } catch (error) {
+      logger.warn(`Python 임베딩 서비스 확인 실패: ${error.message}`);
+      this.usePythonService = false;
+    }
+  }
+
+  /**
+   * 텍스트를 벡터로 변환 (Python 서비스 우선, 로컬 서비스 폴백)
    * @param {string} text - 임베딩할 텍스트
    * @returns {Promise<number[]>} 임베딩 벡터
    */
@@ -19,22 +47,42 @@ class EmbeddingService {
         throw new Error('텍스트가 비어있습니다.');
       }
 
-      logger.info(`로컬 텍스트 임베딩 시작: ${text.substring(0, 50)}...`);
-      
-      // 로컬 임베딩 서비스 사용
-      const embedding = await this.localService.embedText(text);
-      
-      logger.info(`로컬 임베딩 완료: ${embedding.length}차원 벡터 생성`);
-      
-      return embedding;
+      // Python 서비스 사용 가능하면 Python 서비스 사용
+      if (this.usePythonService) {
+        logger.info(`Python 텍스트 임베딩 시작: ${text.substring(0, 50)}...`);
+        
+        const result = await this.pythonService.createEmbeddings(text);
+        const embedding = result.embeddings[0]; // 단일 텍스트이므로 첫 번째 결과
+        
+        logger.info(`Python 임베딩 완료: ${embedding.length}차원 벡터 생성 (${result.processingTime.toFixed(3)}s)`);
+        
+        return embedding;
+      } else {
+        // Python 서비스 사용 불가시 로컬 서비스 사용
+        logger.info(`로컬 텍스트 임베딩 시작: ${text.substring(0, 50)}...`);
+        
+        const embedding = await this.localService.embedText(text);
+        
+        logger.info(`로컬 임베딩 완료: ${embedding.length}차원 벡터 생성`);
+        
+        return embedding;
+      }
     } catch (error) {
-      logger.error(`로컬 임베딩 실패: ${error.message}`);
+      logger.error(`임베딩 실패: ${error.message}`);
+      
+      // Python 서비스 실패시 로컬 서비스로 폴백
+      if (this.usePythonService) {
+        logger.info('Python 서비스 실패, 로컬 서비스로 폴백');
+        this.usePythonService = false;
+        return await this.localService.embedText(text);
+      }
+      
       throw error;
     }
   }
 
   /**
-   * 여러 텍스트를 배치로 임베딩 (로컬 임베딩 사용)
+   * 여러 텍스트를 배치로 임베딩 (Python 서비스 우선, 로컬 서비스 폴백)
    * @param {string[]} texts - 임베딩할 텍스트 배열
    * @returns {Promise<number[][]>} 임베딩 벡터 배열
    */
@@ -44,16 +92,72 @@ class EmbeddingService {
         throw new Error('텍스트 배열이 비어있습니다.');
       }
 
-      logger.info(`로컬 배치 임베딩 시작: ${texts.length}개 텍스트`);
-      
-      // 로컬 임베딩 서비스 사용
-      const embeddings = await this.localService.embedBatch(texts);
+      // Python 서비스 사용 가능하면 Python 서비스 사용
+      if (this.usePythonService) {
+        logger.info(`Python 배치 임베딩 시작: ${texts.length}개 텍스트`);
+        
+        const result = await this.pythonService.createBatchEmbeddings(texts);
+        
+        logger.info(`Python 배치 임베딩 완료: ${result.embeddings.length}개 벡터 생성`);
+        
+        return result.embeddings;
+      } else {
+        // Python 서비스 사용 불가시 로컬 서비스 사용
+        logger.info(`로컬 배치 임베딩 시작: ${texts.length}개 텍스트`);
+        
+        const embeddings = await this.localService.embedBatch(texts);
 
-      logger.info(`로컬 배치 임베딩 완료: ${embeddings.length}개 벡터 생성`);
-      
-      return embeddings;
+        logger.info(`로컬 배치 임베딩 완료: ${embeddings.length}개 벡터 생성`);
+        
+        return embeddings;
+      }
     } catch (error) {
-      logger.error(`로컬 배치 임베딩 실패: ${error.message}`);
+      logger.error(`배치 임베딩 실패: ${error.message}`);
+      
+      // Python 서비스 실패시 로컬 서비스로 폴백
+      if (this.usePythonService) {
+        logger.info('Python 서비스 실패, 로컬 서비스로 폴백');
+        this.usePythonService = false;
+        return await this.localService.embedBatch(texts);
+      }
+      
+      throw error;
+    }
+  }
+
+  /**
+   * 두 텍스트 간의 유사도 계산 (Python 서비스 우선)
+   * @param {string} text1 - 첫 번째 텍스트
+   * @param {string} text2 - 두 번째 텍스트
+   * @returns {Promise<number>} 유사도 점수 (0-1)
+   */
+  async calculateTextSimilarity(text1, text2) {
+    try {
+      if (this.usePythonService) {
+        logger.info('Python 유사도 계산 시작');
+        
+        const result = await this.pythonService.calculateSimilarity(text1, text2);
+        
+        logger.info(`Python 유사도 계산 완료: ${result.similarity.toFixed(4)} (${result.processingTime.toFixed(3)}s)`);
+        
+        return result.similarity;
+      } else {
+        // 로컬 서비스로 폴백: 각각 임베딩 후 코사인 유사도 계산
+        logger.info('로컬 유사도 계산 시작');
+        
+        const [embedding1, embedding2] = await Promise.all([
+          this.embedText(text1),
+          this.embedText(text2)
+        ]);
+        
+        const similarity = this.calculateCosineSimilarity(embedding1, embedding2);
+        
+        logger.info(`로컬 유사도 계산 완료: ${similarity.toFixed(4)}`);
+        
+        return similarity;
+      }
+    } catch (error) {
+      logger.error(`유사도 계산 실패: ${error.message}`);
       throw error;
     }
   }
@@ -119,7 +223,7 @@ class EmbeddingService {
       const testEmbedding = await this.embedText('test');
       return testEmbedding.length === this.dimensions;
     } catch (error) {
-      logger.error(`로컬 임베딩 서비스 헬스체크 실패: ${error.message}`);
+      logger.error(`임베딩 서비스 헬스체크 실패: ${error.message}`);
       return false;
     }
   }
@@ -132,7 +236,9 @@ class EmbeddingService {
     return {
       model: this.model,
       dimensions: this.dimensions,
-      type: 'local'
+      type: this.usePythonService ? 'python' : 'local',
+      pythonServiceAvailable: this.usePythonService,
+      pythonServiceStatus: this.pythonService.getStatus()
     };
   }
 }
