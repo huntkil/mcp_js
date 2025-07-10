@@ -194,6 +194,101 @@ class EmbeddingService {
   }
 
   /**
+   * 텍스트 전처리 개선 (한국어 특화)
+   */
+  preprocessText(text) {
+    if (!text || typeof text !== 'string') return '';
+    
+    // 기본 정규화
+    let processed = text.trim();
+    
+    // 한국어 특화 전처리
+    // 1. 연속된 공백 제거
+    processed = processed.replace(/\s+/g, ' ');
+    
+    // 2. 특수문자 처리 (한글, 영문, 숫자, 기본 문장부호만 유지)
+    processed = processed.replace(/[^\w\s가-힣ㄱ-ㅎㅏ-ㅣ.,!?;:()[\]{}"'`~@#$%^&*+=|\\/<>]/g, ' ');
+    
+    // 3. 연속된 특수문자 제거
+    processed = processed.replace(/[^\w\s가-힣ㄱ-ㅎㅏ-ㅣ]+/g, ' ');
+    
+    // 4. 앞뒤 공백 제거
+    processed = processed.trim();
+    
+    return processed;
+  }
+
+  /**
+   * 개선된 텍스트 청킹 (슬라이딩 윈도우 적용)
+   */
+  createChunks(text, maxChunkSize = 1000, overlapSize = 200) {
+    if (!text || text.length <= maxChunkSize) {
+      return [text];
+    }
+
+    const chunks = [];
+    let start = 0;
+    
+    while (start < text.length) {
+      let end = start + maxChunkSize;
+      
+      // 문장 단위로 자르기 시도
+      if (end < text.length) {
+        const nextPeriod = text.indexOf('.', end - 100);
+        const nextNewline = text.indexOf('\n', end - 100);
+        
+        if (nextPeriod > end - 100 && nextPeriod < end + 100) {
+          end = nextPeriod + 1;
+        } else if (nextNewline > end - 100 && nextNewline < end + 100) {
+          end = nextNewline + 1;
+        }
+      }
+      
+      const chunk = text.substring(start, end).trim();
+      if (chunk.length > 0) {
+        chunks.push(chunk);
+      }
+      
+      // 슬라이딩 윈도우 (중첩)
+      start = end - overlapSize;
+      if (start >= text.length) break;
+    }
+    
+    return chunks;
+  }
+
+  /**
+   * 메타데이터 가중치 적용 임베딩
+   */
+  async createWeightedEmbedding(text, metadata = {}) {
+    const baseEmbedding = await this.createEmbedding(text);
+    
+    // 메타데이터 가중치 적용
+    const weights = {
+      title: 1.5,
+      tags: 1.3,
+      fileName: 1.2,
+      content: 1.0
+    };
+    
+    // 제목이나 태그가 있으면 가중치 적용
+    if (metadata.title && text.toLowerCase().includes(metadata.title.toLowerCase())) {
+      return baseEmbedding.map(val => val * weights.title);
+    }
+    
+    if (metadata.tags && metadata.tags.length > 0) {
+      const tagMatch = metadata.tags.some(tag => 
+        text.toLowerCase().includes(tag.toLowerCase())
+      );
+      if (tagMatch) {
+        return baseEmbedding.map(val => val * weights.tags);
+      }
+    }
+    
+    return baseEmbedding;
+  }
+
+  /**
    * 텍스트 청킹 (긴 텍스트를 작은 조각으로 분할)
    * @param {string} text - 분할할 텍스트
    * @param {number} maxChunkSize - 최대 청크 크기 (토큰 수)

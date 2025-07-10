@@ -10,67 +10,64 @@ class SearchService {
   }
 
   /**
-   * 의미론적 검색 (벡터 검색)
-   * @param {string} query - 검색 쿼리
-   * @param {Object} options - 검색 옵션
+   * 개선된 의미론적 검색
    */
   async semanticSearch(query, options = {}) {
     const {
-      topK = 10,
-      threshold = 0.7,
+      limit = 10,
+      threshold = 0.3,
       filter = {},
-      useCache = true
+      useWeightedEmbedding = true
     } = options;
 
     try {
-      logger.info(`의미론적 검색 시작: "${query}"`);
-      
-      // 캐시 확인
-      const cacheKey = this.generateCacheKey('semantic', query, options);
-      if (useCache && this.cache.has(cacheKey)) {
-        const cached = this.cache.get(cacheKey);
-        if (Date.now() - cached.timestamp < this.cacheTimeout) {
-          logger.info('캐시된 검색 결과 반환');
-          return cached.results;
-        }
-      }
+      // 쿼리 전처리
+      const processedQuery = this.embeddingService.preprocessText(query);
       
       // 쿼리 임베딩 생성
-      const queryEmbedding = await embeddingService.embedText(query);
+      const queryEmbedding = await this.embeddingService.createEmbedding(processedQuery);
       
-      // 벡터 검색 수행
-      const vectorResults = await vectorDatabase.query(queryEmbedding, topK * 2, filter);
-      
-      // 결과 후처리 및 그룹화
-      const processedResults = await this.processSearchResults(vectorResults, query, threshold);
-      
-      // 상위 결과만 반환
-      const topResults = processedResults.slice(0, topK);
-      
-      // 캐시 저장
-      if (useCache) {
-        this.cache.set(cacheKey, {
-          results: topResults,
-          timestamp: Date.now()
-        });
-      }
-      
-      logger.info(`의미론적 검색 완료: ${topResults.length}개 결과`);
-      
+      // 벡터 데이터베이스에서 유사한 벡터 검색
+      const results = await this.vectorDatabase.query(queryEmbedding, {
+        limit: limit * 2, // 더 많은 결과를 가져와서 필터링
+        threshold: threshold * 0.8, // 더 낮은 임계값으로 시작
+        filter
+      });
+
+      // 결과 후처리 및 가중치 적용
+      const processedResults = await this.processSearchResults(results, {
+        query: processedQuery,
+        originalQuery: query,
+        useWeightedEmbedding
+      });
+
+      // 최종 필터링 및 정렬
+      const finalResults = processedResults
+        .filter(result => result.score >= threshold)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, limit);
+
       return {
-        query,
-        results: topResults,
-        totalFound: processedResults.length,
+        success: true,
+        query: query,
+        results: finalResults,
+        totalFound: finalResults.length,
         searchType: 'semantic',
         metadata: {
           queryEmbedding: queryEmbedding.length,
           threshold,
-          filter
+          filter,
+          processedQuery
         }
       };
+
     } catch (error) {
-      logger.error(`의미론적 검색 실패: ${error.message}`);
-      throw error;
+      logger.error('Semantic search failed:', error);
+      return {
+        success: false,
+        error: error.message,
+        query: query
+      };
     }
   }
 
@@ -238,67 +235,118 @@ class SearchService {
   }
 
   /**
-   * 검색 결과 후처리
-   * @param {Array} vectorResults - 벡터 검색 결과
-   * @param {string} query - 원본 쿼리
-   * @param {number} threshold - 임계값
+   * 검색 결과 후처리 및 가중치 적용
    */
-  async processSearchResults(vectorResults, query, threshold) {
-    const processedResults = [];
+  async processSearchResults(results, options = {}) {
+    const { query, originalQuery, useWeightedEmbedding } = options;
     
-    // 벡터 결과가 배열이 아닌 경우 처리
-    if (!Array.isArray(vectorResults)) {
-      logger.warn(`벡터 검색 결과가 배열이 아님: ${typeof vectorResults}`);
-      return processedResults;
+    return await Promise.all(results.map(async (result) => {
+      let finalScore = result.score;
+      
+      // 메타데이터 가중치 적용
+      if (useWeightedEmbedding && result.vectorMetadata) {
+        const metadata = result.vectorMetadata;
+        
+        // 제목 매칭 가중치
+        if (metadata.title && this.hasExactMatch(query, metadata.title)) {
+          finalScore *= 1.5;
+        }
+        
+        // 태그 매칭 가중치
+        if (metadata.tags && metadata.tags.length > 0) {
+          const tagMatches = metadata.tags.filter(tag => 
+            this.hasExactMatch(query, tag)
+          ).length;
+          if (tagMatches > 0) {
+            finalScore *= (1 + tagMatches * 0.2);
+          }
+        }
+        
+        // 파일명 매칭 가중치
+        if (metadata.fileName && this.hasExactMatch(query, metadata.fileName)) {
+          finalScore *= 1.3;
+        }
+      }
+      
+      // 하이라이트 생성
+      const highlights = this.generateHighlights(result, query);
+      
+      return {
+        ...result,
+        score: Math.min(finalScore, 1.0), // 점수 상한선
+        highlights
+      };
+    }));
+  }
+
+  /**
+   * 정확한 매칭 확인
+   */
+  hasExactMatch(query, text) {
+    if (!query || !text) return false;
+    
+    const queryLower = query.toLowerCase();
+    const textLower = text.toLowerCase();
+    
+    // 완전 일치
+    if (queryLower === textLower) return true;
+    
+    // 부분 일치 (단어 단위)
+    const queryWords = queryLower.split(/\s+/);
+    const textWords = textLower.split(/\s+/);
+    
+    return queryWords.some(word => 
+      textWords.some(textWord => textWord.includes(word) || word.includes(textWord))
+    );
+  }
+
+  /**
+   * 개선된 하이라이트 생성
+   */
+  generateHighlights(result, query) {
+    const highlights = [];
+    
+    if (!result.vectorMetadata) return highlights;
+    
+    const metadata = result.vectorMetadata;
+    const queryLower = query.toLowerCase();
+    
+    // 제목 하이라이트
+    if (metadata.title && this.hasExactMatch(query, metadata.title)) {
+      highlights.push({
+        field: 'title',
+        matches: 1,
+        text: metadata.title,
+        type: 'semantic'
+      });
     }
     
-    logger.info(`벡터 검색 결과 처리 시작: ${vectorResults.length}개 결과`);
-    
-    for (const result of vectorResults) {
-      try {
-        // 결과 구조 검증
-        if (!result || typeof result !== 'object') {
-          logger.warn(`잘못된 벡터 결과 구조: ${typeof result}`);
-          continue;
-        }
-        
-        if (typeof result.score !== 'number') {
-          logger.warn(`벡터 결과에 점수가 없음: ${result.id || 'unknown'}`);
-          continue;
-        }
-        
-        if (result.score >= threshold) {
-          // 벡터 결과의 메타데이터를 안전하게 추출
-          const metadata = result.metadata || {};
-          
-          // 필수 필드 검증
-          if (!metadata.filePath && !result.id) {
-            logger.warn(`벡터 결과에 파일 경로가 없음: ${JSON.stringify(result)}`);
-            continue;
-          }
-          
-          processedResults.push({
-            id: result.id,
-            score: result.score,
-            metadata: {
-              title: metadata.title || 'Unknown Title',
-              tags: metadata.tags || [],
-              filePath: metadata.filePath || metadata.originalFilePath || result.id,
-              content: metadata.content || '',
-              chunkIndex: metadata.chunkIndex || 0
-            },
-            matchType: 'semantic',
-            highlights: this.extractSemanticHighlights(query, metadata),
-            vectorMetadata: metadata
-          });
-        }
-      } catch (error) {
-        logger.error(`벡터 결과 처리 중 오류: ${error.message}`, { result });
+    // 태그 하이라이트
+    if (metadata.tags && metadata.tags.length > 0) {
+      const matchingTags = metadata.tags.filter(tag => 
+        this.hasExactMatch(query, tag)
+      );
+      if (matchingTags.length > 0) {
+        highlights.push({
+          field: 'tags',
+          matches: matchingTags.length,
+          text: matchingTags.join(', '),
+          type: 'semantic'
+        });
       }
     }
     
-    logger.info(`벡터 검색 결과 처리 완료: ${processedResults.length}개 유효한 결과`);
-    return processedResults;
+    // 파일명 하이라이트
+    if (metadata.fileName && this.hasExactMatch(query, metadata.fileName)) {
+      highlights.push({
+        field: 'fileName',
+        matches: 1,
+        text: metadata.fileName,
+        type: 'semantic'
+      });
+    }
+    
+    return highlights;
   }
 
   /**
