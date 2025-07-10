@@ -149,7 +149,7 @@ app.post('/tools/markdown/manageFrontmatter', async (req, res) => {
 });
 
 // 서버 시작
-app.listen(port, () => {
+const server = app.listen(port, () => {
   logger.info(`Markdown MCP HTTP Server running at http://localhost:${port}`);
   logger.info('Available endpoints:');
   logger.info('  GET  / - 서버 상태 확인');
@@ -161,5 +161,9 @@ app.listen(port, () => {
 // Graceful shutdown
 process.on('SIGINT', () => {
   logger.info('\nShutting down server...');
-  process.exit(0);
-}); 
+  server.close(() => {
+    process.exit(0);
+  });
+});
+
+export default app; 
