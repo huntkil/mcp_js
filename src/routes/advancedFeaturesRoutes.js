@@ -1,7 +1,11 @@
 import express from 'express';
 import advancedFeatures from '../services/advancedFeatures.js';
+import summaryService from '../services/summaryService.js';
+import taggingService from '../services/taggingService.js';
 import noteIndexingService from '../services/noteIndexingService.js';
 import logger from '../utils/logger.js';
+import knowledgeGraphService from '../services/knowledgeGraphService.js';
+import recommendationService from '../services/recommendationService.js';
 
 const router = express.Router();
 
@@ -702,6 +706,330 @@ router.post('/index-vault', async (req, res) => {
     res.status(500).json({
       success: false,
       error: error.message
+    });
+  }
+});
+
+// 요약 관련 라우트 추가
+router.post('/summary/generate', async (req, res) => {
+  try {
+    const { text, options } = req.body;
+    
+    if (!text) {
+      return res.status(400).json({
+        success: false,
+        error: '텍스트가 필요합니다.'
+      });
+    }
+
+    const result = await summaryService.generateSummary(text, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('요약 생성 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '요약 생성 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+router.post('/summary/multi-note', async (req, res) => {
+  try {
+    const { notes, options } = req.body;
+    
+    if (!notes || !Array.isArray(notes)) {
+      return res.status(400).json({
+        success: false,
+        error: '노트 배열이 필요합니다.'
+      });
+    }
+
+    const result = await summaryService.generateMultiNoteSummary(notes, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('다중 노트 요약 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '다중 노트 요약 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+router.post('/summary/search-results', async (req, res) => {
+  try {
+    const { searchResults, options } = req.body;
+    
+    if (!searchResults || !Array.isArray(searchResults)) {
+      return res.status(400).json({
+        success: false,
+        error: '검색 결과가 필요합니다.'
+      });
+    }
+
+    // 검색 결과를 노트 형태로 변환
+    const notes = searchResults.map(result => ({
+      title: result.fileName || result.title || 'Unknown',
+      content: result.content || result.text || '',
+      fileName: result.fileName
+    }));
+
+    const result = await summaryService.generateMultiNoteSummary(notes, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('검색 결과 요약 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '검색 결과 요약 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+// 태깅 관련 라우트 추가
+router.post('/tags/extract', async (req, res) => {
+  try {
+    const { text, options } = req.body;
+    
+    if (!text) {
+      return res.status(400).json({
+        success: false,
+        error: '텍스트가 필요합니다.'
+      });
+    }
+
+    const result = await taggingService.extractTags(text, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('태그 추출 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '태그 추출 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+router.post('/tags/suggest', async (req, res) => {
+  try {
+    const { note, options } = req.body;
+    
+    if (!note) {
+      return res.status(400).json({
+        success: false,
+        error: '노트가 필요합니다.'
+      });
+    }
+
+    const result = await taggingService.suggestTagsForNote(note, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('태그 제안 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '태그 제안 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+router.post('/tags/group', async (req, res) => {
+  try {
+    const { notes, options } = req.body;
+    
+    if (!notes || !Array.isArray(notes)) {
+      return res.status(400).json({
+        success: false,
+        error: '노트 배열이 필요합니다.'
+      });
+    }
+
+    const result = await taggingService.groupNotesByTags(notes, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('태그 그룹화 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '태그 그룹화 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+// 지식 그래프 생성
+router.post('/knowledge-graph/build', async (req, res) => {
+  try {
+    const { notes, options } = req.body;
+    if (!notes || !Array.isArray(notes)) {
+      return res.status(400).json({ success: false, error: '노트 배열이 필요합니다.' });
+    }
+    const result = await knowledgeGraphService.buildGraph(notes, options);
+    res.json({ success: true, data: result });
+  } catch (error) {
+    logger.error('지식 그래프 생성 API 오류:', error);
+    res.status(500).json({ success: false, error: '지식 그래프 생성 중 오류가 발생했습니다.' });
+  }
+});
+
+// 유사노트 추천
+router.post('/recommendations/similar-notes', async (req, res) => {
+  try {
+    const { targetNote, candidateNotes, options } = req.body;
+    
+    if (!targetNote || !candidateNotes || !Array.isArray(candidateNotes)) {
+      return res.status(400).json({
+        success: false,
+        error: '대상 노트와 후보 노트 배열이 필요합니다.'
+      });
+    }
+
+    const result = await recommendationService.recommendSimilarNotes(targetNote, candidateNotes, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('유사노트 추천 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '유사노트 추천 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+// 백링크 제안
+router.post('/recommendations/backlinks', async (req, res) => {
+  try {
+    const { targetNote, allNotes, options } = req.body;
+    
+    if (!targetNote || !allNotes || !Array.isArray(allNotes)) {
+      return res.status(400).json({
+        success: false,
+        error: '대상 노트와 전체 노트 배열이 필요합니다.'
+      });
+    }
+
+    const result = await recommendationService.suggestBacklinks(targetNote, allNotes, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('백링크 제안 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '백링크 제안 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+// 노트 연결 강화
+router.post('/recommendations/strengthen-connections', async (req, res) => {
+  try {
+    const { targetNote, allNotes, options } = req.body;
+    
+    if (!targetNote || !allNotes || !Array.isArray(allNotes)) {
+      return res.status(400).json({
+        success: false,
+        error: '대상 노트와 전체 노트 배열이 필요합니다.'
+      });
+    }
+
+    const result = await recommendationService.strengthenConnections(targetNote, allNotes, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('노트 연결 강화 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '노트 연결 강화 중 오류가 발생했습니다.'
     });
   }
 });

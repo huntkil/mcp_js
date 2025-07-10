@@ -5,6 +5,8 @@ import logger from '../utils/logger.js';
 
 class SearchService {
   constructor() {
+    this.embeddingService = embeddingService;
+    this.vectorDatabase = vectorDatabase;
     this.cache = new Map(); // 검색 결과 캐시
     this.cacheTimeout = 5 * 60 * 1000; // 5분 캐시
   }
@@ -25,7 +27,7 @@ class SearchService {
       const processedQuery = this.embeddingService.preprocessText(query);
       
       // 쿼리 임베딩 생성
-      const queryEmbedding = await this.embeddingService.createEmbedding(processedQuery);
+      const queryEmbedding = await this.embeddingService.embedText(processedQuery);
       
       // 벡터 데이터베이스에서 유사한 벡터 검색
       const results = await this.vectorDatabase.query(queryEmbedding, {
