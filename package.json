@@ -19,6 +19,8 @@
     "@modelcontextprotocol/sdk": "^1.15.0",
     "glob": "^10.3.0",
     "gray-matter": "^4.0.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },
   "devDependencies": {

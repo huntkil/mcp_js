@@ -2,6 +2,8 @@ import express from 'express';
 import { MarkdownManager } from './MarkdownManager.js';
 import { ObsidianManager } from './ObsidianManager.js';
 import logger from './logger.js';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 app.use(express.json());
@@ -11,6 +13,404 @@ const markdownManager = new MarkdownManager(basePath);
 const obsidianManager = new ObsidianManager(basePath);
 
 const port = process.env.PORT || 8080;
+
+// Swagger 설정
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Markdown MCP HTTP Server',
+    version: '1.0.0',
+    description: 'Obsidian Vault 및 Markdown 파일 관리 REST API',
+  },
+  servers: [
+    { url: `http://localhost:${port}` }
+  ],
+};
+
+const swaggerOptions = {
+  swaggerDefinition,
+  apis: ['./src/server.js'], // JSDoc 주석에서 API 추출
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// OpenAPI 스펙 JSON 다운로드 엔드포인트
+app.get('/docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: 서버 상태 확인
+ *     description: 서버가 정상적으로 동작 중인지 확인합니다.
+ *     responses:
+ *       200:
+ *         description: 서버 상태 정보
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: running
+ *                 server:
+ *                   type: string
+ *                   example: Markdown MCP HTTP Server
+ *                 version:
+ *                   type: string
+ *                   example: 1.0.0
+ *                 availableEndpoints:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["GET /tools - 사용 가능한 툴 목록", "POST /tools/obsidian/getAllTags - 모든 태그 목록"]
+ */
+
+/**
+ * @swagger
+ * /tools:
+ *   get:
+ *     summary: 사용 가능한 툴 목록
+ *     description: 서버에서 제공하는 모든 MCP 툴의 목록을 반환합니다.
+ *     responses:
+ *       200:
+ *         description: 툴 목록
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 tools:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       name:
+ *                         type: string
+ *                         example: obsidian.getAllTags
+ *                       description:
+ *                         type: string
+ *                         example: 모든 태그 목록 추출
+ */
+
+/**
+ * @swagger
+ * /tools/obsidian/getAllTags:
+ *   post:
+ *     summary: 모든 태그 목록 추출
+ *     description: Obsidian Vault 내의 모든 고유 태그 목록을 반환합니다.
+ *     responses:
+ *       200:
+ *         description: 태그 목록
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["project", "health", "diary"]
+ */
+
+/**
+ * @swagger
+ * /tools/obsidian/generateVaultStats:
+ *   post:
+ *     summary: Vault 통계 생성
+ *     description: Obsidian Vault의 전체 통계 정보를 반환합니다.
+ *     responses:
+ *       200:
+ *         description: Vault 통계
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     totalFiles:
+ *                       type: integer
+ *                       example: 332
+ *                     totalSize:
+ *                       type: integer
+ *                       description: 전체 파일 크기(byte)
+ *                       example: 1536000
+ *                     totalWords:
+ *                       type: integer
+ *                       example: 172203
+ *                     totalLinks:
+ *                       type: integer
+ *                       example: 1958
+ *                     totalTags:
+ *                       type: integer
+ *                       example: 1006
+ *                     fileTypes:
+ *                       type: object
+ *                       additionalProperties:
+ *                         type: integer
+ *                       example: {".md": 332, ".pdf": 10}
+ *                     topTags:
+ *                       type: object
+ *                       additionalProperties:
+ *                         type: integer
+ *                       example: {"project": 30, "health": 25}
+ *                     recentFiles:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           file:
+ *                             type: string
+ *                             example: "Health/2024-07-10.md"
+ *                           modified:
+ *                             type: string
+ *                             format: date-time
+ *                             example: "2024-07-10T09:00:00Z"
+ *                           size:
+ *                             type: integer
+ *                             example: 2048
+ *                           words:
+ *                             type: integer
+ *                             example: 1200
+ */
+
+/**
+ * @swagger
+ * /tools/obsidian/getRecentlyModifiedNotes:
+ *   post:
+ *     summary: 최근 수정된 노트 목록
+ *     description: 최근 n일 이내에 수정된 노트 목록을 반환합니다.
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               days:
+ *                 type: integer
+ *                 default: 7
+ *                 example: 7
+ *               limit:
+ *                 type: integer
+ *                 default: 20
+ *                 example: 10
+ *     responses:
+ *       200:
+ *         description: 최근 수정된 노트 목록
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       file:
+ *                         type: string
+ *                         example: "Health/2024-07-10.md"
+ *                       modified:
+ *                         type: string
+ *                         format: date-time
+ *                         example: "2024-07-10T09:00:00Z"
+ */
+
+/**
+ * @swagger
+ * /tools/obsidian/extractTodos:
+ *   post:
+ *     summary: TODO 작업 추출
+ *     description: 모든 노트에서 TODO 작업을 추출합니다.
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               filePath:
+ *                 type: string
+ *                 description: 특정 파일만 추출할 경우 파일 경로
+ *                 example: "Health/2024-07-10.md"
+ *               status:
+ *                 type: string
+ *                 enum: [all, pending, completed]
+ *                 default: all
+ *                 description: TODO 상태 필터
+ *                 example: "pending"
+ *     responses:
+ *       200:
+ *         description: TODO 목록
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       file:
+ *                         type: string
+ *                         example: "Health/2024-07-10.md"
+ *                       line:
+ *                         type: integer
+ *                         example: 12
+ *                       content:
+ *                         type: string
+ *                         example: "- [ ] TODO: 운동하기"
+ *                       completed:
+ *                         type: boolean
+ *                         example: false
+ */
+
+/**
+ * @swagger
+ * /tools/markdown/listFiles:
+ *   post:
+ *     summary: 마크다운 파일 목록 조회
+ *     description: 지정한 디렉토리(및 하위 디렉토리)에서 마크다운 파일 목록을 반환합니다.
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               directory:
+ *                 type: string
+ *                 description: 검색할 디렉토리 경로
+ *                 example: "Health"
+ *               recursive:
+ *                 type: boolean
+ *                 default: false
+ *                 description: 하위 디렉토리까지 검색 여부
+ *                 example: true
+ *               pattern:
+ *                 type: string
+ *                 default: '*.md'
+ *                 description: 파일명 패턴
+ *                 example: '*.md'
+ *     responses:
+ *       200:
+ *         description: 파일 목록
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["Health/2024-07-10.md", "test.md"]
+ */
+
+/**
+ * @swagger
+ * /tools/markdown/searchContent:
+ *   post:
+ *     summary: 마크다운 내용 검색
+ *     description: 지정한 디렉토리 내 파일에서 키워드/정규식 등으로 내용을 검색합니다.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               directory:
+ *                 type: string
+ *                 description: 검색할 디렉토리
+ *                 example: "Health"
+ *               query:
+ *                 type: string
+ *                 description: 단일 검색 키워드
+ *                 example: "운동"
+ *               keywords:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: 여러 검색 키워드 배열
+ *                 example: ["운동", "건강"]
+ *               mode:
+ *                 type: string
+ *                 enum: [and, or]
+ *                 default: or
+ *                 description: 여러 키워드 검색 모드
+ *                 example: "or"
+ *               caseSensitive:
+ *                 type: boolean
+ *                 default: false
+ *                 description: 대소문자 구분 여부
+ *                 example: false
+ *               isRegex:
+ *                 type: boolean
+ *                 default: false
+ *                 description: query를 정규식으로 처리할지 여부
+ *                 example: false
+ *               filenamePattern:
+ *                 type: string
+ *                 description: 파일명 패턴 (와일드카드/정규식)
+ *                 example: '*.md'
+ *     responses:
+ *       200:
+ *         description: 검색 결과
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       file:
+ *                         type: string
+ *                         example: "Health/2024-07-10.md"
+ *                       line:
+ *                         type: integer
+ *                         example: 15
+ *                       content:
+ *                         type: string
+ *                         example: "운동은 건강에 좋다."
+ *                       match:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                         example: ["운동"]
+ */
 
 // 기본 상태 확인
 app.get('/', (req, res) => {
