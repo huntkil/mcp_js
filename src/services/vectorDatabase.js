@@ -71,6 +71,13 @@ class VectorDatabase {
           return 0;
         }
         
+        // NaN이나 Infinity 값 체크
+        for (let i = 0; i < a.length; i++) {
+          if (isNaN(a[i]) || !isFinite(a[i]) || isNaN(b[i]) || !isFinite(b[i])) {
+            return 0;
+          }
+        }
+        
         let dot = 0, normA = 0, normB = 0;
         for (let i = 0; i < a.length; i++) {
           dot += a[i] * b[i];
@@ -79,21 +86,33 @@ class VectorDatabase {
         }
         
         const denominator = Math.sqrt(normA) * Math.sqrt(normB);
-        return denominator === 0 ? 0 : dot / denominator;
+        if (denominator === 0 || isNaN(denominator) || !isFinite(denominator)) {
+          return 0;
+        }
+        
+        const result = dot / denominator;
+        return isNaN(result) || !isFinite(result) ? 0 : Math.max(0, Math.min(1, result));
       }
       
       const results = [];
       let processedCount = 0;
+      let filteredCount = 0;
+      let nanCount = 0;
+      const topScores = [];
       
       for (const v of this.vectors.values()) {
         try {
           // 필터 적용
           if (filter && filter.filePath && v.metadata && v.metadata.filePath && !v.metadata.filePath.includes(filter.filePath)) {
+            filteredCount++;
             continue;
           }
           if (filter && filter.tags && v.metadata && v.metadata.tags) {
             const hasTag = filter.tags.some(tag => v.metadata.tags.includes(tag));
-            if (!hasTag) continue;
+            if (!hasTag) {
+              filteredCount++;
+              continue;
+            }
           }
           
           // 벡터 데이터 추출
@@ -105,8 +124,18 @@ class VectorDatabase {
           
           const score = cosine(queryVector, vector);
           if (isNaN(score)) {
+            nanCount++;
             logger.warn(`유사도 점수가 NaN: ${v.id}`);
             continue;
+          }
+          
+          // 상위 점수 추적
+          if (topScores.length < 10) {
+            topScores.push({ id: v.id, score });
+            topScores.sort((a, b) => b.score - a.score);
+          } else if (score > topScores[9].score) {
+            topScores[9] = { id: v.id, score };
+            topScores.sort((a, b) => b.score - a.score);
           }
           
           results.push({ 
@@ -121,10 +150,18 @@ class VectorDatabase {
         }
       }
       
+      // 디버깅 로그
+      logger.info(`[VECTOR][DEBUG] 검색 통계: 처리 ${processedCount}개, 필터링 ${filteredCount}개, NaN ${nanCount}개`);
+      logger.info(`[VECTOR][DEBUG] results 배열 크기: ${results.length}`);
+      if (topScores.length > 0) {
+        logger.info(`[VECTOR][DEBUG] 상위 점수: ${topScores.slice(0, 5).map(s => `${s.id}: ${s.score.toFixed(4)}`).join(', ')}`);
+      }
+      
       // 점수순 정렬
       results.sort((a, b) => b.score - a.score);
       
       const topResults = results.slice(0, topK);
+      logger.info(`[VECTOR][DEBUG] topResults 크기: ${topResults.length}, topK: ${topK}`);
       logger.info(`로컬 벡터 검색 완료: ${topResults.length}개 결과 (처리: ${processedCount}개, 총 벡터: ${this.vectors.size}개)`);
       
       return topResults;
@@ -162,6 +199,20 @@ class VectorDatabase {
       indexDimension: this.dimensions,
       indexMetric: 'cosine',
     };
+  }
+
+  /**
+   * 벡터 수 조회
+   */
+  getVectorCount() {
+    return this.vectors.size;
+  }
+
+  /**
+   * 모든 벡터 조회
+   */
+  getAllVectors() {
+    return Array.from(this.vectors.values());
   }
 
   async clear() {

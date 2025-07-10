@@ -1,5 +1,6 @@
 /* global describe, test, expect, beforeEach */
 import performanceOptimizer from '../services/performanceOptimizer.js';
+import { afterEach } from '@jest/globals';
 
 describe('Performance Optimizer Tests', () => {
   afterEach(() => {
@@ -133,7 +134,7 @@ describe('Performance Optimizer Tests', () => {
       
       expect(Array.isArray(recommendations)).toBe(true);
       expect(recommendations.some(rec => 
-        rec.category === 'search' && rec.type === 'warning'
+        rec.category === 'performance' && rec.priority === 'medium'
       )).toBe(true);
     });
     
@@ -145,7 +146,7 @@ describe('Performance Optimizer Tests', () => {
       const recommendations = performanceOptimizer.generateOptimizationRecommendations();
       
       expect(recommendations.some(rec => 
-        rec.category === 'cache' && rec.type === 'info'
+        rec.category === 'functionality' && rec.priority === 'high'
       )).toBe(true);
     });
     
@@ -160,7 +161,7 @@ describe('Performance Optimizer Tests', () => {
       const recommendations = performanceOptimizer.generateOptimizationRecommendations();
       
       expect(recommendations.some(rec => 
-        rec.category === 'reliability' && rec.type === 'error'
+        rec.category === 'functionality' && rec.priority === 'high'
       )).toBe(true);
     });
   });

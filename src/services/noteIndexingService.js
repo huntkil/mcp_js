@@ -41,38 +41,39 @@ class NoteIndexingService {
   async indexVault(vaultPath, options = {}) {
     const {
       forceReindex = false,
-      batchSize = 50,
+      batchSize = 100, // 50에서 100으로 증가
       includeAttachments = false,
       maxFileSize = 1024 * 1024 // 1MB
     } = options;
 
     try {
-      logger.info(`Vault 인덱싱 시작: ${vaultPath}`);
+      logger.info(`[INDEX][START] Vault 인덱싱 시작: ${vaultPath}`);
       
       // Markdown 파일 찾기
       const markdownFiles = await this.findMarkdownFiles(vaultPath, includeAttachments);
-      logger.info(`발견된 Markdown 파일: ${markdownFiles.length}개`);
+      logger.info(`[INDEX][FILES] 발견된 Markdown 파일: ${markdownFiles.length}개`);
       
       // 인덱싱할 파일 필터링
       const filesToIndex = await this.filterFilesForIndexing(markdownFiles, forceReindex, maxFileSize);
-      logger.info(`인덱싱할 파일: ${filesToIndex.length}개`);
+      logger.info(`[INDEX][FILTER] 인덱싱할 파일: ${filesToIndex.length}개`);
       
       if (filesToIndex.length === 0) {
-        logger.info('인덱싱할 파일이 없습니다.');
+        logger.info('[INDEX][EMPTY] 인덱싱할 파일이 없습니다.');
         return { indexed: 0, skipped: 0, errors: 0 };
       }
       
       // 배치 처리
-      const results = await this.processBatch(filesToIndex, batchSize);
+      logger.info(`[INDEX][BATCH] 배치 처리 시작: ${filesToIndex.length}개 파일`);
+      const results = await this.processBatch(filesToIndex, batchSize, { forceReindex });
       
       // 인덱스 상태 저장
       await this.saveIndexedNotes();
       
-      logger.info(`Vault 인덱싱 완료: ${results.indexed}개 인덱싱, ${results.skipped}개 스킵, ${results.errors}개 오류`);
+      logger.info(`[INDEX][COMPLETE] Vault 인덱싱 완료: ${results.indexed}개 인덱싱, ${results.skipped}개 스킵, ${results.errors}개 오류`);
       
       return results;
     } catch (error) {
-      logger.error(`Vault 인덱싱 실패: ${error.message}`);
+      logger.error(`[INDEX][ERROR] Vault 인덱싱 실패: ${error.message}`);
       throw error;
     }
   }
@@ -102,7 +103,7 @@ class NoteIndexingService {
       
       // 이미 인덱싱되었는지 확인
       if (!forceReindex && this.isAlreadyIndexed(filePath, fileHash)) {
-        logger.info(`이미 인덱싱됨: ${filePath}`);
+        logger.info(`[INDEX][SKIP] 이미 인덱싱됨: ${filePath}`);
         return { indexed: false, reason: 'already_indexed' };
       }
       
@@ -119,9 +120,9 @@ class NoteIndexingService {
       await this.storeVectors(filePath, embeddings, chunks, noteContent.metadata);
       
       // 인덱스 상태 업데이트
-      this.updateIndexStatus(filePath, fileHash, noteContent.metadata);
+      this.updateIndexStatus(filePath, fileHash, noteContent.metadata, noteContent.content);
       
-      logger.info(`노트 인덱싱 완료: ${filePath} (${chunks.length}개 청크)`);
+      logger.info(`[INDEX][SUCCESS] 노트 인덱싱 완료: ${filePath} (${chunks.length}개 청크)`);
       
       return { 
         indexed: true, 
@@ -129,7 +130,7 @@ class NoteIndexingService {
         metadata: noteContent.metadata 
       };
     } catch (error) {
-      logger.error(`노트 인덱싱 실패: ${filePath} - ${error.message}`);
+      logger.error(`[INDEX][FAIL] 노트 인덱싱 실패: ${filePath} - ${error.message}`);
       throw error;
     }
   }
@@ -172,6 +173,11 @@ class NoteIndexingService {
    */
   async filterFilesForIndexing(files, forceReindex = false, maxFileSize = 1024 * 1024) {
     const filesToIndex = [];
+    let skippedCount = 0;
+    let sizeFilteredCount = 0;
+    let alreadyIndexedCount = 0;
+    
+    logger.info(`[INDEX][FILTER] 필터링 시작: ${files.length}개 파일, forceReindex: ${forceReindex}`);
     
     for (const file of files) {
       try {
@@ -179,20 +185,25 @@ class NoteIndexingService {
         
         // 파일 크기 체크
         if (stats.size > maxFileSize) {
-          logger.warn(`파일이 너무 큼 (${stats.size} bytes): ${file}`);
+          logger.warn(`[INDEX][FILTER] 파일이 너무 큼 (${stats.size} bytes): ${file}`);
+          sizeFilteredCount++;
           continue;
         }
         
         // 이미 인덱싱되었는지 체크
         if (!forceReindex && this.isAlreadyIndexed(file)) {
+          alreadyIndexedCount++;
           continue;
         }
         
         filesToIndex.push(file);
       } catch (error) {
-        logger.warn(`파일 접근 실패: ${file} - ${error.message}`);
+        logger.warn(`[INDEX][FILTER] 파일 접근 실패: ${file} - ${error.message}`);
+        skippedCount++;
       }
     }
+    
+    logger.info(`[INDEX][FILTER] 필터링 완료: ${filesToIndex.length}개 인덱싱, ${alreadyIndexedCount}개 이미 인덱싱됨, ${sizeFilteredCount}개 크기 초과, ${skippedCount}개 접근 실패`);
     
     return filesToIndex;
   }
@@ -201,31 +212,64 @@ class NoteIndexingService {
    * 배치 처리
    * @param {string[]} files - 파일 목록
    * @param {number} batchSize - 배치 크기
+   * @param {Object} options - 옵션
    */
-  async processBatch(files, batchSize = 50) {
+  async processBatch(files, batchSize = 100, options = {}) {
+    const { forceReindex = false } = options;
     const results = { indexed: 0, skipped: 0, errors: 0 };
     
-    for (let i = 0; i < files.length; i += batchSize) {
-      const batch = files.slice(i, i + batchSize);
-      logger.info(`배치 처리: ${i + 1}-${Math.min(i + batchSize, files.length)}/${files.length}`);
+    // 병렬 처리 개선: 더 큰 배치로 처리
+    const maxConcurrency = 10; // 동시 처리할 배치 수
+    
+    for (let i = 0; i < files.length; i += batchSize * maxConcurrency) {
+      const batchGroup = files.slice(i, i + batchSize * maxConcurrency);
+      logger.info(`[INDEX][BATCH] 배치 그룹 처리: ${i + 1}-${Math.min(i + batchSize * maxConcurrency, files.length)}/${files.length}`);
       
-      const batchPromises = batch.map(async (file) => {
-        try {
-          const result = await this.indexNote(file);
-          if (result.indexed) {
-            results.indexed++;
-          } else {
-            results.skipped++;
-          }
-        } catch (error) {
-          logger.error(`배치 처리 오류: ${file} - ${error.message}`);
-          results.errors++;
-        }
+      // 배치 그룹을 더 작은 배치로 나누어 병렬 처리
+      const batchPromises = [];
+      for (let j = 0; j < batchGroup.length; j += batchSize) {
+        const batch = batchGroup.slice(j, j + batchSize);
+        const batchPromise = this.processSingleBatch(batch, { forceReindex });
+        batchPromises.push(batchPromise);
+      }
+      
+      const batchResults = await Promise.all(batchPromises);
+      
+      // 결과 집계
+      batchResults.forEach(result => {
+        results.indexed += result.indexed;
+        results.skipped += result.skipped;
+        results.errors += result.errors;
       });
-      
-      await Promise.all(batchPromises);
     }
     
+    return results;
+  }
+
+  /**
+   * 단일 배치 처리
+   * @param {string[]} batch - 배치 파일 목록
+   * @param {Object} options - 옵션
+   */
+  async processSingleBatch(batch, options = {}) {
+    const { forceReindex = false } = options;
+    const results = { indexed: 0, skipped: 0, errors: 0 };
+    
+    const batchPromises = batch.map(async (file) => {
+      try {
+        const result = await this.indexNote(file, { forceReindex });
+        if (result.indexed) {
+          results.indexed++;
+        } else {
+          results.skipped++;
+        }
+      } catch (error) {
+        logger.error(`배치 처리 오류: ${file} - ${error.message}`);
+        results.errors++;
+      }
+    });
+    
+    await Promise.all(batchPromises);
     return results;
   }
 
@@ -287,7 +331,7 @@ class NoteIndexingService {
     // 제목과 태그를 별도 청크로 추가
     const titleChunk = {
       id: `${metadata.filePath}-title`,
-      content: `${metadata.title} ${metadata.tags.join(' ')}`,
+      content: `${metadata.title} ${(Array.isArray(metadata.tags) ? metadata.tags.join(' ') : (typeof metadata.tags === 'string' ? metadata.tags : ''))}`,
       metadata: {
         ...metadata,
         chunkIndex: -1,
@@ -381,13 +425,16 @@ class NoteIndexingService {
    * @param {string} filePath - 파일 경로
    * @param {string} fileHash - 파일 해시
    * @param {Object} metadata - 메타데이터
+   * @param {string} content - 본문 내용
    */
-  updateIndexStatus(filePath, fileHash, metadata) {
+  updateIndexStatus(filePath, fileHash, metadata, content = '') {
     this.indexedNotes.set(filePath, {
       fileHash,
-      metadata,
-      indexedAt: new Date().toISOString(),
-      version: this.indexVersion
+      metadata: {
+        ...metadata,
+        content: content.substring(0, 10000) // 본문 내용 저장 (10KB 제한)
+      },
+      indexedAt: new Date().toISOString()
     });
   }
 
@@ -504,6 +551,13 @@ class NoteIndexingService {
       tags: Array.from(stats.tags),
       fileTypes: Object.fromEntries(stats.fileTypes)
     };
+  }
+
+  /**
+   * 총 노트 수 조회
+   */
+  getTotalNotes() {
+    return this.indexedNotes.size;
   }
 }
 

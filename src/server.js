@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import cors from 'cors';
 import { MarkdownManager } from './MarkdownManager.js';
 import { ObsidianManager } from './ObsidianManager.js';
 import logger from './utils/logger.js';
@@ -12,6 +13,35 @@ import advancedFeaturesRoutes from './routes/advancedFeaturesRoutes.js';
 import performanceRoutes from './routes/performanceRoutes.js';
 
 const app = express();
+
+// CORS 설정
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://localhost:5177',
+    'http://localhost:5178',
+    'http://localhost:5179',
+    'http://localhost:5180',
+    'http://localhost:5181',
+    'http://localhost:5182',
+    'http://localhost:5183',
+    'http://localhost:5184',
+    'http://localhost:5185',
+    'http://localhost:5186',
+    'http://localhost:5187',
+    'http://localhost:5188',
+    'http://localhost:5189',
+    'http://localhost:5190'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
+
 app.use(express.json());
 
 const basePath = process.env.BASE_PATH || '/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card';

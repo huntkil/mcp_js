@@ -1,5 +1,4 @@
 import embeddingService from './embeddingService.js';
-import logger from '../utils/logger.js';
 
 class KnowledgeGraphService {
   /**

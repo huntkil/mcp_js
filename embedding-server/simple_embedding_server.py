@@ -22,7 +22,7 @@ class SimpleEmbeddingModel:
     def __init__(self):
         self.vocab = {}
         self.idf = {}
-        self.dimension = 768  # 실제 모델과 동일한 차원
+        self.dimension = 1536  # 벡터DB와 호환되는 차원으로 변경
         
     def preprocess_text(self, text):
         """텍스트 전처리"""

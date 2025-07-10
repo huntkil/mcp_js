@@ -1,5 +1,5 @@
 import logger from '../utils/logger.js';
-import embeddingService from './embeddingService.js';
+// import embeddingService from './embeddingService.js';
 
 class SummaryService {
   constructor() {

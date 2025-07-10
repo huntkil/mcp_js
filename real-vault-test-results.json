@@ -1,0 +1,103 @@
+{
+  "timestamp": "2025-07-10T11:22:28.638Z",
+  "vaultInfo": {
+    "totalFiles": 344,
+    "sampleFiles": [
+      "2025-07-10.md",
+      "COMPREHENSIVE_ORGANIZATION_SUMMARY.md",
+      "INBOX_ORGANIZATION_SUMMARY.md",
+      "Release Notes - MCP Server R3.md",
+      "Test Note from PowerShell.md",
+      "notion-mcp-plugin-dev.md",
+      "메모의 순간.md",
+      "노션 플러그인 사용 설명서.md",
+      "0. Inbox/MCP_프로토콜_구현.md",
+      "0. Inbox/속발음 해결.md"
+    ],
+    "avgFileSize": 3509.4
+  },
+  "indexingResult": {
+    "success": true,
+    "indexed": 27,
+    "skipped": 0,
+    "errors": 237,
+    "duration": 9017
+  },
+  "searchResults": {
+    "마음근력": {
+      "semantic": 2,
+      "keyword": 0,
+      "hybrid": 5
+    },
+    "명상": {
+      "semantic": 2,
+      "keyword": 4,
+      "hybrid": 6
+    },
+    "습관": {
+      "semantic": 0,
+      "keyword": 1,
+      "hybrid": 1
+    },
+    "자기조절력": {
+      "semantic": 1,
+      "keyword": 0,
+      "hybrid": 1
+    },
+    "통계": {
+      "semantic": 0,
+      "keyword": 0,
+      "hybrid": 0
+    },
+    "운동": {
+      "semantic": 5,
+      "keyword": 3,
+      "hybrid": 7
+    },
+    "학습": {
+      "semantic": 0,
+      "keyword": 0,
+      "hybrid": 0
+    },
+    "목표": {
+      "semantic": 0,
+      "keyword": 0,
+      "hybrid": 0
+    }
+  },
+  "recommendationResults": {
+    "마음근력": {
+      "similar": 0,
+      "backlinks": 0
+    },
+    "명상": {
+      "similar": 0,
+      "backlinks": 0
+    }
+  },
+  "advancedResults": {
+    "summary": {
+      "success": false
+    },
+    "tags": {
+      "success": false
+    },
+    "knowledgeGraph": {
+      "success": false
+    }
+  },
+  "performanceResults": {},
+  "loadResults": {
+    "totalTime": 112,
+    "avgTime": 11.2,
+    "successCount": 10,
+    "successRate": "100.00"
+  },
+  "performanceStats": {
+    "totalRequests": 44,
+    "totalTime": 9969,
+    "avgResponseTime": "226.57",
+    "successRate": "84.09%",
+    "errors": 7
+  }
+}

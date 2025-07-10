@@ -140,53 +140,72 @@ class PerformanceOptimizer {
    * 성능 최적화 권장사항 생성
    */
   generateOptimizationRecommendations() {
-    const stats = this.getPerformanceStats();
     const recommendations = [];
-    
-    // 검색 지연시간 분석
-    if (stats.search.averageLatency > 1000) {
+    const stats = this.getPerformanceStats();
+
+    // 인덱싱 성능 최적화 (실제 볼트 기준)
+    if (stats.search.averageLatency > 60000) { // 60초 이상
       recommendations.push({
-        type: 'warning',
-        category: 'search',
-        message: '검색 지연시간이 높습니다. 캐싱을 활성화하거나 인덱스를 최적화하세요.',
-        priority: 'high'
+        id: 'indexing_performance',
+        title: '인덱싱 성능 최적화',
+        description: `현재 인덱싱 시간: ${Math.round(stats.search.averageLatency / 1000)}초 (목표: 60초 이하)`,
+        priority: 'high',
+        category: 'performance',
+        suggestions: [
+          '배치 크기 증가 (현재 50 → 100)',
+          '병렬 처리 도입',
+          '불필요한 파일 필터링 최적화',
+          '벡터 저장 최적화'
+        ]
       });
     }
-    
-    // 캐시 히트율 분석
-    if (stats.cache.hitRate < 0.3) {
+
+    // 메모리 사용량 최적화
+    if (stats.memory && parseFloat(stats.memory.heapUsagePercentage) > 80) { // 500MB 이상
       recommendations.push({
-        type: 'info',
-        category: 'cache',
-        message: '캐시 히트율이 낮습니다. 캐시 크기를 늘리거나 캐시 전략을 개선하세요.',
-        priority: 'medium'
-      });
-    }
-    
-    // 메모리 사용량 분석
-    if (stats.memory && parseFloat(stats.memory.heapUsagePercentage) > 80) {
-      recommendations.push({
-        type: 'warning',
+        id: 'memory_optimization',
+        title: '메모리 사용량 최적화',
+        description: `현재 메모리 사용량: ${Math.round(stats.memory.heapUsed / 1024 / 1024)}MB`,
+        priority: 'medium',
         category: 'memory',
-        message: '메모리 사용량이 높습니다. 가비지 컬렉션을 확인하거나 메모리 누수를 점검하세요.',
-        priority: 'high'
+        suggestions: [
+          '벡터 청킹 최적화',
+          '메모리 캐시 정리',
+          '가비지 컬렉션 최적화'
+        ]
       });
     }
-    
-    // 에러율 분석
-    const errorRate = this.metrics.requestCount > 0 
-      ? this.metrics.errorCount / this.metrics.requestCount 
-      : 0;
-    
-    if (errorRate > 0.05) {
+
+    // 검색 성능 최적화
+    if (stats.search.averageLatency > 100) { // 100ms 이상
       recommendations.push({
-        type: 'error',
-        category: 'reliability',
-        message: '에러율이 높습니다. 로그를 확인하고 문제를 해결하세요.',
-        priority: 'critical'
+        id: 'search_performance',
+        title: '검색 성능 최적화',
+        description: `평균 검색 시간: ${Math.round(stats.search.averageLatency)}ms`,
+        priority: 'medium',
+        category: 'performance',
+        suggestions: [
+          '벡터 인덱싱 최적화',
+          '캐시 전략 개선',
+          '검색 알고리즘 최적화'
+        ]
       });
     }
-    
+
+    // 키워드 검색 개선
+    recommendations.push({
+      id: 'keyword_search_improvement',
+      title: '키워드 검색 개선',
+      description: '현재 메타데이터만 검색하여 결과가 제한적',
+      priority: 'high',
+      category: 'functionality',
+      suggestions: [
+        '본문 내용 검색 추가',
+        '풀텍스트 인덱싱 구현',
+        '검색 결과 하이라이팅 개선'
+      ]
+    });
+
     return recommendations;
   }
 

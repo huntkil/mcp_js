@@ -675,7 +675,7 @@ router.post('/features/configure', async (req, res) => {
  */
 router.post('/index-vault', async (req, res) => {
   try {
-    const { vaultPath, options = {} } = req.body;
+    const { vaultPath, forceReindex = false, batchSize, includeAttachments, maxFileSize } = req.body;
     
     if (!vaultPath || typeof vaultPath !== 'string') {
       return res.status(400).json({
@@ -684,7 +684,7 @@ router.post('/index-vault', async (req, res) => {
       });
     }
     
-    logger.info(`Vault 인덱싱 요청: ${vaultPath}`);
+    logger.info(`Vault 인덱싱 요청: ${vaultPath}, forceReindex: ${forceReindex}`);
     
     const startTime = Date.now();
     
@@ -692,6 +692,13 @@ router.post('/index-vault', async (req, res) => {
     await noteIndexingService.initialize(vaultPath);
     
     // Vault 인덱싱 수행
+    const options = {
+      forceReindex,
+      batchSize,
+      includeAttachments,
+      maxFileSize
+    };
+    
     const result = await noteIndexingService.indexVault(vaultPath, options);
     
     const duration = Date.now() - startTime;
@@ -935,27 +942,23 @@ router.post('/knowledge-graph/build', async (req, res) => {
 // 유사노트 추천
 router.post('/recommendations/similar-notes', async (req, res) => {
   try {
-    const { targetNote, candidateNotes, options } = req.body;
+    const { targetNote, candidateNotes = [], options = {} } = req.body;
     
-    if (!targetNote || !candidateNotes || !Array.isArray(candidateNotes)) {
+    if (!targetNote) {
       return res.status(400).json({
         success: false,
-        error: '대상 노트와 후보 노트 배열이 필요합니다.'
+        error: '대상 노트가 필요합니다.'
       });
     }
 
-    const result = await recommendationService.recommendSimilarNotes(targetNote, candidateNotes, options);
+    logger.info('유사노트 추천 요청:', targetNote.title || targetNote.fileName);
+    
+    const result = await recommendationService.findSimilarNotes(targetNote, candidateNotes, options);
     
     if (result.success) {
-      res.json({
-        success: true,
-        data: result
-      });
+      res.json(result);
     } else {
-      res.status(400).json({
-        success: false,
-        error: result.error
-      });
+      res.status(400).json(result);
     }
   } catch (error) {
     logger.error('유사노트 추천 API 오류:', error);
@@ -969,27 +972,23 @@ router.post('/recommendations/similar-notes', async (req, res) => {
 // 백링크 제안
 router.post('/recommendations/backlinks', async (req, res) => {
   try {
-    const { targetNote, allNotes, options } = req.body;
+    const { targetNote, allNotes = [], options = {} } = req.body;
     
-    if (!targetNote || !allNotes || !Array.isArray(allNotes)) {
+    if (!targetNote) {
       return res.status(400).json({
         success: false,
-        error: '대상 노트와 전체 노트 배열이 필요합니다.'
+        error: '대상 노트가 필요합니다.'
       });
     }
 
+    logger.info('백링크 제안 요청:', targetNote.title || targetNote.fileName);
+    
     const result = await recommendationService.suggestBacklinks(targetNote, allNotes, options);
     
     if (result.success) {
-      res.json({
-        success: true,
-        data: result
-      });
+      res.json(result);
     } else {
-      res.status(400).json({
-        success: false,
-        error: result.error
-      });
+      res.status(400).json(result);
     }
   } catch (error) {
     logger.error('백링크 제안 API 오류:', error);
@@ -1003,27 +1002,23 @@ router.post('/recommendations/backlinks', async (req, res) => {
 // 노트 연결 강화
 router.post('/recommendations/strengthen-connections', async (req, res) => {
   try {
-    const { targetNote, allNotes, options } = req.body;
+    const { targetNote, allNotes = [], options = {} } = req.body;
     
-    if (!targetNote || !allNotes || !Array.isArray(allNotes)) {
+    if (!targetNote) {
       return res.status(400).json({
         success: false,
-        error: '대상 노트와 전체 노트 배열이 필요합니다.'
+        error: '대상 노트가 필요합니다.'
       });
     }
 
+    logger.info('연결 강화 제안 요청:', targetNote.title || targetNote.fileName);
+    
     const result = await recommendationService.strengthenConnections(targetNote, allNotes, options);
     
     if (result.success) {
-      res.json({
-        success: true,
-        data: result
-      });
+      res.json(result);
     } else {
-      res.status(400).json({
-        success: false,
-        error: result.error
-      });
+      res.status(400).json(result);
     }
   } catch (error) {
     logger.error('노트 연결 강화 API 오류:', error);

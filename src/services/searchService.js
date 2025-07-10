@@ -30,16 +30,18 @@ class SearchService {
       const queryEmbedding = await this.embeddingService.embedText(processedQuery);
       
       // 벡터 데이터베이스에서 유사한 벡터 검색
-      const results = await this.vectorDatabase.query(queryEmbedding, {
-        limit: limit * 2, // 더 많은 결과를 가져와서 필터링
-        threshold: threshold * 0.8, // 더 낮은 임계값으로 시작
-        filter
-      });
+      const results = await this.vectorDatabase.query(queryEmbedding, limit * 2, filter);
 
+      // 디버깅을 위한 점수 로그
+      if (results.length > 0) {
+        logger.info(`[SEARCH][DEBUG] 벡터 검색 결과 점수: ${results.slice(0, 5).map(r => `${r.id}: ${r.score.toFixed(4)}`).join(', ')}`);
+      } else {
+        logger.info(`[SEARCH][DEBUG] 벡터 검색 결과 없음`);
+      }
+      
       // 결과 후처리 및 가중치 적용
       const processedResults = await this.processSearchResults(results, {
         query: processedQuery,
-        originalQuery: query,
         useWeightedEmbedding
       });
 
@@ -84,7 +86,8 @@ class SearchService {
       caseSensitive = false,
       useRegex = false,
       filter = {},
-      useCache = true
+      useCache = true,
+      searchContent = true // 본문 내용 검색 추가
     } = options;
 
     try {
@@ -106,7 +109,7 @@ class SearchService {
       
       for (const [filePath, note] of indexedNotes) {
         try {
-          const score = this.calculateKeywordScore(query, note, caseSensitive, useRegex);
+          const score = this.calculateKeywordScore(query, note, caseSensitive, useRegex, searchContent);
           
           if (score > 0) {
             // 필터 적용
@@ -116,7 +119,7 @@ class SearchService {
                 score,
                 metadata: note.metadata,
                 matchType: 'keyword',
-                highlights: this.extractHighlights(query, note.metadata, caseSensitive, useRegex)
+                highlights: this.extractHighlights(query, note.metadata, caseSensitive, useRegex, searchContent)
               });
             }
           }
@@ -149,7 +152,8 @@ class SearchService {
         metadata: {
           caseSensitive,
           useRegex,
-          filter
+          filter,
+          searchContent
         }
       };
     } catch (error) {
@@ -240,7 +244,7 @@ class SearchService {
    * 검색 결과 후처리 및 가중치 적용
    */
   async processSearchResults(results, options = {}) {
-    const { query, originalQuery, useWeightedEmbedding } = options;
+    const { query, useWeightedEmbedding } = options;
     
     return await Promise.all(results.map(async (result) => {
       let finalScore = result.score;
@@ -311,7 +315,6 @@ class SearchService {
     if (!result.vectorMetadata) return highlights;
     
     const metadata = result.vectorMetadata;
-    const queryLower = query.toLowerCase();
     
     // 제목 하이라이트
     if (metadata.title && this.hasExactMatch(query, metadata.title)) {
@@ -354,54 +357,49 @@ class SearchService {
   /**
    * 키워드 점수 계산
    * @param {string} query - 검색 쿼리
-   * @param {Object} note - 노트 정보
+   * @param {Object} note - 노트 객체
    * @param {boolean} caseSensitive - 대소문자 구분
    * @param {boolean} useRegex - 정규식 사용
+   * @param {boolean} searchContent - 본문 내용 검색 여부
    */
-  calculateKeywordScore(query, note, caseSensitive = false, useRegex = false) {
+  calculateKeywordScore(query, note, caseSensitive = false, useRegex = false, searchContent = true) {
     let score = 0;
     const searchText = caseSensitive ? query : query.toLowerCase();
-    const title = caseSensitive ? note.metadata.title : note.metadata.title.toLowerCase();
-    const tags = note.metadata.tags || [];
-    const content = caseSensitive ? note.metadata.content : note.metadata.content.toLowerCase();
     
-    // 제목 매칭 (가장 높은 가중치)
-    if (useRegex) {
-      try {
-        const regex = new RegExp(searchText, caseSensitive ? '' : 'i');
-        if (regex.test(title)) score += 10;
-        if (regex.test(content)) score += 1;
-      } catch (error) {
-        // 잘못된 정규식은 무시
+    // 메타데이터 검색
+    if (note.metadata) {
+      const title = caseSensitive ? note.metadata.title : note.metadata.title?.toLowerCase();
+      const tags = Array.isArray(note.metadata.tags) ? note.metadata.tags.join(' ') : note.metadata.tags || '';
+      const tagsLower = caseSensitive ? tags : tags.toLowerCase();
+      
+      // 제목 매칭 (높은 가중치)
+      if (title && this.hasMatch(searchText, title, useRegex)) {
+        score += 10;
       }
-    } else {
-      if (title.includes(searchText)) score += 10;
-      if (content.includes(searchText)) score += 1;
-    }
-    
-    // 태그 매칭
-    for (const tag of tags) {
-      const tagText = caseSensitive ? tag : tag.toLowerCase();
-      if (useRegex) {
-        try {
-          const regex = new RegExp(searchText, caseSensitive ? '' : 'i');
-          if (regex.test(tagText)) score += 5;
-        } catch (error) {
-          // 잘못된 정규식은 무시
-        }
-      } else {
-        if (tagText.includes(searchText)) score += 5;
+      
+      // 태그 매칭 (중간 가중치)
+      if (tagsLower && this.hasMatch(searchText, tagsLower, useRegex)) {
+        score += 5;
       }
     }
     
-    // 정확한 단어 매칭 보너스
-    const words = searchText.split(/\s+/);
-    for (const word of words) {
-      if (word.length > 2) {
-        const wordRegex = new RegExp(`\\b${word}\\b`, caseSensitive ? '' : 'i');
-        if (wordRegex.test(title)) score += 2;
-        if (wordRegex.test(content)) score += 0.5;
+    // 본문 내용 검색 (새로 추가)
+    if (searchContent && note.content) {
+      const content = caseSensitive ? note.content : note.content.toLowerCase();
+      
+      // 정확한 매칭
+      if (this.hasExactMatch(searchText, content)) {
+        score += 8;
       }
+      
+      // 부분 매칭
+      if (this.hasMatch(searchText, content, useRegex)) {
+        score += 3;
+      }
+      
+      // 단어 빈도 기반 점수
+      const wordCount = this.countWordOccurrences(searchText, content);
+      score += wordCount * 2;
     }
     
     return score;
@@ -451,56 +449,54 @@ class SearchService {
   }
 
   /**
-   * 하이라이트 추출 (키워드)
+   * 하이라이팅 추출
    * @param {string} query - 검색 쿼리
    * @param {Object} metadata - 메타데이터
    * @param {boolean} caseSensitive - 대소문자 구분
    * @param {boolean} useRegex - 정규식 사용
+   * @param {boolean} searchContent - 본문 내용 검색 여부
    */
-  extractHighlights(query, metadata, caseSensitive = false, useRegex = false) {
+  extractHighlights(query, metadata, caseSensitive = false, useRegex = false, searchContent = true) {
     const highlights = [];
     const searchText = caseSensitive ? query : query.toLowerCase();
-    const title = metadata.title || '';
-    const content = metadata.content || '';
     
-    // 제목 하이라이트
-    if (useRegex) {
-      try {
-        const regex = new RegExp(searchText, caseSensitive ? 'g' : 'gi');
-        const titleMatches = title.match(regex);
-        if (titleMatches) {
-          highlights.push({
-            field: 'title',
-            matches: titleMatches.length,
-            text: title
-          });
-        }
-      } catch (error) {
-        // 잘못된 정규식은 무시
-      }
-    } else {
-      if (title.toLowerCase().includes(searchText)) {
+    // 제목 하이라이팅
+    if (metadata.title) {
+      const title = caseSensitive ? metadata.title : metadata.title.toLowerCase();
+      if (this.hasMatch(searchText, title, useRegex)) {
         highlights.push({
           field: 'title',
-          matches: 1,
-          text: title
+          text: metadata.title,
+          matches: this.findMatches(searchText, metadata.title, useRegex)
         });
       }
     }
     
-    // 내용 하이라이트 (첫 번째 매칭만)
-    if (content.toLowerCase().includes(searchText)) {
-      const index = content.toLowerCase().indexOf(searchText);
-      const start = Math.max(0, index - 50);
-      const end = Math.min(content.length, index + searchText.length + 50);
-      const snippet = content.substring(start, end);
-      
-      highlights.push({
-        field: 'content',
-        matches: 1,
-        text: snippet,
-        position: { start, end }
-      });
+    // 태그 하이라이팅
+    if (metadata.tags && Array.isArray(metadata.tags)) {
+      const tagsText = metadata.tags.join(' ');
+      const tagsLower = caseSensitive ? tagsText : tagsText.toLowerCase();
+      if (this.hasMatch(searchText, tagsLower, useRegex)) {
+        highlights.push({
+          field: 'tags',
+          text: tagsText,
+          matches: this.findMatches(searchText, tagsText, useRegex)
+        });
+      }
+    }
+    
+    // 본문 내용 하이라이팅 (새로 추가)
+    if (searchContent && metadata.content) {
+      const content = caseSensitive ? metadata.content : metadata.content.toLowerCase();
+      if (this.hasMatch(searchText, content, useRegex)) {
+        // 본문에서 매칭된 부분 주변 텍스트 추출
+        const context = this.extractContext(searchText, metadata.content, 100);
+        highlights.push({
+          field: 'content',
+          text: context,
+          matches: this.findMatches(searchText, context, useRegex)
+        });
+      }
     }
     
     return highlights;
@@ -528,7 +524,7 @@ class SearchService {
       highlights.push({
         field: 'tags',
         matches: metadata.tags.length,
-        text: metadata.tags.join(', '),
+        text: Array.isArray(metadata.tags) ? metadata.tags.join(', ') : (typeof metadata.tags === 'string' ? metadata.tags : ''),
         type: 'semantic'
       });
     }
@@ -623,6 +619,131 @@ class SearchService {
       cacheTimeout: this.cacheTimeout,
       indexedNotes: noteIndexingService.getIndexStats()
     };
+  }
+
+  /**
+   * 단어 발생 횟수 계산
+   * @param {string} word - 찾을 단어
+   * @param {string} text - 검색할 텍스트
+   * @returns {number} 발생 횟수
+   */
+  countWordOccurrences(word, text) {
+    if (!word || !text) return 0;
+    
+    const regex = new RegExp(word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    const matches = text.match(regex);
+    return matches ? matches.length : 0;
+  }
+
+  /**
+   * 매칭된 부분 찾기
+   * @param {string} query - 검색 쿼리
+   * @param {string} text - 검색할 텍스트
+   * @param {boolean} useRegex - 정규식 사용
+   * @returns {Array} 매칭된 부분 배열
+   */
+  findMatches(query, text, useRegex = false) {
+    const matches = [];
+    
+    if (!query || !text) return matches;
+    
+    if (useRegex) {
+      try {
+        const regex = new RegExp(query, 'gi');
+        let match;
+        while ((match = regex.exec(text)) !== null) {
+          matches.push({
+            start: match.index,
+            end: match.index + match[0].length,
+            text: match[0]
+          });
+        }
+      } catch (error) {
+        // 정규식 오류 시 일반 텍스트 검색으로 폴백
+        const index = text.toLowerCase().indexOf(query.toLowerCase());
+        if (index !== -1) {
+          matches.push({
+            start: index,
+            end: index + query.length,
+            text: text.substring(index, index + query.length)
+          });
+        }
+      }
+    } else {
+      const lowerText = text.toLowerCase();
+      const lowerQuery = query.toLowerCase();
+      let index = 0;
+      
+      while ((index = lowerText.indexOf(lowerQuery, index)) !== -1) {
+        matches.push({
+          start: index,
+          end: index + query.length,
+          text: text.substring(index, index + query.length)
+        });
+        index += query.length;
+      }
+    }
+    
+    return matches;
+  }
+
+  /**
+   * 매칭된 부분 주변 컨텍스트 추출
+   * @param {string} query - 검색 쿼리
+   * @param {string} text - 전체 텍스트
+   * @param {number} contextLength - 컨텍스트 길이
+   * @returns {string} 컨텍스트 텍스트
+   */
+  extractContext(query, text, contextLength = 100) {
+    if (!query || !text) return '';
+    
+    const index = text.toLowerCase().indexOf(query.toLowerCase());
+    if (index === -1) return text.substring(0, contextLength);
+    
+    const start = Math.max(0, index - contextLength / 2);
+    const end = Math.min(text.length, index + query.length + contextLength / 2);
+    
+    let context = text.substring(start, end);
+    
+    // 문장 경계 조정
+    if (start > 0) {
+      const sentenceStart = context.indexOf('.') + 1;
+      if (sentenceStart > 0 && sentenceStart < contextLength / 2) {
+        context = context.substring(sentenceStart);
+      }
+    }
+    
+    if (end < text.length) {
+      const sentenceEnd = context.lastIndexOf('.');
+      if (sentenceEnd > contextLength / 2) {
+        context = context.substring(0, sentenceEnd + 1);
+      }
+    }
+    
+    return context.trim();
+  }
+
+  /**
+   * 매칭 확인
+   * @param {string} query - 검색 쿼리
+   * @param {string} text - 검색할 텍스트
+   * @param {boolean} useRegex - 정규식 사용
+   * @returns {boolean} 매칭 여부
+   */
+  hasMatch(query, text, useRegex = false) {
+    if (!query || !text) return false;
+    
+    if (useRegex) {
+      try {
+        const regex = new RegExp(query, 'i');
+        return regex.test(text);
+      } catch (error) {
+        // 정규식 오류 시 일반 텍스트 검색으로 폴백
+        return text.toLowerCase().includes(query.toLowerCase());
+      }
+    } else {
+      return text.toLowerCase().includes(query.toLowerCase());
+    }
   }
 }
 

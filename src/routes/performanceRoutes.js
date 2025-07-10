@@ -204,9 +204,16 @@ router.get('/stats', async (req, res) => {
     
     const stats = performanceOptimizer.getPerformanceStats();
     
+    // 추가 정보 가져오기
+    const totalNotes = await noteIndexingService.getTotalNotes();
+    const vectorCount = await vectorDatabase.getVectorCount();
+    
     res.json({
       success: true,
-      ...stats
+      ...stats,
+      totalNotes,
+      vectorCount,
+      status: 'healthy' // 기본 상태
     });
   } catch (error) {
     logger.error(`성능 통계 조회 오류: ${error.message}`);

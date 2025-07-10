@@ -111,20 +111,23 @@ class AdvancedFeatures {
     try {
       logger.info('스마트 태그 생성 시작');
       
-      // 키워드 추출
-      const words = content.toLowerCase().split(/\s+/);
+      // 한국어 키워드 추출 (명사, 형용사 위주)
+      const words = content.split(/\s+/);
       const wordFreq = {};
       
       words.forEach(word => {
-        const cleanWord = word.replace(/[^\w]/g, '');
-        if (cleanWord.length > 3 && !this.isStopWord(cleanWord)) {
-          wordFreq[cleanWord] = (wordFreq[cleanWord] || 0) + 1;
+        const cleanWord = word.replace(/[^\w가-힣]/g, '');
+        // 2글자 이상의 한국어 단어나 3글자 이상의 영어 단어만 포함
+        if ((cleanWord.length >= 2 && /[가-힣]/.test(cleanWord)) || 
+            (cleanWord.length >= 3 && /^[a-zA-Z]+$/.test(cleanWord))) {
+          if (!this.isStopWord(cleanWord)) {
+            wordFreq[cleanWord] = (wordFreq[cleanWord] || 0) + 1;
+          }
         }
       });
       
       // 상위 키워드를 태그로 변환
       const tags = Object.entries(wordFreq)
-        .filter(([word]) => !this.isStopWord(word)) // 먼저 스톱워드 필터링
         .sort(([,a], [,b]) => b - a)
         .slice(0, maxTags)
         .map(([word, freq]) => ({
@@ -144,7 +147,7 @@ class AdvancedFeatures {
         detailedTags: tags,
         categorizedTags,
         totalTags: tags.length,
-        averageConfidence: (tags.reduce((sum, t) => sum + t.confidence, 0) / tags.length).toFixed(3)
+        averageConfidence: tags.length > 0 ? (tags.reduce((sum, t) => sum + t.confidence, 0) / tags.length).toFixed(3) : '0.000'
       };
     } catch (error) {
       logger.error(`스마트 태그 생성 실패: ${error.message}`);
@@ -598,8 +601,9 @@ class AdvancedFeatures {
 
   // 헬퍼 메서드들
   isStopWord(word) {
-    // Expanded English stop word list
+    // 한국어 및 영어 스톱워드 리스트
     const stopWords = [
+      // 영어 스톱워드
       'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by',
       'if', 'then', 'else', 'when', 'where', 'while', 'as', 'because', 'so', 'than', 'too', 'very',
       'can', 'will', 'just', 'from', 'into', 'about', 'over', 'after', 'before', 'between', 'through',
@@ -615,7 +619,15 @@ class AdvancedFeatures {
       'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until',
       'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during',
       'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over',
-      'under', 'again', 'further', 'then', 'once'
+      'under', 'again', 'further', 'then', 'once',
+      // 한국어 스톱워드
+      '이', '그', '저', '것', '수', '등', '및', '또는', '그리고', '하지만', '그러나', '만약', '때', '곳',
+      '나', '너', '우리', '그들', '이것', '저것', '무엇', '어떤', '어디', '언제', '왜', '어떻게',
+      '있다', '없다', '하다', '되다', '있다가', '없다가', '하다가', '되다가',
+      '있다면', '없다면', '하다면', '되다면', '있다고', '없다고', '한다고', '된다고',
+      '있다는', '없다는', '한다는', '된다는', '있다니', '없다니', '한다니', '된다니',
+      '있다네', '없다네', '한다네', '된다네', '있다고요', '없다고요', '한다고요', '된다고요',
+      '있다니까', '없다니까', '한다니까', '된다니까', '있다니까요', '없다니까요', '한다니까요', '된다니까요'
     ];
     return stopWords.includes(word.toLowerCase());
   }

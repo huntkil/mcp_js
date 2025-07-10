@@ -234,10 +234,10 @@ class TaggingService {
   deduplicateTags(tags) {
     const uniqueTags = new Map();
     
-    for (const tag of tags) {
-      const key = tag.tag.toLowerCase();
-      if (!uniqueTags.has(key) || uniqueTags.get(key).score < tag.score) {
-        uniqueTags.set(key, tag);
+    for (const _tag of tags) {
+      const key = _tag.tag.toLowerCase();
+      if (!uniqueTags.has(key) || uniqueTags.get(key).score < _tag.score) {
+        uniqueTags.set(key, _tag);
       }
     }
     
@@ -302,19 +302,19 @@ class TaggingService {
           continue;
         }
 
-        for (const tag of tags) {
-          if (!tagGroups.has(tag)) {
-            tagGroups.set(tag, []);
+        for (const _tag of tags) {
+          if (!tagGroups.has(_tag)) {
+            tagGroups.set(_tag, []);
           }
-          tagGroups.get(tag).push(note);
+          tagGroups.get(_tag).push(note);
         }
       }
 
       // 최소 그룹 크기 필터링
       const filteredGroups = Array.from(tagGroups.entries())
-        .filter(([tag, notes]) => notes.length >= minGroupSize)
-        .map(([tag, notes]) => ({
-          tag: tag,
+        .filter(([_tag, notes]) => notes.length >= minGroupSize)
+        .map(([_tag, notes]) => ({
+          tag: _tag,
           notes: notes,
           count: notes.length
         }))
