@@ -1,9 +1,12 @@
 import express from 'express';
 import { MarkdownManager } from './MarkdownManager.js';
 import { ObsidianManager } from './ObsidianManager.js';
-import logger from './logger.js';
+import logger from './utils/logger.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import searchRoutes from './routes/searchRoutes.js';
+import advancedFeaturesRoutes from './routes/advancedFeaturesRoutes.js';
+import performanceRoutes from './routes/performanceRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -29,7 +32,7 @@ const swaggerDefinition = {
 
 const swaggerOptions = {
   swaggerDefinition,
-  apis: ['./src/server.js'], // JSDoc 주석에서 API 추출
+  apis: ['./src/server.js', './src/routes/*.js'], // JSDoc 주석에서 API 추출
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
@@ -41,6 +44,11 @@ app.get('/docs.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
+
+// API 라우트 등록
+app.use('/api/search', searchRoutes);
+app.use('/api/advanced', advancedFeaturesRoutes);
+app.use('/api/performance', performanceRoutes);
 
 /**
  * @swagger
@@ -425,7 +433,18 @@ app.get('/', (req, res) => {
       'POST /tools/obsidian/getRecentlyModifiedNotes - 최근 수정된 노트',
       'POST /tools/obsidian/extractTodos - TODO 추출',
       'POST /tools/markdown/listFiles - 파일 목록',
-      'POST /tools/markdown/searchContent - 내용 검색'
+      'POST /tools/markdown/searchContent - 내용 검색',
+      'POST /api/search/semantic - 의미론적 검색',
+      'POST /api/search/keyword - 키워드 검색',
+      'POST /api/search/hybrid - 하이브리드 검색',
+      'POST /api/advanced/summarize - 자동 요약 생성',
+      'POST /api/advanced/smart-tags - 스마트 태그 생성',
+      'POST /api/advanced/similar-notes - 유사 노트 찾기',
+      'POST /api/advanced/knowledge-graph - 지식 그래프 생성',
+      'POST /api/advanced/auto-backlinks - 자동 백링크 생성',
+      'POST /api/advanced/smart-template - 스마트 템플릿 생성',
+      'GET /api/performance/stats - 성능 통계 조회',
+      'POST /api/performance/test - 성능 테스트 실행'
     ]
   });
 });
@@ -556,6 +575,9 @@ const server = app.listen(port, () => {
   logger.info('  GET  /tools - 사용 가능한 툴 목록');
   logger.info('  POST /tools/obsidian/* - Obsidian 관련 툴');
   logger.info('  POST /tools/markdown/* - Markdown 관련 툴');
+  logger.info('  POST /api/search/* - 검색 API');
+  logger.info('  POST /api/advanced/* - 고급 기능 API');
+  logger.info('  GET  /api/performance/* - 성능 모니터링 API');
 });
 
 // Graceful shutdown

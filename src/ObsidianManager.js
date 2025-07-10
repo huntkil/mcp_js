@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import { join, dirname, resolve, basename, extname } from 'path';
 import { glob } from 'glob';
 import matter from 'gray-matter';
-import logger from './logger.js';
+import logger from './utils/logger.js';
 
 export class ObsidianManager {
     constructor(basePath) {
