@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import { MarkdownManager } from './MarkdownManager.js';
 import { ObsidianManager } from './ObsidianManager.js';

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2025-07-10T07:34:50.103Z",
+  "updatedAt": "2025-07-10T08:08:48.201Z",
   "notes": {
     "/Users/gukho/Desktop/git/mcp_js/test-vault/ai-technology.md": {
       "fileHash": "7832b91e781f57c281dbf9dd169b90c4",
@@ -42,6 +42,4046 @@
         "wordCount": 380
       },
       "indexedAt": "2025-07-10T06:52:35.977Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/notion-mcp-plugin-dev.md": {
+      "fileHash": "ade6c418ce9db9667ed0e3e4788b2e44",
+      "metadata": {
+        "title": "notion-mcp-plugin-dev",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.626Z",
+        "modified": "2025-07-10T08:08:26.626Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/notion-mcp-plugin-dev.md",
+        "fileName": "notion-mcp-plugin-dev.md",
+        "fileSize": 904,
+        "wordCount": 103
+      },
+      "indexedAt": "2025-07-10T08:08:26.634Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/INBOX_ORGANIZATION_SUMMARY.md": {
+      "fileHash": "b80c830991ddd17fff3896c68ebaaf23",
+      "metadata": {
+        "title": "INBOX_ORGANIZATION_SUMMARY",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.626Z",
+        "modified": "2025-07-10T08:08:26.626Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/INBOX_ORGANIZATION_SUMMARY.md",
+        "fileName": "INBOX_ORGANIZATION_SUMMARY.md",
+        "fileSize": 3482,
+        "wordCount": 461
+      },
+      "indexedAt": "2025-07-10T08:08:26.638Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/메모의 순간.md": {
+      "fileHash": "7bfae99fc969f3c8f3c140543a1d9627",
+      "metadata": {
+        "title": "메모의 순간",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.626Z",
+        "modified": "2025-07-10T08:08:26.626Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/메모의 순간.md",
+        "fileName": "메모의 순간.md",
+        "fileSize": 848,
+        "wordCount": 91
+      },
+      "indexedAt": "2025-07-10T08:08:26.642Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/노션 플러그인 사용 설명서.md": {
+      "fileHash": "7c2bc50d72b6053d210915545a5e6bf1",
+      "metadata": {
+        "title": "노션 플러그인 사용 설명서",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.626Z",
+        "modified": "2025-07-10T08:08:26.626Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/노션 플러그인 사용 설명서.md",
+        "fileName": "노션 플러그인 사용 설명서.md",
+        "fileSize": 7104,
+        "wordCount": 766
+      },
+      "indexedAt": "2025-07-10T08:08:26.647Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Test Note from PowerShell.md": {
+      "fileHash": "97c68047765e864f3adf580c19a8e114",
+      "metadata": {
+        "title": "Test Note from PowerShell",
+        "tags": [
+          "test",
+          "api",
+          "powershell"
+        ],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Test Note from PowerShell.md",
+        "fileName": "Test Note from PowerShell.md",
+        "fileSize": 89,
+        "wordCount": 10
+      },
+      "indexedAt": "2025-07-10T08:08:26.653Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Release Notes - MCP Server R3.md": {
+      "fileHash": "9bdf7f47da8b2fc3923c8c673d118829",
+      "metadata": {
+        "title": "Release Notes - MCP Server R3",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Release Notes - MCP Server R3.md",
+        "fileName": "Release Notes - MCP Server R3.md",
+        "fileSize": 5640,
+        "wordCount": 738
+      },
+      "indexedAt": "2025-07-10T08:08:26.658Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/COMPREHENSIVE_ORGANIZATION_SUMMARY.md": {
+      "fileHash": "f132d3d5770875720577fe9233648f4b",
+      "metadata": {
+        "title": "COMPREHENSIVE_ORGANIZATION_SUMMARY",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/COMPREHENSIVE_ORGANIZATION_SUMMARY.md",
+        "fileName": "COMPREHENSIVE_ORGANIZATION_SUMMARY.md",
+        "fileSize": 9587,
+        "wordCount": 1269
+      },
+      "indexedAt": "2025-07-10T08:08:26.665Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Template/Diary.md": {
+      "fileHash": "82aba0559e67dc5242e35368ee6a488f",
+      "metadata": {
+        "title": "Diary",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Template/Diary.md",
+        "fileName": "Diary.md",
+        "fileSize": 117,
+        "wordCount": 19
+      },
+      "indexedAt": "2025-07-10T08:08:26.673Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Template/ZettellKasten.md": {
+      "fileHash": "3b269386b4e79fdd92b47fd94a1bb45d",
+      "metadata": {
+        "title": "ZettellKasten",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Template/ZettellKasten.md",
+        "fileName": "ZettellKasten.md",
+        "fileSize": 125,
+        "wordCount": 19
+      },
+      "indexedAt": "2025-07-10T08:08:26.679Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Template/Book.md": {
+      "fileHash": "965c3b5611b8811ca798c8bafe23a372",
+      "metadata": {
+        "title": "Book",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Template/Book.md",
+        "fileName": "Book.md",
+        "fileSize": 182,
+        "wordCount": 26
+      },
+      "indexedAt": "2025-07-10T08:08:26.686Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Obsidian/단축키.md": {
+      "fileHash": "b17cd483b56c43b7144dd9888f1f7901",
+      "metadata": {
+        "title": "단축키",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Obsidian/단축키.md",
+        "fileName": "단축키.md",
+        "fileSize": 511,
+        "wordCount": 102
+      },
+      "indexedAt": "2025-07-10T08:08:26.694Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Obsidian/markdown advanced.md": {
+      "fileHash": "5fd3f8db9a3b0feda1e15c54a5faaa32",
+      "metadata": {
+        "title": "markdown advanced",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.628Z",
+        "modified": "2025-07-10T08:08:26.628Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Obsidian/markdown advanced.md",
+        "fileName": "markdown advanced.md",
+        "fileSize": 268,
+        "wordCount": 43
+      },
+      "indexedAt": "2025-07-10T08:08:26.703Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Obsidian/기본링크사용법.md": {
+      "fileHash": "482796f6e5760bef5635b7102780bb38",
+      "metadata": {
+        "title": "기본링크사용법",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.629Z",
+        "modified": "2025-07-10T08:08:26.629Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Obsidian/기본링크사용법.md",
+        "fileName": "기본링크사용법.md",
+        "fileSize": 237,
+        "wordCount": 26
+      },
+      "indexedAt": "2025-07-10T08:08:26.714Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Words.md": {
+      "fileHash": "94f0232915149caa60798f4aaed822a4",
+      "metadata": {
+        "title": "Words",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.629Z",
+        "modified": "2025-07-10T08:08:26.629Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Words.md",
+        "fileName": "Words.md",
+        "fileSize": 12,
+        "wordCount": 1
+      },
+      "indexedAt": "2025-07-10T08:08:26.724Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/README.md": {
+      "fileHash": "1717eaefc0ea370237b8ecfae6c4bc91",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/README.md",
+        "fileName": "README.md",
+        "fileSize": 1611,
+        "wordCount": 222
+      },
+      "indexedAt": "2025-07-10T08:08:26.735Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Fount (en-US).md": {
+      "fileHash": "3735c3a95744fe2c242adeaa856c79a1",
+      "metadata": {
+        "title": "Fount (en-US)",
+        "tags": [],
+        "aliases": [
+          "Fount"
+        ],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Fount (en-US).md",
+        "fileName": "Fount (en-US).md",
+        "fileSize": 346,
+        "wordCount": 46
+      },
+      "indexedAt": "2025-07-10T08:08:26.746Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/English_Language_Learning_Communication_Guide.md": {
+      "fileHash": "5b6a44dddf83fa478b4950b1bc754e00",
+      "metadata": {
+        "title": "English_Language_Learning_Communication_Guide",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/English_Language_Learning_Communication_Guide.md",
+        "fileName": "English_Language_Learning_Communication_Guide.md",
+        "fileSize": 22056,
+        "wordCount": 3321
+      },
+      "indexedAt": "2025-07-10T08:08:26.763Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Reverence (en-US).md": {
+      "fileHash": "24ffeccfa866bc192f6ce47bd53f64c5",
+      "metadata": {
+        "title": "Reverence (en-US)",
+        "tags": [],
+        "aliases": [
+          "Reverence"
+        ],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Reverence (en-US).md",
+        "fileName": "Reverence (en-US).md",
+        "fileSize": 730,
+        "wordCount": 82
+      },
+      "indexedAt": "2025-07-10T08:08:26.776Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Apprehension (en-US).md": {
+      "fileHash": "8ce870136c7aba1d1d8abfe1fb61bbbd",
+      "metadata": {
+        "title": "Apprehension (en-US)",
+        "tags": [],
+        "aliases": [
+          "Apprehension"
+        ],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Apprehension (en-US).md",
+        "fileName": "Apprehension (en-US).md",
+        "fileSize": 871,
+        "wordCount": 95
+      },
+      "indexedAt": "2025-07-10T08:08:26.789Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Profound (en-US).md": {
+      "fileHash": "139a9b45ceaf596d540f2693a7560a3a",
+      "metadata": {
+        "title": "Profound (en-US)",
+        "tags": [],
+        "aliases": [
+          "Profound"
+        ],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/Profound (en-US).md",
+        "fileName": "Profound (en-US).md",
+        "fileSize": 909,
+        "wordCount": 110
+      },
+      "indexedAt": "2025-07-10T08:08:26.803Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/English Sentences.md": {
+      "fileHash": "57a556a936cfa0c82f8b5a30cbf4afe0",
+      "metadata": {
+        "title": "English Sentences",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Language_Learning/English Sentences.md",
+        "fileName": "English Sentences.md",
+        "fileSize": 8461,
+        "wordCount": 968
+      },
+      "indexedAt": "2025-07-10T08:08:26.821Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/행복하게 살기. 해야만 하는일.md": {
+      "fileHash": "969283379f6310da4e7b3694edd15946",
+      "metadata": {
+        "title": "행복하게 살기. 해야만 하는일",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/행복하게 살기. 해야만 하는일.md",
+        "fileName": "행복하게 살기. 해야만 하는일.md",
+        "fileSize": 1213,
+        "wordCount": 143
+      },
+      "indexedAt": "2025-07-10T08:08:26.838Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/어떻게 살 것인가.md": {
+      "fileHash": "27e2d4cf8b36967d9479276a416680aa",
+      "metadata": {
+        "title": "어떻게 살 것인가",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/어떻게 살 것인가.md",
+        "fileName": "어떻게 살 것인가.md",
+        "fileSize": 465,
+        "wordCount": 66
+      },
+      "indexedAt": "2025-07-10T08:08:26.854Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/알아차림.md": {
+      "fileHash": "1fa9ca8bc322596b3c6e7fe277c47ca8",
+      "metadata": {
+        "title": "알아차림",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/알아차림.md",
+        "fileName": "알아차림.md",
+        "fileSize": 497,
+        "wordCount": 64
+      },
+      "indexedAt": "2025-07-10T08:08:26.872Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음근력.md": {
+      "fileHash": "06dc6727f3c0f002d65290650c664ef3",
+      "metadata": {
+        "title": "마음근력",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음근력.md",
+        "fileName": "마음근력.md",
+        "fileSize": 1150,
+        "wordCount": 125
+      },
+      "indexedAt": "2025-07-10T08:08:26.889Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/괴테의 처세훈.md": {
+      "fileHash": "24e3af1caed82ed4f9243fbcf6979684",
+      "metadata": {
+        "title": "괴테의 처세훈",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/괴테의 처세훈.md",
+        "fileName": "괴테의 처세훈.md",
+        "fileSize": 99,
+        "wordCount": 16
+      },
+      "indexedAt": "2025-07-10T08:08:26.914Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/명상.md": {
+      "fileHash": "696f24383c34c287cf572b2fd9e437ec",
+      "metadata": {
+        "title": "명상",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/명상.md",
+        "fileName": "명상.md",
+        "fileSize": 144,
+        "wordCount": 20
+      },
+      "indexedAt": "2025-07-10T08:08:26.932Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음근력 향상 방법.md": {
+      "fileHash": "cb8839240bee08b6fe3345b3b1d42ace",
+      "metadata": {
+        "title": "마음근력 향상 방법",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음근력 향상 방법.md",
+        "fileName": "마음근력 향상 방법.md",
+        "fileSize": 294,
+        "wordCount": 41
+      },
+      "indexedAt": "2025-07-10T08:08:26.950Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음_근력_훈련_종합_가이드.md": {
+      "fileHash": "3b7ce4fc9805a580d82f4db9b79e3c04",
+      "metadata": {
+        "title": "마음_근력_훈련_종합_가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음_근력_훈련_종합_가이드.md",
+        "fileName": "마음_근력_훈련_종합_가이드.md",
+        "fileSize": 5071,
+        "wordCount": 638
+      },
+      "indexedAt": "2025-07-10T08:08:26.970Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/README.md": {
+      "fileHash": "d3e6d1b0aa2492723289867c00194eb1",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/README.md",
+        "fileName": "README.md",
+        "fileSize": 1876,
+        "wordCount": 236
+      },
+      "indexedAt": "2025-07-10T08:08:26.990Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/길국호부의.md": {
+      "fileHash": "56be612e0afcacf2b879d0c32a5ed52a",
+      "metadata": {
+        "title": "길국호부의",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/길국호부의.md",
+        "fileName": "길국호부의.md",
+        "fileSize": 13935,
+        "wordCount": 2541
+      },
+      "indexedAt": "2025-07-10T08:08:27.013Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/Mind_Muscle_Training_English_Guide.md": {
+      "fileHash": "5e165bd2909adfe1f3685292ed06033a",
+      "metadata": {
+        "title": "Mind_Muscle_Training_English_Guide",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/Mind_Muscle_Training_English_Guide.md",
+        "fileName": "Mind_Muscle_Training_English_Guide.md",
+        "fileSize": 5240,
+        "wordCount": 719
+      },
+      "indexedAt": "2025-07-10T08:08:27.036Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Miscellaneous/README.md": {
+      "fileHash": "b64fdc3c88f393a20ec15e09aef4f9d5",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Miscellaneous/README.md",
+        "fileName": "README.md",
+        "fileSize": 1639,
+        "wordCount": 229
+      },
+      "indexedAt": "2025-07-10T08:08:27.057Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/README.md": {
+      "fileHash": "910871d6cb916a4759bcca9ab2c44ebe",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/README.md",
+        "fileName": "README.md",
+        "fileSize": 2085,
+        "wordCount": 287
+      },
+      "indexedAt": "2025-07-10T08:08:27.079Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/MS_new idea.md": {
+      "fileHash": "5fe995e1dede3eeed31284ade5e04e85",
+      "metadata": {
+        "title": "MS_new idea",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.630Z",
+        "modified": "2025-07-10T08:08:26.630Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/MS_new idea.md",
+        "fileName": "MS_new idea.md",
+        "fileSize": 551,
+        "wordCount": 68
+      },
+      "indexedAt": "2025-07-10T08:08:27.102Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/README.md": {
+      "fileHash": "34bfc6414fdf93dd7bd0bbeb49df429b",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.642Z",
+        "modified": "2025-07-10T08:08:26.642Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/README.md",
+        "fileName": "README.md",
+        "fileSize": 7507,
+        "wordCount": 846
+      },
+      "indexedAt": "2025-07-10T08:08:27.131Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/Markdown.md": {
+      "fileHash": "3e2859fc419571bbecb83adf5d71132c",
+      "metadata": {
+        "title": "Markdown",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:26.673Z",
+        "modified": "2025-07-10T08:08:26.673Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/Markdown.md",
+        "fileName": "Markdown.md",
+        "fileSize": 276,
+        "wordCount": 52
+      },
+      "indexedAt": "2025-07-10T08:08:27.154Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Miscellaneous/[.md": {
+      "fileHash": "61083dd9c97bf22365d99bb7280af1da",
+      "metadata": {
+        "title": "[",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.102Z",
+        "modified": "2025-07-10T08:08:27.102Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Miscellaneous/[.md",
+        "fileName": "[.md",
+        "fileSize": 67,
+        "wordCount": 12
+      },
+      "indexedAt": "2025-07-10T08:08:27.180Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/강의 요약.md": {
+      "fileHash": "aa3e66ce4c4dfbd9c95eba268150a7ca",
+      "metadata": {
+        "title": "강의 요약",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.103Z",
+        "modified": "2025-07-10T08:08:27.103Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/강의 요약.md",
+        "fileName": "강의 요약.md",
+        "fileSize": 3851,
+        "wordCount": 464
+      },
+      "indexedAt": "2025-07-10T08:08:27.206Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/일에서의 행복.md": {
+      "fileHash": "ecc00f50c64683bf730d672ebd6d6827",
+      "metadata": {
+        "title": "일에서의 행복",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.103Z",
+        "modified": "2025-07-10T08:08:27.103Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Professional_Development/일에서의 행복.md",
+        "fileName": "일에서의 행복.md",
+        "fileSize": 225,
+        "wordCount": 32
+      },
+      "indexedAt": "2025-07-10T08:08:27.230Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/Prompt Engineereing.md": {
+      "fileHash": "1978cc5c104aab1115176a3fb8342db2",
+      "metadata": {
+        "title": "Prompt Engineereing",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/Prompt Engineereing.md",
+        "fileName": "Prompt Engineereing.md",
+        "fileSize": 8422,
+        "wordCount": 1014
+      },
+      "indexedAt": "2025-07-10T08:08:27.271Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/README.md": {
+      "fileHash": "085244725b2370143f8fd4914504d402",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/README.md",
+        "fileName": "README.md",
+        "fileSize": 3014,
+        "wordCount": 264
+      },
+      "indexedAt": "2025-07-10T08:08:27.299Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/README.md": {
+      "fileHash": "5f9382c25e566473588e08e1912e297d",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/README.md",
+        "fileName": "README.md",
+        "fileSize": 3055,
+        "wordCount": 305
+      },
+      "indexedAt": "2025-07-10T08:08:27.329Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/README.md": {
+      "fileHash": "c95134b48fa27602ecd2795fb47eacac",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/README.md",
+        "fileName": "README.md",
+        "fileSize": 2608,
+        "wordCount": 342
+      },
+      "indexedAt": "2025-07-10T08:08:27.359Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/서브보컬라이제이션_종합_가이드_KR.md": {
+      "fileHash": "a06f7dee519b1fa780562f9dc187b3ce",
+      "metadata": {
+        "title": "서브보컬라이제이션_종합_가이드_KR",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/서브보컬라이제이션_종합_가이드_KR.md",
+        "fileName": "서브보컬라이제이션_종합_가이드_KR.md",
+        "fileSize": 9897,
+        "wordCount": 932
+      },
+      "indexedAt": "2025-07-10T08:08:27.390Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/사용성_테스트_종합_가이드.md": {
+      "fileHash": "e9adbbe43da4aeb86de6e7035d3f2ac5",
+      "metadata": {
+        "title": "사용성_테스트_종합_가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/사용성_테스트_종합_가이드.md",
+        "fileName": "사용성_테스트_종합_가이드.md",
+        "fileSize": 14131,
+        "wordCount": 1606
+      },
+      "indexedAt": "2025-07-10T08:08:27.423Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/Research_폴더_종합_요약.md": {
+      "fileHash": "e963eb9f3381443cca85613e090eac20",
+      "metadata": {
+        "title": "Research_폴더_종합_요약",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/Research_폴더_종합_요약.md",
+        "fileName": "Research_폴더_종합_요약.md",
+        "fileSize": 3839,
+        "wordCount": 442
+      },
+      "indexedAt": "2025-07-10T08:08:27.454Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/Subvocalization_Comprehensive_Guide_EN.md": {
+      "fileHash": "be37fcaf842e8c17ef3c5cf8faadb9db",
+      "metadata": {
+        "title": "Subvocalization_Comprehensive_Guide_EN",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/Subvocalization_Comprehensive_Guide_EN.md",
+        "fileName": "Subvocalization_Comprehensive_Guide_EN.md",
+        "fileSize": 8511,
+        "wordCount": 1176
+      },
+      "indexedAt": "2025-07-10T08:08:27.490Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/나의 회사 생활.md": {
+      "fileHash": "802d2bacbf2c869e0b4979daa811b245",
+      "metadata": {
+        "title": "나의 회사 생활",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/나의 회사 생활.md",
+        "fileName": "나의 회사 생활.md",
+        "fileSize": 1804,
+        "wordCount": 215
+      },
+      "indexedAt": "2025-07-10T08:08:27.523Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/일을 잘한다는 것은 무엇인가.md": {
+      "fileHash": "1c3cbce79a840fc38759d6ab16bf663f",
+      "metadata": {
+        "title": "일을 잘한다는 것은 무엇인가",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/일을 잘한다는 것은 무엇인가.md",
+        "fileName": "일을 잘한다는 것은 무엇인가.md",
+        "fileSize": 5078,
+        "wordCount": 605
+      },
+      "indexedAt": "2025-07-10T08:08:27.557Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/나는 왜 화가 나는가.md": {
+      "fileHash": "3d2ac2d3fe6d3e73f8b4dec4b656090e",
+      "metadata": {
+        "title": "나는 왜 화가 나는가",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/나는 왜 화가 나는가.md",
+        "fileName": "나는 왜 화가 나는가.md",
+        "fileSize": 2352,
+        "wordCount": 276
+      },
+      "indexedAt": "2025-07-10T08:08:27.591Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Stewartmill) 자유론.md": {
+      "fileHash": "6e828ef26355167a0862404d0d10989f",
+      "metadata": {
+        "title": "(Stewartmill) 자유론",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Stewartmill) 자유론.md",
+        "fileName": "(Stewartmill) 자유론.md",
+        "fileSize": 729,
+        "wordCount": 89
+      },
+      "indexedAt": "2025-07-10T08:08:27.627Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/DataView.md": {
+      "fileHash": "5a2ade39d070ab4a9d3710954961b23a",
+      "metadata": {
+        "title": "DataView",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.239Z",
+        "modified": "2025-07-10T08:08:27.239Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/AI_Technology/DataView.md",
+        "fileName": "DataView.md",
+        "fileSize": 129,
+        "wordCount": 23
+      },
+      "indexedAt": "2025-07-10T08:08:27.661Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Scott) Radical Candor.md": {
+      "fileHash": "d2330055b3ccea77d244dea599191297",
+      "metadata": {
+        "title": "(Scott) Radical Candor",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Scott) Radical Candor.md",
+        "fileName": "(Scott) Radical Candor.md",
+        "fileSize": 9254,
+        "wordCount": 1087
+      },
+      "indexedAt": "2025-07-10T08:08:27.699Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/README.md": {
+      "fileHash": "ca285a1cce62421f2a4a4fcf5e49f099",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/README.md",
+        "fileName": "README.md",
+        "fileSize": 3663,
+        "wordCount": 468
+      },
+      "indexedAt": "2025-07-10T08:08:27.736Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/My Routine.md": {
+      "fileHash": "c156df76eb97cf4088a150db45b182fb",
+      "metadata": {
+        "title": "My Routine",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/My Routine.md",
+        "fileName": "My Routine.md",
+        "fileSize": 1559,
+        "wordCount": 193
+      },
+      "indexedAt": "2025-07-10T08:08:27.772Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Feynman) The pleasure of Finding Things out.md": {
+      "fileHash": "3149a04161da28b26e57729bb1dc6faa",
+      "metadata": {
+        "title": "(Feynman) The pleasure of Finding Things out",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Feynman) The pleasure of Finding Things out.md",
+        "fileName": "(Feynman) The pleasure of Finding Things out.md",
+        "fileSize": 7882,
+        "wordCount": 859
+      },
+      "indexedAt": "2025-07-10T08:08:27.812Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(김주환) 내면소통.md": {
+      "fileHash": "c7fa849c9ae6a67737aa86d0b00ea931",
+      "metadata": {
+        "title": "(김주환) 내면소통",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(김주환) 내면소통.md",
+        "fileName": "(김주환) 내면소통.md",
+        "fileSize": 31118,
+        "wordCount": 3516
+      },
+      "indexedAt": "2025-07-10T08:08:27.857Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Coelho) Like the Flowing River.md": {
+      "fileHash": "c3e6a4077fefa5dc8fef70a1ff678f4c",
+      "metadata": {
+        "title": "(Coelho) Like the Flowing River",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Coelho) Like the Flowing River.md",
+        "fileName": "(Coelho) Like the Flowing River.md",
+        "fileSize": 7866,
+        "wordCount": 1062
+      },
+      "indexedAt": "2025-07-10T08:08:27.900Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/0. Inbox/MCP_프로토콜_구현.md": {
+      "fileHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "metadata": {
+        "title": "MCP_프로토콜_구현",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/0. Inbox/MCP_프로토콜_구현.md",
+        "fileName": "MCP_프로토콜_구현.md",
+        "fileSize": 0,
+        "wordCount": 1
+      },
+      "indexedAt": "2025-07-10T08:08:27.939Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(김종원) 여러 책들 중.md": {
+      "fileHash": "f49da0dd000e8cb27e16102460f6cba1",
+      "metadata": {
+        "title": "(김종원) 여러 책들 중",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(김종원) 여러 책들 중.md",
+        "fileName": "(김종원) 여러 책들 중.md",
+        "fileSize": 1347,
+        "wordCount": 159
+      },
+      "indexedAt": "2025-07-10T08:08:27.979Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/0. Inbox/속발음 해결.md": {
+      "fileHash": "b6a8aad9c3737206a181ef92a0acfb33",
+      "metadata": {
+        "title": "속발음 해결",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/0. Inbox/속발음 해결.md",
+        "fileName": "속발음 해결.md",
+        "fileSize": 7197,
+        "wordCount": 755
+      },
+      "indexedAt": "2025-07-10T08:08:28.020Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-18.md": {
+      "fileHash": "415325166d2e6478e5a20e3dc014ad6d",
+      "metadata": {
+        "title": "2024-12-18",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-18.md",
+        "fileName": "2024-12-18.md",
+        "fileSize": 293,
+        "wordCount": 42
+      },
+      "indexedAt": "2025-07-10T08:08:28.062Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-17.md": {
+      "fileHash": "4aff3da52c0bb86a0c380b5e19cfcdee",
+      "metadata": {
+        "title": "2024-12-17",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-17.md",
+        "fileName": "2024-12-17.md",
+        "fileSize": 384,
+        "wordCount": 51
+      },
+      "indexedAt": "2025-07-10T08:08:28.106Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-15.md": {
+      "fileHash": "b197901d600dfa0f7bcd999c552369ea",
+      "metadata": {
+        "title": "2024-12-15",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-15.md",
+        "fileName": "2024-12-15.md",
+        "fileSize": 1878,
+        "wordCount": 197
+      },
+      "indexedAt": "2025-07-10T08:08:28.148Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Edmondson) 두려움 없는 조직.md": {
+      "fileHash": "19c1745590fc70dacdcaacba3901403a",
+      "metadata": {
+        "title": "(Edmondson) 두려움 없는 조직",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Edmondson) 두려움 없는 조직.md",
+        "fileName": "(Edmondson) 두려움 없는 조직.md",
+        "fileSize": 6579,
+        "wordCount": 792
+      },
+      "indexedAt": "2025-07-10T08:08:28.192Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/7. Screen Notes/달의 연인 (보보경심 려).md": {
+      "fileHash": "daeb2d7eaf0078ff2c433c8d03a103aa",
+      "metadata": {
+        "title": "달의 연인 (보보경심 려)",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/7. Screen Notes/달의 연인 (보보경심 려).md",
+        "fileName": "달의 연인 (보보경심 려).md",
+        "fileSize": 2911,
+        "wordCount": 339
+      },
+      "indexedAt": "2025-07-10T08:08:28.237Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-13.md": {
+      "fileHash": "15108e2c4c843a166f9076688dc0924b",
+      "metadata": {
+        "title": "2024-12-13",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-13.md",
+        "fileName": "2024-12-13.md",
+        "fileSize": 515,
+        "wordCount": 67
+      },
+      "indexedAt": "2025-07-10T08:08:28.280Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-06-30.md": {
+      "fileHash": "7d3246de7d0aef8a83989feca51dc59a",
+      "metadata": {
+        "title": "2025-06-30",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-06-30.md",
+        "fileName": "2025-06-30.md",
+        "fileSize": 1807,
+        "wordCount": 245
+      },
+      "indexedAt": "2025-07-10T08:08:28.324Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Lencioni) 팀워크의 부활.md": {
+      "fileHash": "faea89c30073d077c2ca81fd1ca00f0f",
+      "metadata": {
+        "title": "(Lencioni) 팀워크의 부활",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Knowledge_Learning/(Lencioni) 팀워크의 부활.md",
+        "fileName": "(Lencioni) 팀워크의 부활.md",
+        "fileSize": 1354,
+        "wordCount": 166
+      },
+      "indexedAt": "2025-07-10T08:08:28.370Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-12.md": {
+      "fileHash": "ce1b6bfba1afbc67695109d974f19c4a",
+      "metadata": {
+        "title": "2025-02-12",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-12.md",
+        "fileName": "2025-02-12.md",
+        "fileSize": 147,
+        "wordCount": 23
+      },
+      "indexedAt": "2025-07-10T08:08:28.415Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-28.md": {
+      "fileHash": "0bbd38c1737983e42a1ccabbc4231d76",
+      "metadata": {
+        "title": "2025-02-28",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-28.md",
+        "fileName": "2025-02-28.md",
+        "fileSize": 132,
+        "wordCount": 23
+      },
+      "indexedAt": "2025-07-10T08:08:28.461Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/7. Screen Notes/세작 - 매혹된 자들.md": {
+      "fileHash": "b107ff4be1b8d0a092279b1cc74bb9b7",
+      "metadata": {
+        "title": "세작 - 매혹된 자들",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/7. Screen Notes/세작 - 매혹된 자들.md",
+        "fileName": "세작 - 매혹된 자들.md",
+        "fileSize": 1110,
+        "wordCount": 126
+      },
+      "indexedAt": "2025-07-10T08:08:28.509Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/99. 종합 가이드 및 참고자료.md": {
+      "fileHash": "335dfc8ec4b158b441d6c5aa260c8640",
+      "metadata": {
+        "title": "99. 종합 가이드 및 참고자료",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/99. 종합 가이드 및 참고자료.md",
+        "fileName": "99. 종합 가이드 및 참고자료.md",
+        "fileSize": 11201,
+        "wordCount": 1462
+      },
+      "indexedAt": "2025-07-10T08:08:28.557Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-16.md": {
+      "fileHash": "5f8576fd336acb977d6b126d3670ee68",
+      "metadata": {
+        "title": "2024-12-16",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-16.md",
+        "fileName": "2024-12-16.md",
+        "fileSize": 124,
+        "wordCount": 21
+      },
+      "indexedAt": "2025-07-10T08:08:28.607Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-04.md": {
+      "fileHash": "60a4b4f7e8c9ffd7385b39bd42cb5e15",
+      "metadata": {
+        "title": "2024-12-04",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-04.md",
+        "fileName": "2024-12-04.md",
+        "fileSize": 729,
+        "wordCount": 84
+      },
+      "indexedAt": "2025-07-10T08:08:28.654Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-02.md": {
+      "fileHash": "4acfda8f5e05a34baacea03dd4641b33",
+      "metadata": {
+        "title": "2024-12-02",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-02.md",
+        "fileName": "2024-12-02.md",
+        "fileSize": 1164,
+        "wordCount": 141
+      },
+      "indexedAt": "2025-07-10T08:08:28.703Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-05.md": {
+      "fileHash": "971e517c1a364b74e11ef28161df2969",
+      "metadata": {
+        "title": "2025-02-05",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-05.md",
+        "fileName": "2025-02-05.md",
+        "fileSize": 161,
+        "wordCount": 26
+      },
+      "indexedAt": "2025-07-10T08:08:28.752Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/08. Google Calendar 연동.md": {
+      "fileHash": "7215ee9c7d9dc229d2921a40e899ec5f",
+      "metadata": {
+        "title": "08. Google Calendar 연동",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/08. Google Calendar 연동.md",
+        "fileName": "08. Google Calendar 연동.md",
+        "fileSize": 1,
+        "wordCount": 2
+      },
+      "indexedAt": "2025-07-10T08:08:28.801Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/07. MongoDB 연동.md": {
+      "fileHash": "d88e2eebec6e4a9103c3c81f289102e0",
+      "metadata": {
+        "title": "07. MongoDB 연동",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/07. MongoDB 연동.md",
+        "fileName": "07. MongoDB 연동.md",
+        "fileSize": 5877,
+        "wordCount": 629
+      },
+      "indexedAt": "2025-07-10T08:08:28.852Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/MCP 서버 프로젝트 구조.md": {
+      "fileHash": "15e595aa8c565738239fefa97abd6721",
+      "metadata": {
+        "title": "MCP 서버 프로젝트 구조",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/MCP 서버 프로젝트 구조.md",
+        "fileName": "MCP 서버 프로젝트 구조.md",
+        "fileSize": 7741,
+        "wordCount": 969
+      },
+      "indexedAt": "2025-07-10T08:08:28.904Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-14.md": {
+      "fileHash": "0b8d56bcad0c41d3c4051717375b5bd5",
+      "metadata": {
+        "title": "2024-12-14",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2024-12-14.md",
+        "fileName": "2024-12-14.md",
+        "fileSize": 848,
+        "wordCount": 94
+      },
+      "indexedAt": "2025-07-10T08:08:28.955Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/06. Obsidian 연동.md": {
+      "fileHash": "c4f157a2559f1758aa8eed46b9d20622",
+      "metadata": {
+        "title": "06. Obsidian 연동",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/06. Obsidian 연동.md",
+        "fileName": "06. Obsidian 연동.md",
+        "fileSize": 24764,
+        "wordCount": 2495
+      },
+      "indexedAt": "2025-07-10T08:08:29.017Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/05. MCP 프로토콜 구현.md": {
+      "fileHash": "dd83ee58f00a3eee56f56f209679c428",
+      "metadata": {
+        "title": "05. MCP 프로토콜 구현",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/05. MCP 프로토콜 구현.md",
+        "fileName": "05. MCP 프로토콜 구현.md",
+        "fileSize": 19107,
+        "wordCount": 1888
+      },
+      "indexedAt": "2025-07-10T08:08:29.076Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/01. 프로젝트 소개.md": {
+      "fileHash": "b107bf9c62e537d6528f67c1952e96af",
+      "metadata": {
+        "title": "01. 프로젝트 소개",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.240Z",
+        "modified": "2025-07-10T08:08:27.240Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/01. 프로젝트 소개.md",
+        "fileName": "01. 프로젝트 소개.md",
+        "fileSize": 8561,
+        "wordCount": 1007
+      },
+      "indexedAt": "2025-07-10T08:08:29.138Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/03. 아키텍처 설계.md": {
+      "fileHash": "3479caba829faa12002e2a2aff6cc8c7",
+      "metadata": {
+        "title": "03. 아키텍처 설계",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.591Z",
+        "modified": "2025-07-10T08:08:27.591Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/03. 아키텍처 설계.md",
+        "fileName": "03. 아키텍처 설계.md",
+        "fileSize": 10626,
+        "wordCount": 1113
+      },
+      "indexedAt": "2025-07-10T08:08:29.197Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/02. 기술 스택.md": {
+      "fileHash": "4ac0f75c603849037a262d3b71dca212",
+      "metadata": {
+        "title": "02. 기술 스택",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:27.627Z",
+        "modified": "2025-07-10T08:08:27.627Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/02. 기술 스택.md",
+        "fileName": "02. 기술 스택.md",
+        "fileSize": 11183,
+        "wordCount": 1186
+      },
+      "indexedAt": "2025-07-10T08:08:29.257Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/04. 개발환경 구축.md": {
+      "fileHash": "524c2c95432c6cd0f9cbf75525196991",
+      "metadata": {
+        "title": "04. 개발환경 구축",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.138Z",
+        "modified": "2025-07-10T08:08:29.138Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/MCP_Server_Guide/04. 개발환경 구축.md",
+        "fileName": "04. 개발환경 구축.md",
+        "fileSize": 9965,
+        "wordCount": 1090
+      },
+      "indexedAt": "2025-07-10T08:08:29.322Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-13.md": {
+      "fileHash": "4fdbb440d1c1132f081b596c46c781b6",
+      "metadata": {
+        "title": "2025-02-13",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.138Z",
+        "modified": "2025-07-10T08:08:29.138Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/2025-02-13.md",
+        "fileName": "2025-02-13.md",
+        "fileSize": 360,
+        "wordCount": 47
+      },
+      "indexedAt": "2025-07-10T08:08:29.382Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/04. 명상과 마음챙김 기법.md": {
+      "fileHash": "70a7664add4cab45002a6b1bde545f4b",
+      "metadata": {
+        "title": "04. 명상과 마음챙김 기법",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.139Z",
+        "modified": "2025-07-10T08:08:29.139Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/04. 명상과 마음챙김 기법.md",
+        "fileName": "04. 명상과 마음챙김 기법.md",
+        "fileSize": 8291,
+        "wordCount": 1000
+      },
+      "indexedAt": "2025-07-10T08:08:29.445Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/02. Mental Strength Understanding and Cultivation (English).md": {
+      "fileHash": "2151fadb7395511dd87ff1bd8ed4131f",
+      "metadata": {
+        "title": "02. Mental Strength Understanding and Cultivation (English)",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/02. Mental Strength Understanding and Cultivation (English).md",
+        "fileName": "02. Mental Strength Understanding and Cultivation (English).md",
+        "fileSize": 16033,
+        "wordCount": 2240
+      },
+      "indexedAt": "2025-07-10T08:08:29.524Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/01. 마음 근력 이해와 육성 (한국어).md": {
+      "fileHash": "7fb683ca70b658d43f12eeb9215f6ca9",
+      "metadata": {
+        "title": "01. 마음 근력 이해와 육성 (한국어)",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/01. 마음 근력 이해와 육성 (한국어).md",
+        "fileName": "01. 마음 근력 이해와 육성 (한국어).md",
+        "fileSize": 18375,
+        "wordCount": 1802
+      },
+      "indexedAt": "2025-07-10T08:08:29.592Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/03. 마음 근력 훈련 실전 가이드.md": {
+      "fileHash": "c443c36cc3a4b383abdf08340faa374d",
+      "metadata": {
+        "title": "03. 마음 근력 훈련 실전 가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/03. 마음 근력 훈련 실전 가이드.md",
+        "fileName": "03. 마음 근력 훈련 실전 가이드.md",
+        "fileSize": 6004,
+        "wordCount": 767
+      },
+      "indexedAt": "2025-07-10T08:08:29.656Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/04. Meditation and Mindfulness Techniques.md": {
+      "fileHash": "a802df8e54e2d0aeda14f0ae044b563b",
+      "metadata": {
+        "title": "04. Meditation and Mindfulness Techniques",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/04. Meditation and Mindfulness Techniques.md",
+        "fileName": "04. Meditation and Mindfulness Techniques.md",
+        "fileSize": 8193,
+        "wordCount": 1196
+      },
+      "indexedAt": "2025-07-10T08:08:29.722Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/README.md": {
+      "fileHash": "7b534602c0920e8e16ab17c26b8a5e5e",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/README.md",
+        "fileName": "README.md",
+        "fileSize": 6018,
+        "wordCount": 765
+      },
+      "indexedAt": "2025-07-10T08:08:29.788Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/이번주_훈련_일정.md": {
+      "fileHash": "c86b1969a061fbe2b4946f9483c3fb40",
+      "metadata": {
+        "title": "이번주_훈련_일정",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/이번주_훈련_일정.md",
+        "fileName": "이번주_훈련_일정.md",
+        "fileSize": 4498,
+        "wordCount": 645
+      },
+      "indexedAt": "2025-07-10T08:08:29.854Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/03. Practical Mental Strength Training Guide.md": {
+      "fileHash": "2f141a40134d7aa71c98c98f732497bf",
+      "metadata": {
+        "title": "03. Practical Mental Strength Training Guide",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Projects/Mental_Strength_Guide/03. Practical Mental Strength Training Guide.md",
+        "fileName": "03. Practical Mental Strength Training Guide.md",
+        "fileSize": 6025,
+        "wordCount": 891
+      },
+      "indexedAt": "2025-07-10T08:08:29.921Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/ClariVein_시술_후_마라톤_복귀_가이드.md": {
+      "fileHash": "6a83dd0e99eeeef7722f2add1251834c",
+      "metadata": {
+        "title": "ClariVein_시술_후_마라톤_복귀_가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/ClariVein_시술_후_마라톤_복귀_가이드.md",
+        "fileName": "ClariVein_시술_후_마라톤_복귀_가이드.md",
+        "fileSize": 7004,
+        "wordCount": 722
+      },
+      "indexedAt": "2025-07-10T08:08:29.989Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/구글캘린더_import_가이드.md": {
+      "fileHash": "eb9b0b41702ada036972ade695bf07e2",
+      "metadata": {
+        "title": "구글캘린더_import_가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/구글캘린더_import_가이드.md",
+        "fileName": "구글캘린더_import_가이드.md",
+        "fileSize": 5506,
+        "wordCount": 704
+      },
+      "indexedAt": "2025-07-10T08:08:30.055Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/03_정신건강_스트레스/자율신경실조증_불안증_공황장애_종합_가이드.md": {
+      "fileHash": "a0f9a265ad1342b69efcae7fa83f390d",
+      "metadata": {
+        "title": "자율신경실조증_불안증_공황장애_종합_가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/03_정신건강_스트레스/자율신경실조증_불안증_공황장애_종합_가이드.md",
+        "fileName": "자율신경실조증_불안증_공황장애_종합_가이드.md",
+        "fileSize": 25707,
+        "wordCount": 2557
+      },
+      "indexedAt": "2025-07-10T08:08:30.128Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/03_정신건강_스트레스/README.md": {
+      "fileHash": "396c0c6fc9db4eee89f046468b95bc9a",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/03_정신건강_스트레스/README.md",
+        "fileName": "README.md",
+        "fileSize": 5598,
+        "wordCount": 647
+      },
+      "indexedAt": "2025-07-10T08:08:30.198Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/ClariVein_시술_후_훈련_캘린더.md": {
+      "fileHash": "7215ee9c7d9dc229d2921a40e899ec5f",
+      "metadata": {
+        "title": "ClariVein_시술_후_훈련_캘린더",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/06_하지정맥류_혈관질환/ClariVein_시술_후_훈련_캘린더.md",
+        "fileName": "ClariVein_시술_후_훈련_캘린더.md",
+        "fileSize": 1,
+        "wordCount": 2
+      },
+      "indexedAt": "2025-07-10T08:08:30.267Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/README.md": {
+      "fileHash": "a4543f980a8eb4aa34bc805703d8b75f",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/README.md",
+        "fileName": "README.md",
+        "fileSize": 5192,
+        "wordCount": 700
+      },
+      "indexedAt": "2025-07-10T08:08:30.337Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/03_정신건강_스트레스/Autonomic_Nervous_System_Anxiety_Panic_Disorder_Comprehensive_Guide.md": {
+      "fileHash": "05efa1f3f84d58935c09cfaa6c418e6c",
+      "metadata": {
+        "title": "Autonomic_Nervous_System_Anxiety_Panic_Disorder_Comprehensive_Guide",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/03_정신건강_스트레스/Autonomic_Nervous_System_Anxiety_Panic_Disorder_Comprehensive_Guide.md",
+        "fileName": "Autonomic_Nervous_System_Anxiety_Panic_Disorder_Comprehensive_Guide.md",
+        "fileSize": 24616,
+        "wordCount": 3446
+      },
+      "indexedAt": "2025-07-10T08:08:30.412Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/02_영양_식단/단백질 섭취.md": {
+      "fileHash": "de704374ea07892510855b02925fdf23",
+      "metadata": {
+        "title": "단백질 섭취",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/02_영양_식단/단백질 섭취.md",
+        "fileName": "단백질 섭취.md",
+        "fileSize": 4413,
+        "wordCount": 448
+      },
+      "indexedAt": "2025-07-10T08:08:30.485Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/02_영양_식단/운동 전후 식사.md": {
+      "fileHash": "3a43fbb257b2f748e88c762ad9fea8bd",
+      "metadata": {
+        "title": "운동 전후 식사",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/02_영양_식단/운동 전후 식사.md",
+        "fileName": "운동 전후 식사.md",
+        "fileSize": 862,
+        "wordCount": 99
+      },
+      "indexedAt": "2025-07-10T08:08:30.559Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/설사.md": {
+      "fileHash": "1f3e3634a2cb0d5cec3c1cd028687e95",
+      "metadata": {
+        "title": "설사",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/설사.md",
+        "fileName": "설사.md",
+        "fileSize": 292,
+        "wordCount": 33
+      },
+      "indexedAt": "2025-07-10T08:08:30.630Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/02_영양_식단/README.md": {
+      "fileHash": "2db26caa8fc9bca68c84f92f8e60c0ca",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/02_영양_식단/README.md",
+        "fileName": "README.md",
+        "fileSize": 4242,
+        "wordCount": 531
+      },
+      "indexedAt": "2025-07-10T08:08:30.705Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/일반걷기.md": {
+      "fileHash": "8182070d1aa998f57eab5739e4bf02a8",
+      "metadata": {
+        "title": "일반걷기",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/일반걷기.md",
+        "fileName": "일반걷기.md",
+        "fileSize": 180,
+        "wordCount": 25
+      },
+      "indexedAt": "2025-07-10T08:08:30.778Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/대변 건강.md": {
+      "fileHash": "6e829cbf0f8f06828728d5620d187e73",
+      "metadata": {
+        "title": "대변 건강",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/대변 건강.md",
+        "fileName": "대변 건강.md",
+        "fileSize": 520,
+        "wordCount": 59
+      },
+      "indexedAt": "2025-07-10T08:08:30.855Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기.md": {
+      "fileHash": "e420d0a89257a04e3e85ed7b625b8509",
+      "metadata": {
+        "title": "달리기",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기.md",
+        "fileName": "달리기.md",
+        "fileSize": 1649,
+        "wordCount": 182
+      },
+      "indexedAt": "2025-07-10T08:08:30.930Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/2024.md": {
+      "fileHash": "1839604c364cf14dac6b6a0fed8d74d7",
+      "metadata": {
+        "title": "2024",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/04_건강관리_의료/2024.md",
+        "fileName": "2024.md",
+        "fileSize": 837,
+        "wordCount": 89
+      },
+      "indexedAt": "2025-07-10T08:08:31.007Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기 자세 2.md": {
+      "fileHash": "7b50fb80ec46084cba896a3457c830a2",
+      "metadata": {
+        "title": "달리기 자세 2",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기 자세 2.md",
+        "fileName": "달리기 자세 2.md",
+        "fileSize": 855,
+        "wordCount": 100
+      },
+      "indexedAt": "2025-07-10T08:08:31.082Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기 관련 부상.md": {
+      "fileHash": "688e81dfdb6ecdad366697bcfec03147",
+      "metadata": {
+        "title": "달리기 관련 부상",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기 관련 부상.md",
+        "fileName": "달리기 관련 부상.md",
+        "fileSize": 1749,
+        "wordCount": 243
+      },
+      "indexedAt": "2025-07-10T08:08:31.160Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/근막사슬.md": {
+      "fileHash": "9471eaeccc1b07d9047e01edcde1daac",
+      "metadata": {
+        "title": "근막사슬",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.458Z",
+        "modified": "2025-07-10T08:08:29.458Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/근막사슬.md",
+        "fileName": "근막사슬.md",
+        "fileSize": 2312,
+        "wordCount": 254
+      },
+      "indexedAt": "2025-07-10T08:08:31.238Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/근골격센터.md": {
+      "fileHash": "402ef52f388f13a533294449c0203586",
+      "metadata": {
+        "title": "근골격센터",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/근골격센터.md",
+        "fileName": "근골격센터.md",
+        "fileSize": 119,
+        "wordCount": 20
+      },
+      "indexedAt": "2025-07-10T08:08:31.315Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/러닝 가이드.md": {
+      "fileHash": "0e61a1fdff7f24a29d951114d907016e",
+      "metadata": {
+        "title": "러닝 가이드",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/러닝 가이드.md",
+        "fileName": "러닝 가이드.md",
+        "fileSize": 5867,
+        "wordCount": 436
+      },
+      "indexedAt": "2025-07-10T08:08:31.395Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기 자세.md": {
+      "fileHash": "ff7c91db0e53917de8818b9158bb3e86",
+      "metadata": {
+        "title": "달리기 자세",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/달리기 자세.md",
+        "fileName": "달리기 자세.md",
+        "fileSize": 6473,
+        "wordCount": 557
+      },
+      "indexedAt": "2025-07-10T08:08:31.475Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/근골격 운동 기본.md": {
+      "fileHash": "06a6634df9f77de0d4f0a45860ceba17",
+      "metadata": {
+        "title": "근골격 운동 기본",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/근골격 운동 기본.md",
+        "fileName": "근골격 운동 기본.md",
+        "fileSize": 3935,
+        "wordCount": 439
+      },
+      "indexedAt": "2025-07-10T08:08:31.554Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/Routine.md": {
+      "fileHash": "16daf008cd2c3718a8e32d24895ac755",
+      "metadata": {
+        "title": "Routine",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/Routine.md",
+        "fileName": "Routine.md",
+        "fileSize": 131,
+        "wordCount": 21
+      },
+      "indexedAt": "2025-07-10T08:08:31.633Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/README.md": {
+      "fileHash": "dbebe0eace6b02d136926c647450ca25",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/README.md",
+        "fileName": "README.md",
+        "fileSize": 3911,
+        "wordCount": 488
+      },
+      "indexedAt": "2025-07-10T08:08:31.713Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/걷기명상.md": {
+      "fileHash": "a11b157399c840d49146c924c93cfef1",
+      "metadata": {
+        "title": "걷기명상",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/걷기명상.md",
+        "fileName": "걷기명상.md",
+        "fileSize": 161,
+        "wordCount": 23
+      },
+      "indexedAt": "2025-07-10T08:08:31.794Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/Gear.md": {
+      "fileHash": "f62b8ab6a0aefe22810e82d1061597de",
+      "metadata": {
+        "title": "Gear",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/Gear.md",
+        "fileName": "Gear.md",
+        "fileSize": 252,
+        "wordCount": 36
+      },
+      "indexedAt": "2025-07-10T08:08:31.875Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/05_연구노트/HAX_사용성_평가_연구_연구노트_1751428224747.md": {
+      "fileHash": "400c88fd3e7dac224256f84909ef6a23",
+      "metadata": {
+        "title": "HAX_사용성_평가_연구_연구노트_1751428224747",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/05_연구노트/HAX_사용성_평가_연구_연구노트_1751428224747.md",
+        "fileName": "HAX_사용성_평가_연구_연구노트_1751428224747.md",
+        "fileSize": 2386,
+        "wordCount": 288
+      },
+      "indexedAt": "2025-07-10T08:08:31.957Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/05_연구노트/HAX_사용성_평가_연구_자료_1751423455667.md": {
+      "fileHash": "7e76fd4d8fceed2efd7b3720723abf40",
+      "metadata": {
+        "title": "HAX_사용성_평가_연구_자료_1751423455667",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/05_연구노트/HAX_사용성_평가_연구_자료_1751423455667.md",
+        "fileName": "HAX_사용성_평가_연구_자료_1751423455667.md",
+        "fileSize": 624,
+        "wordCount": 82
+      },
+      "indexedAt": "2025-07-10T08:08:32.039Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/Training.md": {
+      "fileHash": "3049eaded914ec010a0e4529f410996e",
+      "metadata": {
+        "title": "Training",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/Training.md",
+        "fileName": "Training.md",
+        "fileSize": 693,
+        "wordCount": 109
+      },
+      "indexedAt": "2025-07-10T08:08:32.121Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/04_사례연구/HAX_개선_계획_및_실행_전략.md": {
+      "fileHash": "01b9accb78fb306053817b6691ea66b2",
+      "metadata": {
+        "title": "HAX_개선_계획_및_실행_전략",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/04_사례연구/HAX_개선_계획_및_실행_전략.md",
+        "fileName": "HAX_개선_계획_및_실행_전략.md",
+        "fileSize": 11446,
+        "wordCount": 1192
+      },
+      "indexedAt": "2025-07-10T08:08:32.206Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/04_사례연구/HAX_연구_사례_및_참고문헌.md": {
+      "fileHash": "3be4c338b86d34e7081ffc24951f1251",
+      "metadata": {
+        "title": "HAX_연구_사례_및_참고문헌",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/04_사례연구/HAX_연구_사례_및_참고문헌.md",
+        "fileName": "HAX_연구_사례_및_참고문헌.md",
+        "fileSize": 12793,
+        "wordCount": 1243
+      },
+      "indexedAt": "2025-07-10T08:08:32.292Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/05_건강과학_연구/microbiome.md": {
+      "fileHash": "30ae57f71248c5f0104cf981c30ea08b",
+      "metadata": {
+        "title": "microbiome",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/05_건강과학_연구/microbiome.md",
+        "fileName": "microbiome.md",
+        "fileSize": 138,
+        "wordCount": 21
+      },
+      "indexedAt": "2025-07-10T08:08:32.376Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/05_연구노트/HAX_사용성_평가_연구_체계적_분석.md": {
+      "fileHash": "db25899745f9e6ba10feb24967a1113b",
+      "metadata": {
+        "title": "HAX_사용성_평가_연구_체계적_분석",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/05_연구노트/HAX_사용성_평가_연구_체계적_분석.md",
+        "fileName": "HAX_사용성_평가_연구_체계적_분석.md",
+        "fileSize": 9305,
+        "wordCount": 1228
+      },
+      "indexedAt": "2025-07-10T08:08:32.463Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/01_종합보고서/HAX_사용성_평가_연구_종합_보고서_1751428216601.md": {
+      "fileHash": "6d5428495a165ceb41c6fc59687f0795",
+      "metadata": {
+        "title": "HAX_사용성_평가_연구_종합_보고서_1751428216601",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/01_종합보고서/HAX_사용성_평가_연구_종합_보고서_1751428216601.md",
+        "fileName": "HAX_사용성_평가_연구_종합_보고서_1751428216601.md",
+        "fileSize": 2910,
+        "wordCount": 393
+      },
+      "indexedAt": "2025-07-10T08:08:32.550Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/05_건강과학_연구/Mitochondrial Function.md": {
+      "fileHash": "ca04122e7f3f115d46c4c44910eaf410",
+      "metadata": {
+        "title": "Mitochondrial Function",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/05_건강과학_연구/Mitochondrial Function.md",
+        "fileName": "Mitochondrial Function.md",
+        "fileSize": 1400,
+        "wordCount": 184
+      },
+      "indexedAt": "2025-07-10T08:08:32.639Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/05_건강과학_연구/README.md": {
+      "fileHash": "4a044a8cf750adf4d2a56882a6db244b",
+      "metadata": {
+        "title": "README",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/05_건강과학_연구/README.md",
+        "fileName": "README.md",
+        "fileSize": 6602,
+        "wordCount": 777
+      },
+      "indexedAt": "2025-07-10T08:08:32.742Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/03_평가도구/HAX_평가_지표_및_메트릭스_상세.md": {
+      "fileHash": "645808f4cb612dd9ae123c65386b6b63",
+      "metadata": {
+        "title": "HAX_평가_지표_및_메트릭스_상세",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/03_평가도구/HAX_평가_지표_및_메트릭스_상세.md",
+        "fileName": "HAX_평가_지표_및_메트릭스_상세.md",
+        "fileSize": 19282,
+        "wordCount": 2433
+      },
+      "indexedAt": "2025-07-10T08:08:33.019Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/01_종합보고서/HAX_연구_결과_종합_보고서.md": {
+      "fileHash": "eed82c7ef3a3d899a318721530317a71",
+      "metadata": {
+        "title": "HAX_연구_결과_종합_보고서",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/01_종합보고서/HAX_연구_결과_종합_보고서.md",
+        "fileName": "HAX_연구_결과_종합_보고서.md",
+        "fileSize": 17338,
+        "wordCount": 1897
+      },
+      "indexedAt": "2025-07-10T08:08:33.189Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/02_연구방법론/HAX_연구_방법론_및_평가_도구.md": {
+      "fileHash": "1a7e56192e52c24126eb58608be486fa",
+      "metadata": {
+        "title": "HAX_연구_방법론_및_평가_도구",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.459Z",
+        "modified": "2025-07-10T08:08:29.459Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/02_연구방법론/HAX_연구_방법론_및_평가_도구.md",
+        "fileName": "HAX_연구_방법론_및_평가_도구.md",
+        "fileSize": 11848,
+        "wordCount": 1312
+      },
+      "indexedAt": "2025-07-10T08:08:33.288Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/02_연구방법론/HAX_평가_방법론_상세_분석.md": {
+      "fileHash": "54010fdbe68c450ffaa3f69239c800aa",
+      "metadata": {
+        "title": "HAX_평가_방법론_상세_분석",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:29.788Z",
+        "modified": "2025-07-10T08:08:29.788Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/02_연구방법론/HAX_평가_방법론_상세_분석.md",
+        "fileName": "HAX_평가_방법론_상세_분석.md",
+        "fileSize": 13537,
+        "wordCount": 1648
+      },
+      "indexedAt": "2025-07-10T08:08:33.389Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/06_프롬프트엔지니어링/프롬프팅.md": {
+      "fileHash": "c29a540241a3e02ac889794047122612",
+      "metadata": {
+        "title": "프롬프팅",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.189Z",
+        "modified": "2025-07-10T08:08:33.189Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/06_프롬프트엔지니어링/프롬프팅.md",
+        "fileName": "프롬프팅.md",
+        "fileSize": 15241,
+        "wordCount": 1427
+      },
+      "indexedAt": "2025-07-10T08:08:33.492Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/06_프롬프트엔지니어링/초보자를 위한 프롬프트 엔지니어링.md": {
+      "fileHash": "ff224c8de1574ea47d0adad62129d063",
+      "metadata": {
+        "title": "초보자를 위한 프롬프트 엔지니어링",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.288Z",
+        "modified": "2025-07-10T08:08:33.288Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/06_프롬프트엔지니어링/초보자를 위한 프롬프트 엔지니어링.md",
+        "fileName": "초보자를 위한 프롬프트 엔지니어링.md",
+        "fileSize": 18645,
+        "wordCount": 1826
+      },
+      "indexedAt": "2025-07-10T08:08:33.596Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/보강운동 루틴.md": {
+      "fileHash": "f590575c4dc9f682e557514d1e4788f8",
+      "metadata": {
+        "title": "보강운동 루틴",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.389Z",
+        "modified": "2025-07-10T08:08:33.389Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Health/01_운동_기법/보강운동 루틴.md",
+        "fileName": "보강운동 루틴.md",
+        "fileSize": 983,
+        "wordCount": 163
+      },
+      "indexedAt": "2025-07-10T08:08:33.691Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/02_사용성평가/생성형_AI_사용성_평가_상세_분석_1751330165402.md": {
+      "fileHash": "124ffdbde7ea052265e2eb2e94f83cd3",
+      "metadata": {
+        "title": "생성형_AI_사용성_평가_상세_분석_1751330165402",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/02_사용성평가/생성형_AI_사용성_평가_상세_분석_1751330165402.md",
+        "fileName": "생성형_AI_사용성_평가_상세_분석_1751330165402.md",
+        "fileSize": 2612,
+        "wordCount": 337
+      },
+      "indexedAt": "2025-07-10T08:08:33.795Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/생성형_AI_사용성_평가_종합_연구___연구_노트_1751330193631.md": {
+      "fileHash": "d36194b2392db3c5f5a974b0f78aa382",
+      "metadata": {
+        "title": "생성형_AI_사용성_평가_종합_연구___연구_노트_1751330193631",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/생성형_AI_사용성_평가_종합_연구___연구_노트_1751330193631.md",
+        "fileName": "생성형_AI_사용성_평가_종합_연구___연구_노트_1751330193631.md",
+        "fileSize": 4989,
+        "wordCount": 477
+      },
+      "indexedAt": "2025-07-10T08:08:33.900Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/02_사용성평가/생성형_AI_사용성_평가_요약_1751330104853.md": {
+      "fileHash": "ea908463d1e6268ad924d1be71c38daa",
+      "metadata": {
+        "title": "생성형_AI_사용성_평가_요약_1751330104853",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/02_사용성평가/생성형_AI_사용성_평가_요약_1751330104853.md",
+        "fileName": "생성형_AI_사용성_평가_요약_1751330104853.md",
+        "fileSize": 1660,
+        "wordCount": 211
+      },
+      "indexedAt": "2025-07-10T08:08:33.995Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/생성형_AI_사용성_평가_심화_연구___연구_노트_1751357873748.md": {
+      "fileHash": "9f127208b3c9254338a45bd0186d9ce6",
+      "metadata": {
+        "title": "생성형_AI_사용성_평가_심화_연구___연구_노트_1751357873748",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/생성형_AI_사용성_평가_심화_연구___연구_노트_1751357873748.md",
+        "fileName": "생성형_AI_사용성_평가_심화_연구___연구_노트_1751357873748.md",
+        "fileSize": 5091,
+        "wordCount": 502
+      },
+      "indexedAt": "2025-07-10T08:08:34.091Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/04_실무사례/생성형 AI 사용성 평가 실무 사례 및 모범 사례.md": {
+      "fileHash": "4ca611bf64c7a496e4dd329678509ffe",
+      "metadata": {
+        "title": "생성형 AI 사용성 평가 실무 사례 및 모범 사례",
+        "tags": [
+          "ai",
+          "usability",
+          "case-study",
+          "best-practices",
+          "industry",
+          "evaluation",
+          "research"
+        ],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/04_실무사례/생성형 AI 사용성 평가 실무 사례 및 모범 사례.md",
+        "fileName": "생성형 AI 사용성 평가 실무 사례 및 모범 사례.md",
+        "fileSize": 7867,
+        "wordCount": 1041
+      },
+      "indexedAt": "2025-07-10T08:08:34.188Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/AI테스트노트.md": {
+      "fileHash": "bf248435f5c9135cae16276fe8e06af1",
+      "metadata": {
+        "title": "AI테스트노트",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/AI테스트노트.md",
+        "fileName": "AI테스트노트.md",
+        "fileSize": 32,
+        "wordCount": 3
+      },
+      "indexedAt": "2025-07-10T08:08:34.285Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/07_GPT학습자료/GPT-4o 정리.md": {
+      "fileHash": "97c24a4da5ff5cf460d89b8f1ef40a71",
+      "metadata": {
+        "title": "GPT-4o 정리",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/07_GPT학습자료/GPT-4o 정리.md",
+        "fileName": "GPT-4o 정리.md",
+        "fileSize": 9200,
+        "wordCount": 922
+      },
+      "indexedAt": "2025-07-10T08:08:34.385Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/01_종합가이드/생성형 AI 사용성 평가 종합 가이드.md": {
+      "fileHash": "d9c98dd06a5ab882c8c69f3f560407d9",
+      "metadata": {
+        "title": "생성형 AI 사용성 평가 종합 가이드",
+        "tags": [
+          "ai",
+          "usability",
+          "ux",
+          "research",
+          "human-ai-interaction",
+          "prompt-design",
+          "evaluation",
+          "framework"
+        ],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/01_종합가이드/생성형 AI 사용성 평가 종합 가이드.md",
+        "fileName": "생성형 AI 사용성 평가 종합 가이드.md",
+        "fileSize": 7091,
+        "wordCount": 888
+      },
+      "indexedAt": "2025-07-10T08:08:34.485Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/생성형_AI_사용성_평가___연구_노트_1751330084008.md": {
+      "fileHash": "9ae7c432195bad582dccb80c06dfbfa6",
+      "metadata": {
+        "title": "생성형_AI_사용성_평가___연구_노트_1751330084008",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/05_연구노트/생성형_AI_사용성_평가___연구_노트_1751330084008.md",
+        "fileName": "생성형_AI_사용성_평가___연구_노트_1751330084008.md",
+        "fileSize": 3963,
+        "wordCount": 397
+      },
+      "indexedAt": "2025-07-10T08:08:34.586Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/03_도구방법론/생성형 AI 사용성 평가 방법론 백서.md": {
+      "fileHash": "adf78e48d8f9c7f996b3fed08503366c",
+      "metadata": {
+        "title": "생성형 AI 사용성 평가 방법론 백서",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.700Z",
+        "modified": "2025-07-10T08:08:33.700Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/03_도구방법론/생성형 AI 사용성 평가 방법론 백서.md",
+        "fileName": "생성형 AI 사용성 평가 방법론 백서.md",
+        "fileSize": 4464,
+        "wordCount": 585
+      },
+      "indexedAt": "2025-07-10T08:08:34.688Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/03_도구방법론/생성형 AI 사용성 평가 도구 및 방법론.md": {
+      "fileHash": "6dbf6808b55bbbeffd53b1a0a93fa70f",
+      "metadata": {
+        "title": "생성형 AI 사용성 평가 도구 및 방법론",
+        "tags": [
+          "ai",
+          "usability",
+          "evaluation",
+          "tools",
+          "methodology",
+          "research",
+          "ux"
+        ],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Generative_AI_Research/03_도구방법론/생성형 AI 사용성 평가 도구 및 방법론.md",
+        "fileName": "생성형 AI 사용성 평가 도구 및 방법론.md",
+        "fileSize": 6454,
+        "wordCount": 877
+      },
+      "indexedAt": "2025-07-10T08:08:34.792Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-25.md": {
+      "fileHash": "d3dad55b8fcdfd244bf4fc0710f35443",
+      "metadata": {
+        "title": "2024-11-25",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-25.md",
+        "fileName": "2024-11-25.md",
+        "fileSize": 105,
+        "wordCount": 19
+      },
+      "indexedAt": "2025-07-10T08:08:34.893Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/실기시험 준비.md": {
+      "fileHash": "d2b54240b113833f408857e6cc1b726b",
+      "metadata": {
+        "title": "실기시험 준비",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/실기시험 준비.md",
+        "fileName": "실기시험 준비.md",
+        "fileSize": 289,
+        "wordCount": 37
+      },
+      "indexedAt": "2025-07-10T08:08:34.994Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-23.md": {
+      "fileHash": "d716e9eacdb667e760afd911104ac0bd",
+      "metadata": {
+        "title": "2024-11-23",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-23.md",
+        "fileName": "2024-11-23.md",
+        "fileSize": 230,
+        "wordCount": 31
+      },
+      "indexedAt": "2025-07-10T08:08:35.095Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-24.md": {
+      "fileHash": "0f8afc4d38e524f35a13ad67eb603671",
+      "metadata": {
+        "title": "2024-11-24",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-24.md",
+        "fileName": "2024-11-24.md",
+        "fileSize": 332,
+        "wordCount": 43
+      },
+      "indexedAt": "2025-07-10T08:08:35.198Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-16.md": {
+      "fileHash": "403f457e9268c95facab7c3ea3e6f4a4",
+      "metadata": {
+        "title": "2024-11-16",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-16.md",
+        "fileName": "2024-11-16.md",
+        "fileSize": 446,
+        "wordCount": 61
+      },
+      "indexedAt": "2025-07-10T08:08:35.300Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-15.md": {
+      "fileHash": "8db30730ee2d239f7fd5fd00f95c1d75",
+      "metadata": {
+        "title": "2024-11-15",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-15.md",
+        "fileName": "2024-11-15.md",
+        "fileSize": 373,
+        "wordCount": 49
+      },
+      "indexedAt": "2025-07-10T08:08:35.403Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-13.md": {
+      "fileHash": "4d34769e04bfcae701eef5deaf0d5ec3",
+      "metadata": {
+        "title": "2024-11-13",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-13.md",
+        "fileName": "2024-11-13.md",
+        "fileSize": 991,
+        "wordCount": 118
+      },
+      "indexedAt": "2025-07-10T08:08:35.506Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-22.md": {
+      "fileHash": "eda131e1828fd5462ad707aa9232185d",
+      "metadata": {
+        "title": "2024-11-22",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-22.md",
+        "fileName": "2024-11-22.md",
+        "fileSize": 202,
+        "wordCount": 31
+      },
+      "indexedAt": "2025-07-10T08:08:35.610Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-12.md": {
+      "fileHash": "613e709de23c39a073eb40baaf906e78",
+      "metadata": {
+        "title": "2024-11-12",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-12.md",
+        "fileName": "2024-11-12.md",
+        "fileSize": 527,
+        "wordCount": 68
+      },
+      "indexedAt": "2025-07-10T08:08:35.727Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-14.md": {
+      "fileHash": "e9416d0895ef1ddd1f79e487f86be2c7",
+      "metadata": {
+        "title": "2024-11-14",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-14.md",
+        "fileName": "2024-11-14.md",
+        "fileSize": 1289,
+        "wordCount": 143
+      },
+      "indexedAt": "2025-07-10T08:08:35.839Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-11.md": {
+      "fileHash": "a7f86f33ab653c329d66f77e7232f96b",
+      "metadata": {
+        "title": "2024-11-11",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-11.md",
+        "fileName": "2024-11-11.md",
+        "fileSize": 492,
+        "wordCount": 64
+      },
+      "indexedAt": "2025-07-10T08:08:35.954Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-21.md": {
+      "fileHash": "d58a3bcda54efcb74881e620546fb0f9",
+      "metadata": {
+        "title": "2024-11-21",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-21.md",
+        "fileName": "2024-11-21.md",
+        "fileSize": 265,
+        "wordCount": 36
+      },
+      "indexedAt": "2025-07-10T08:08:36.065Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-18.md": {
+      "fileHash": "b3a7b17ce6b93b0d9f44153b53c3dd83",
+      "metadata": {
+        "title": "2024-11-18",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-18.md",
+        "fileName": "2024-11-18.md",
+        "fileSize": 322,
+        "wordCount": 44
+      },
+      "indexedAt": "2025-07-10T08:08:36.179Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-17.md": {
+      "fileHash": "451dee884574c8973e1ab48e00d409a6",
+      "metadata": {
+        "title": "2024-11-17",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-17.md",
+        "fileName": "2024-11-17.md",
+        "fileSize": 242,
+        "wordCount": 32
+      },
+      "indexedAt": "2025-07-10T08:08:36.293Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-06.md": {
+      "fileHash": "e38719a6879e9d0ec3393bdc0503a270",
+      "metadata": {
+        "title": "2024-11-06",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-06.md",
+        "fileName": "2024-11-06.md",
+        "fileSize": 346,
+        "wordCount": 52
+      },
+      "indexedAt": "2025-07-10T08:08:36.407Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-08.md": {
+      "fileHash": "84624d0c509bc36faec1576af3e1be30",
+      "metadata": {
+        "title": "2024-11-08",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-08.md",
+        "fileName": "2024-11-08.md",
+        "fileSize": 364,
+        "wordCount": 46
+      },
+      "indexedAt": "2025-07-10T08:08:36.521Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-10.md": {
+      "fileHash": "7748c78d43c51313b1ac7fc2eb850d8c",
+      "metadata": {
+        "title": "2024-11-10",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-10.md",
+        "fileName": "2024-11-10.md",
+        "fileSize": 127,
+        "wordCount": 21
+      },
+      "indexedAt": "2025-07-10T08:08:36.637Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-09.md": {
+      "fileHash": "07340273b8e869166cf3ab7584eb90e7",
+      "metadata": {
+        "title": "2024-11-09",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-09.md",
+        "fileName": "2024-11-09.md",
+        "fileSize": 116,
+        "wordCount": 20
+      },
+      "indexedAt": "2025-07-10T08:08:36.752Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-04.md": {
+      "fileHash": "a854b8c7b704831d8f3520e4fcdbbdb1",
+      "metadata": {
+        "title": "2024-11-04",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-04.md",
+        "fileName": "2024-11-04.md",
+        "fileSize": 814,
+        "wordCount": 96
+      },
+      "indexedAt": "2025-07-10T08:08:36.869Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-03.md": {
+      "fileHash": "22107b51a9d526d351d62f6e7d819859",
+      "metadata": {
+        "title": "2024-11-03",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-03.md",
+        "fileName": "2024-11-03.md",
+        "fileSize": 962,
+        "wordCount": 115
+      },
+      "indexedAt": "2025-07-10T08:08:36.985Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-07.md": {
+      "fileHash": "9bb6bdbfa044a94baa43fb1e0422d0a3",
+      "metadata": {
+        "title": "2024-11-07",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-07.md",
+        "fileName": "2024-11-07.md",
+        "fileSize": 1127,
+        "wordCount": 127
+      },
+      "indexedAt": "2025-07-10T08:08:37.102Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-05.md": {
+      "fileHash": "3c923a62b580578dfbb33cdf56829ddd",
+      "metadata": {
+        "title": "2024-11-05",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-05.md",
+        "fileName": "2024-11-05.md",
+        "fileSize": 2017,
+        "wordCount": 243
+      },
+      "indexedAt": "2025-07-10T08:08:37.220Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-01.md": {
+      "fileHash": "536a28da9a3be47c8b659c551dbdcb44",
+      "metadata": {
+        "title": "2024-11-01",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-01.md",
+        "fileName": "2024-11-01.md",
+        "fileSize": 789,
+        "wordCount": 97
+      },
+      "indexedAt": "2025-07-10T08:08:37.342Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202409/2024-09-20.md": {
+      "fileHash": "c8d583abca54f084b4e07a10438f4b78",
+      "metadata": {
+        "title": "2024-09-20",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202409/2024-09-20.md",
+        "fileName": "2024-09-20.md",
+        "fileSize": 1740,
+        "wordCount": 208
+      },
+      "indexedAt": "2025-07-10T08:08:37.469Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-31.md": {
+      "fileHash": "d8a20fea15e4740eacad3ce409b886a7",
+      "metadata": {
+        "title": "2024-10-31",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-31.md",
+        "fileName": "2024-10-31.md",
+        "fileSize": 1528,
+        "wordCount": 175
+      },
+      "indexedAt": "2025-07-10T08:08:37.592Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-02.md": {
+      "fileHash": "8315163f423c2ec2b224f01bda733e77",
+      "metadata": {
+        "title": "2024-11-02",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202411/2024-11-02.md",
+        "fileName": "2024-11-02.md",
+        "fileSize": 1285,
+        "wordCount": 148
+      },
+      "indexedAt": "2025-07-10T08:08:37.715Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-29.md": {
+      "fileHash": "96404acad1e1b93a6e05c6e09fb4a885",
+      "metadata": {
+        "title": "2024-10-29",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-29.md",
+        "fileName": "2024-10-29.md",
+        "fileSize": 381,
+        "wordCount": 45
+      },
+      "indexedAt": "2025-07-10T08:08:37.836Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-28.md": {
+      "fileHash": "42a4671e9df42816531f06308b7bb0ed",
+      "metadata": {
+        "title": "2024-10-28",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-28.md",
+        "fileName": "2024-10-28.md",
+        "fileSize": 2075,
+        "wordCount": 237
+      },
+      "indexedAt": "2025-07-10T08:08:37.959Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-26.md": {
+      "fileHash": "249780caa2a93c9ba12a42fa3087ab36",
+      "metadata": {
+        "title": "2024-10-26",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-26.md",
+        "fileName": "2024-10-26.md",
+        "fileSize": 911,
+        "wordCount": 105
+      },
+      "indexedAt": "2025-07-10T08:08:38.082Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-25.md": {
+      "fileHash": "320f344505705bec5f9eca319e825d3f",
+      "metadata": {
+        "title": "2024-10-25",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-25.md",
+        "fileName": "2024-10-25.md",
+        "fileSize": 281,
+        "wordCount": 38
+      },
+      "indexedAt": "2025-07-10T08:08:38.204Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-24.md": {
+      "fileHash": "ee7c72dd722565366141f6d5fb034c1f",
+      "metadata": {
+        "title": "2024-10-24",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-24.md",
+        "fileName": "2024-10-24.md",
+        "fileSize": 888,
+        "wordCount": 103
+      },
+      "indexedAt": "2025-07-10T08:08:38.326Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-23.md": {
+      "fileHash": "955bd31de3e301ea12897d832d8f04b8",
+      "metadata": {
+        "title": "2024-10-23",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-23.md",
+        "fileName": "2024-10-23.md",
+        "fileSize": 1289,
+        "wordCount": 140
+      },
+      "indexedAt": "2025-07-10T08:08:38.449Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-22.md": {
+      "fileHash": "281cc51430d936ae1e520d99646c4e30",
+      "metadata": {
+        "title": "2024-10-22",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-22.md",
+        "fileName": "2024-10-22.md",
+        "fileSize": 1721,
+        "wordCount": 192
+      },
+      "indexedAt": "2025-07-10T08:08:38.573Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-21.md": {
+      "fileHash": "fc0dfa271532a074295695000647db9d",
+      "metadata": {
+        "title": "2024-10-21",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:33.701Z",
+        "modified": "2025-07-10T08:08:33.701Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-21.md",
+        "fileName": "2024-10-21.md",
+        "fileSize": 1082,
+        "wordCount": 124
+      },
+      "indexedAt": "2025-07-10T08:08:38.697Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-20.md": {
+      "fileHash": "f87c33d7d3913e324b2611ac182458fc",
+      "metadata": {
+        "title": "2024-10-20",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:38.573Z",
+        "modified": "2025-07-10T08:08:38.573Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-20.md",
+        "fileName": "2024-10-20.md",
+        "fileSize": 1986,
+        "wordCount": 222
+      },
+      "indexedAt": "2025-07-10T08:08:38.822Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-19.md": {
+      "fileHash": "dc566796d0fca0021e5c4f73729f7c50",
+      "metadata": {
+        "title": "2024-10-19",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:38.573Z",
+        "modified": "2025-07-10T08:08:38.573Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-19.md",
+        "fileName": "2024-10-19.md",
+        "fileSize": 1721,
+        "wordCount": 185
+      },
+      "indexedAt": "2025-07-10T08:08:38.945Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-18.md": {
+      "fileHash": "c8eac1007e8fb7ba8203a0eaed0ad7b7",
+      "metadata": {
+        "title": "2024-10-18",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:38.573Z",
+        "modified": "2025-07-10T08:08:38.573Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-18.md",
+        "fileName": "2024-10-18.md",
+        "fileSize": 1672,
+        "wordCount": 203
+      },
+      "indexedAt": "2025-07-10T08:08:39.071Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-27.md": {
+      "fileHash": "f6e5e48d9a66aa588d688e68364cf7e0",
+      "metadata": {
+        "title": "2024-10-27",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:38.697Z",
+        "modified": "2025-07-10T08:08:38.697Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-27.md",
+        "fileName": "2024-10-27.md",
+        "fileSize": 11355,
+        "wordCount": 1200
+      },
+      "indexedAt": "2025-07-10T08:08:39.198Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-30.md": {
+      "fileHash": "eb972ddc5e62fa2cf712504ee6c10578",
+      "metadata": {
+        "title": "2024-10-30",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:38.697Z",
+        "modified": "2025-07-10T08:08:38.697Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-30.md",
+        "fileName": "2024-10-30.md",
+        "fileSize": 1003,
+        "wordCount": 118
+      },
+      "indexedAt": "2025-07-10T08:08:39.325Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-14.md": {
+      "fileHash": "5cf8e042eadc9b3ef401cf6183e0f229",
+      "metadata": {
+        "title": "2024-10-14",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-14.md",
+        "fileName": "2024-10-14.md",
+        "fileSize": 729,
+        "wordCount": 84
+      },
+      "indexedAt": "2025-07-10T08:08:39.466Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-16.md": {
+      "fileHash": "a250b005356f6cf692fc3043bb66d23b",
+      "metadata": {
+        "title": "2024-10-16",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-16.md",
+        "fileName": "2024-10-16.md",
+        "fileSize": 1407,
+        "wordCount": 160
+      },
+      "indexedAt": "2025-07-10T08:08:39.595Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-15.md": {
+      "fileHash": "67d223faccc23554dfe65a3c39fc5e10",
+      "metadata": {
+        "title": "2024-10-15",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-15.md",
+        "fileName": "2024-10-15.md",
+        "fileSize": 390,
+        "wordCount": 52
+      },
+      "indexedAt": "2025-07-10T08:08:39.724Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-17.md": {
+      "fileHash": "08f886e5b1fda6066578f9023224c284",
+      "metadata": {
+        "title": "2024-10-17",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202410/2024-10-17.md",
+        "fileName": "2024-10-17.md",
+        "fileSize": 2326,
+        "wordCount": 258
+      },
+      "indexedAt": "2025-07-10T08:08:39.854Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-28.md": {
+      "fileHash": "c98afb093960ef891683a0d46598db02",
+      "metadata": {
+        "title": "2024-06-28",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-28.md",
+        "fileName": "2024-06-28.md",
+        "fileSize": 674,
+        "wordCount": 78
+      },
+      "indexedAt": "2025-07-10T08:08:39.981Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-30.md": {
+      "fileHash": "ae9bef79e3264cba7a272743c0e67cfd",
+      "metadata": {
+        "title": "2024-06-30",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-30.md",
+        "fileName": "2024-06-30.md",
+        "fileSize": 1541,
+        "wordCount": 183
+      },
+      "indexedAt": "2025-07-10T08:08:40.109Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-29.md": {
+      "fileHash": "20dc1c6733f8cd77fbf8b831d55fc07d",
+      "metadata": {
+        "title": "2024-06-29",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-29.md",
+        "fileName": "2024-06-29.md",
+        "fileSize": 550,
+        "wordCount": 73
+      },
+      "indexedAt": "2025-07-10T08:08:40.240Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-27.md": {
+      "fileHash": "a773e93eed9a9d4bb70e95ef1419c1a3",
+      "metadata": {
+        "title": "2024-06-27",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-27.md",
+        "fileName": "2024-06-27.md",
+        "fileSize": 449,
+        "wordCount": 54
+      },
+      "indexedAt": "2025-07-10T08:08:40.374Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-24.md": {
+      "fileHash": "84960bdad412eb94ad3cabb5f3c1a119",
+      "metadata": {
+        "title": "2024-06-24",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-24.md",
+        "fileName": "2024-06-24.md",
+        "fileSize": 2244,
+        "wordCount": 244
+      },
+      "indexedAt": "2025-07-10T08:08:40.506Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-25.md": {
+      "fileHash": "a0bf2ba29c9b8afdd67b4f54addf8487",
+      "metadata": {
+        "title": "2024-06-25",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-25.md",
+        "fileName": "2024-06-25.md",
+        "fileSize": 878,
+        "wordCount": 99
+      },
+      "indexedAt": "2025-07-10T08:08:40.638Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-21.md": {
+      "fileHash": "e50926a5a89fdfb16df0ab986a47cf99",
+      "metadata": {
+        "title": "2024-06-21",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-21.md",
+        "fileName": "2024-06-21.md",
+        "fileSize": 281,
+        "wordCount": 42
+      },
+      "indexedAt": "2025-07-10T08:08:40.769Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-23.md": {
+      "fileHash": "6c09c87298f90c2989f492db51aaabec",
+      "metadata": {
+        "title": "2024-06-23",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-23.md",
+        "fileName": "2024-06-23.md",
+        "fileSize": 921,
+        "wordCount": 110
+      },
+      "indexedAt": "2025-07-10T08:08:40.901Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-28.md": {
+      "fileHash": "08b247c49b6fdba2ac1755b614aafcb5",
+      "metadata": {
+        "title": "2024-07-28",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.336Z",
+        "modified": "2025-07-10T08:08:39.336Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-28.md",
+        "fileName": "2024-07-28.md",
+        "fileSize": 446,
+        "wordCount": 59
+      },
+      "indexedAt": "2025-07-10T08:08:41.033Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-22.md": {
+      "fileHash": "315608e1242e7d6acdd4b48d7ea849e2",
+      "metadata": {
+        "title": "2024-06-22",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202406/2024-06-22.md",
+        "fileName": "2024-06-22.md",
+        "fileSize": 871,
+        "wordCount": 97
+      },
+      "indexedAt": "2025-07-10T08:08:41.167Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-27.md": {
+      "fileHash": "67baf2bdd79f2008ec6892f254b2e761",
+      "metadata": {
+        "title": "2024-07-27",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-27.md",
+        "fileName": "2024-07-27.md",
+        "fileSize": 665,
+        "wordCount": 77
+      },
+      "indexedAt": "2025-07-10T08:08:41.429Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-10.md": {
+      "fileHash": "cfa1eb5882e29949baebf23212feef25",
+      "metadata": {
+        "title": "2024-07-10",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-10.md",
+        "fileName": "2024-07-10.md",
+        "fileSize": 2200,
+        "wordCount": 248
+      },
+      "indexedAt": "2025-07-10T08:08:41.569Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-06.md": {
+      "fileHash": "46fe3178dd6b5ad1dcc3616a6ca29f2f",
+      "metadata": {
+        "title": "2024-07-06",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-06.md",
+        "fileName": "2024-07-06.md",
+        "fileSize": 1359,
+        "wordCount": 154
+      },
+      "indexedAt": "2025-07-10T08:08:41.708Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-04.md": {
+      "fileHash": "9605158621aa38ee9adb498870dd331b",
+      "metadata": {
+        "title": "2024-07-04",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-04.md",
+        "fileName": "2024-07-04.md",
+        "fileSize": 766,
+        "wordCount": 92
+      },
+      "indexedAt": "2025-07-10T08:08:41.845Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/연구동향/Human-AI Interaction 최신 연구 동향 및 방법론.md": {
+      "fileHash": "1ee25e212a472342fc6626711dcf0323",
+      "metadata": {
+        "title": "Human-AI Interaction 최신 연구 동향 및 방법론",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/연구동향/Human-AI Interaction 최신 연구 동향 및 방법론.md",
+        "fileName": "Human-AI Interaction 최신 연구 동향 및 방법론.md",
+        "fileSize": 10731,
+        "wordCount": 1274
+      },
+      "indexedAt": "2025-07-10T08:08:41.984Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/종합가이드/Human_AI_Interaction_Comprehensive_Guide.md": {
+      "fileHash": "b69156c085d9f62829f1eb097517774e",
+      "metadata": {
+        "title": "Human_AI_Interaction_Comprehensive_Guide",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/종합가이드/Human_AI_Interaction_Comprehensive_Guide.md",
+        "fileName": "Human_AI_Interaction_Comprehensive_Guide.md",
+        "fileSize": 34021,
+        "wordCount": 4531
+      },
+      "indexedAt": "2025-07-10T08:08:42.129Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/실무적용/Human-AI Interaction 실무 적용 사례 및 도구.md": {
+      "fileHash": "ff72f799850c1b694af5408d5ef7bd8b",
+      "metadata": {
+        "title": "Human-AI Interaction 실무 적용 사례 및 도구",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/실무적용/Human-AI Interaction 실무 적용 사례 및 도구.md",
+        "fileName": "Human-AI Interaction 실무 적용 사례 및 도구.md",
+        "fileSize": 17002,
+        "wordCount": 2097
+      },
+      "indexedAt": "2025-07-10T08:08:42.272Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/ANOVA.md": {
+      "fileHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "metadata": {
+        "title": "ANOVA",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/ANOVA.md",
+        "fileName": "ANOVA.md",
+        "fileSize": 0,
+        "wordCount": 1
+      },
+      "indexedAt": "2025-07-10T08:08:42.411Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-07.md": {
+      "fileHash": "f7204faf04fc851b793dc510ed2f50bd",
+      "metadata": {
+        "title": "2024-07-07",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-07.md",
+        "fileName": "2024-07-07.md",
+        "fileSize": 1440,
+        "wordCount": 166
+      },
+      "indexedAt": "2025-07-10T08:08:42.553Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/윤리고려사항/Human-AI Interaction 윤리적 고려사항 및 향후 발전 방향.md": {
+      "fileHash": "8cc7fe49c4f12e50a4aa802956c242f8",
+      "metadata": {
+        "title": "Human-AI Interaction 윤리적 고려사항 및 향후 발전 방향",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/HAX_Research/06_Human-AI_Interaction/윤리고려사항/Human-AI Interaction 윤리적 고려사항 및 향후 발전 방향.md",
+        "fileName": "Human-AI Interaction 윤리적 고려사항 및 향후 발전 방향.md",
+        "fileSize": 17479,
+        "wordCount": 2064
+      },
+      "indexedAt": "2025-07-10T08:08:42.698Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202506/2025-06-13.md": {
+      "fileHash": "f34164560a2e32daf813d89c255c9b11",
+      "metadata": {
+        "title": "2025-06-13",
+        "tags": [
+          "daily-note",
+          2025
+        ],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202506/2025-06-13.md",
+        "fileName": "2025-06-13.md",
+        "fileSize": 780,
+        "wordCount": 130
+      },
+      "indexedAt": "2025-07-10T08:08:42.841Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/t-test.md": {
+      "fileHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "metadata": {
+        "title": "t-test",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/t-test.md",
+        "fileName": "t-test.md",
+        "fileSize": 0,
+        "wordCount": 1
+      },
+      "indexedAt": "2025-07-10T08:08:42.983Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas - 결측치 처리.md": {
+      "fileHash": "c1ed55f8cdff236d6d1c3ac4dc2822d0",
+      "metadata": {
+        "title": "Pandas - 결측치 처리",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas - 결측치 처리.md",
+        "fileName": "Pandas - 결측치 처리.md",
+        "fileSize": 2511,
+        "wordCount": 311
+      },
+      "indexedAt": "2025-07-10T08:08:43.127Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Python_lambda.md": {
+      "fileHash": "1c65e6e1dca4c0e06284cb233a7eff2f",
+      "metadata": {
+        "title": "Python_lambda",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Python_lambda.md",
+        "fileName": "Python_lambda.md",
+        "fileSize": 1260,
+        "wordCount": 191
+      },
+      "indexedAt": "2025-07-10T08:08:43.273Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas - 결측치 처리 (여러개처리).md": {
+      "fileHash": "251ef3940c1ddb15ca2219352aca41a7",
+      "metadata": {
+        "title": "Pandas - 결측치 처리 (여러개처리)",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas - 결측치 처리 (여러개처리).md",
+        "fileName": "Pandas - 결측치 처리 (여러개처리).md",
+        "fileSize": 905,
+        "wordCount": 125
+      },
+      "indexedAt": "2025-07-10T08:08:43.420Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas - 결측치 처리 (최빈값).md": {
+      "fileHash": "f65f7c9b6b8ff7e6cd00be79cf7515b1",
+      "metadata": {
+        "title": "Pandas - 결측치 처리 (최빈값)",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas - 결측치 처리 (최빈값).md",
+        "fileName": "Pandas - 결측치 처리 (최빈값).md",
+        "fileSize": 2501,
+        "wordCount": 255
+      },
+      "indexedAt": "2025-07-10T08:08:43.567Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Data Preprocessing.md": {
+      "fileHash": "9f2b7cd3c3e61d73b64fcae9634255b2",
+      "metadata": {
+        "title": "Data Preprocessing",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Data Preprocessing.md",
+        "fileName": "Data Preprocessing.md",
+        "fileSize": 4376,
+        "wordCount": 554
+      },
+      "indexedAt": "2025-07-10T08:08:43.716Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/02. Data Types/02. data types.md": {
+      "fileHash": "0f18b556690d19c5215f62bb36c7f4f1",
+      "metadata": {
+        "title": "02. data types",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/02. Data Types/02. data types.md",
+        "fileName": "02. data types.md",
+        "fileSize": 837,
+        "wordCount": 103
+      },
+      "indexedAt": "2025-07-10T08:08:43.864Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/df_apply.md": {
+      "fileHash": "b0c6bec81af8b7826c512c04972070bf",
+      "metadata": {
+        "title": "df_apply",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/df_apply.md",
+        "fileName": "df_apply.md",
+        "fileSize": 841,
+        "wordCount": 95
+      },
+      "indexedAt": "2025-07-10T08:08:44.016Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-11.md": {
+      "fileHash": "59279b83e6fbdb761af597efa8a508a2",
+      "metadata": {
+        "title": "2024-07-11",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-11.md",
+        "fileName": "2024-07-11.md",
+        "fileSize": 1782,
+        "wordCount": 208
+      },
+      "indexedAt": "2025-07-10T08:08:44.166Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-13.md": {
+      "fileHash": "4f75c384885512b3d08554d5f2971689",
+      "metadata": {
+        "title": "2024-07-13",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-13.md",
+        "fileName": "2024-07-13.md",
+        "fileSize": 2921,
+        "wordCount": 333
+      },
+      "indexedAt": "2025-07-10T08:08:44.314Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/01. Data for Statistics/01. Data for Statistics.md": {
+      "fileHash": "1e0fd9550cd6e0d65c54f1617cd4f7dd",
+      "metadata": {
+        "title": "01. Data for Statistics",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/01. Data for Statistics/01. Data for Statistics.md",
+        "fileName": "01. Data for Statistics.md",
+        "fileSize": 573,
+        "wordCount": 69
+      },
+      "indexedAt": "2025-07-10T08:08:44.468Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.3. 연속확률분포.md": {
+      "fileHash": "dcc67e7b177caefb8894b206336050cd",
+      "metadata": {
+        "title": "01.2.3. 연속확률분포",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.3. 연속확률분포.md",
+        "fileName": "01.2.3. 연속확률분포.md",
+        "fileSize": 3942,
+        "wordCount": 422
+      },
+      "indexedAt": "2025-07-10T08:08:44.617Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/카이제곱검정.md": {
+      "fileHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "metadata": {
+        "title": "카이제곱검정",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/카이제곱검정.md",
+        "fileName": "카이제곱검정.md",
+        "fileSize": 0,
+        "wordCount": 1
+      },
+      "indexedAt": "2025-07-10T08:08:44.766Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas_Dataframe.md": {
+      "fileHash": "ff3954dca463be1bed5ff95ca16c15b9",
+      "metadata": {
+        "title": "Pandas_Dataframe",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.337Z",
+        "modified": "2025-07-10T08:08:39.337Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Python/Pandas/Pandas_Dataframe.md",
+        "fileName": "Pandas_Dataframe.md",
+        "fileSize": 265,
+        "wordCount": 29
+      },
+      "indexedAt": "2025-07-10T08:08:44.916Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/03. Data Collection/01. data collection.md": {
+      "fileHash": "9d97180114169de97cd18a1ba7b8e85b",
+      "metadata": {
+        "title": "01. data collection",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.338Z",
+        "modified": "2025-07-10T08:08:39.338Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/03. Data Collection/01. data collection.md",
+        "fileName": "01. data collection.md",
+        "fileSize": 2721,
+        "wordCount": 335
+      },
+      "indexedAt": "2025-07-10T08:08:45.073Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2. 확률.md": {
+      "fileHash": "cec0caa4f2598275a3ce9db536df73c4",
+      "metadata": {
+        "title": "01.2. 확률",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.338Z",
+        "modified": "2025-07-10T08:08:39.338Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2. 확률.md",
+        "fileName": "01.2. 확률.md",
+        "fileSize": 1776,
+        "wordCount": 218
+      },
+      "indexedAt": "2025-07-10T08:08:45.227Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.2. 이산확률분포.md": {
+      "fileHash": "364d367f419a6f7f9b664f5107301b99",
+      "metadata": {
+        "title": "01.2.2. 이산확률분포",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.338Z",
+        "modified": "2025-07-10T08:08:39.338Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.2. 이산확률분포.md",
+        "fileName": "01.2.2. 이산확률분포.md",
+        "fileSize": 4220,
+        "wordCount": 443
+      },
+      "indexedAt": "2025-07-10T08:08:45.378Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.1. 베이즈정리.md": {
+      "fileHash": "81e3d262e003e8839fea23f09fe6c125",
+      "metadata": {
+        "title": "01.2.1. 베이즈정리",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.338Z",
+        "modified": "2025-07-10T08:08:39.338Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.1. 베이즈정리.md",
+        "fileName": "01.2.1. 베이즈정리.md",
+        "fileSize": 1077,
+        "wordCount": 121
+      },
+      "indexedAt": "2025-07-10T08:08:45.530Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.4. 확률분포요약.md": {
+      "fileHash": "8e8142d8a0a2314e92b3031031f4b4e6",
+      "metadata": {
+        "title": "01.2.4. 확률분포요약",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.338Z",
+        "modified": "2025-07-10T08:08:39.338Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/04. 확률 분석/01.2.4. 확률분포요약.md",
+        "fileName": "01.2.4. 확률분포요약.md",
+        "fileSize": 1339,
+        "wordCount": 160
+      },
+      "indexedAt": "2025-07-10T08:08:45.682Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-03.md": {
+      "fileHash": "1d6eaa7074395a04c8f76d9a27ecc071",
+      "metadata": {
+        "title": "2024-07-03",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:39.338Z",
+        "modified": "2025-07-10T08:08:39.338Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/9. Diary/202407/2024-07-03.md",
+        "fileName": "2024-07-03.md",
+        "fileSize": 331,
+        "wordCount": 42
+      },
+      "indexedAt": "2025-07-10T08:08:45.835Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/01. 데이터 시각화/01.3. 데이터 시각화.md": {
+      "fileHash": "5d3cbb8f1a927984f812f02be693cb74",
+      "metadata": {
+        "title": "01.3. 데이터 시각화",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:41.033Z",
+        "modified": "2025-07-10T08:08:41.033Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/01. 데이터 시각화/01.3. 데이터 시각화.md",
+        "fileName": "01.3. 데이터 시각화.md",
+        "fileSize": 1266,
+        "wordCount": 148
+      },
+      "indexedAt": "2025-07-10T08:08:45.987Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/01. 데이터 시각화/01.2. 자료 정리 방법.md": {
+      "fileHash": "bbf5b9ca3a9f0078e9eb39dbe8013649",
+      "metadata": {
+        "title": "01.2. 자료 정리 방법",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:41.430Z",
+        "modified": "2025-07-10T08:08:41.430Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/01. 데이터 시각화/01.2. 자료 정리 방법.md",
+        "fileName": "01.2. 자료 정리 방법.md",
+        "fileSize": 2184,
+        "wordCount": 263
+      },
+      "indexedAt": "2025-07-10T08:08:46.141Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/01. 데이터 시각화/01.1. 자료 정리 기본.md": {
+      "fileHash": "ba3424bcf3e57c2bb99af2d28fb5b206",
+      "metadata": {
+        "title": "01.1. 자료 정리 기본",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:41.569Z",
+        "modified": "2025-07-10T08:08:41.569Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/01. 데이터 시각화/01.1. 자료 정리 기본.md",
+        "fileName": "01.1. 자료 정리 기본.md",
+        "fileSize": 450,
+        "wordCount": 65
+      },
+      "indexedAt": "2025-07-10T08:08:46.296Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/추정 (Estimation).md": {
+      "fileHash": "9f2d30d36ea0edda2ca6ec0e6168b1bb",
+      "metadata": {
+        "title": "추정 (Estimation)",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:42.841Z",
+        "modified": "2025-07-10T08:08:42.841Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/추정 (Estimation).md",
+        "fileName": "추정 (Estimation).md",
+        "fileSize": 2778,
+        "wordCount": 319
+      },
+      "indexedAt": "2025-07-10T08:08:46.452Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/지수분포의 무기억성.md": {
+      "fileHash": "0b777da194172268c53196f4280daadc",
+      "metadata": {
+        "title": "지수분포의 무기억성",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.452Z",
+        "modified": "2025-07-10T08:08:46.452Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/지수분포의 무기억성.md",
+        "fileName": "지수분포의 무기억성.md",
+        "fileSize": 2399,
+        "wordCount": 265
+      },
+      "indexedAt": "2025-07-10T08:08:46.611Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/선형회귀 3 - 변수.md": {
+      "fileHash": "3490a41c3d5e2ecd3e1cef6490e806e3",
+      "metadata": {
+        "title": "선형회귀 3 - 변수",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.614Z",
+        "modified": "2025-07-10T08:08:46.614Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/선형회귀 3 - 변수.md",
+        "fileName": "선형회귀 3 - 변수.md",
+        "fileSize": 5745,
+        "wordCount": 628
+      },
+      "indexedAt": "2025-07-10T08:08:46.771Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/상관분석.md": {
+      "fileHash": "e169590d551e2067c7ab48d2dc81983d",
+      "metadata": {
+        "title": "상관분석",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.614Z",
+        "modified": "2025-07-10T08:08:46.614Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/상관분석.md",
+        "fileName": "상관분석.md",
+        "fileSize": 2767,
+        "wordCount": 324
+      },
+      "indexedAt": "2025-07-10T08:08:46.928Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/선형회귀 2 - 가정.md": {
+      "fileHash": "81838c4f2d8691e7febe5b28854d97d3",
+      "metadata": {
+        "title": "선형회귀 2 - 가정",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.614Z",
+        "modified": "2025-07-10T08:08:46.614Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/선형회귀 2 - 가정.md",
+        "fileName": "선형회귀 2 - 가정.md",
+        "fileSize": 5325,
+        "wordCount": 570
+      },
+      "indexedAt": "2025-07-10T08:08:47.085Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1.2. 변이 통계량.md": {
+      "fileHash": "3b0528b5452cf432e0d4fa5d632e7dc4",
+      "metadata": {
+        "title": "01.1.2. 변이 통계량",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.614Z",
+        "modified": "2025-07-10T08:08:46.614Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1.2. 변이 통계량.md",
+        "fileName": "01.1.2. 변이 통계량.md",
+        "fileSize": 3201,
+        "wordCount": 358
+      },
+      "indexedAt": "2025-07-10T08:08:47.242Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/로지스틱 회귀분석.md": {
+      "fileHash": "e1ed266414a288e95130f4dc306aba9e",
+      "metadata": {
+        "title": "로지스틱 회귀분석",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.614Z",
+        "modified": "2025-07-10T08:08:46.614Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/로지스틱 회귀분석.md",
+        "fileName": "로지스틱 회귀분석.md",
+        "fileSize": 3154,
+        "wordCount": 392
+      },
+      "indexedAt": "2025-07-10T08:08:47.399Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1.1. 위치 통계량.md": {
+      "fileHash": "32d3354b31c1084868d49afdc6d0cab4",
+      "metadata": {
+        "title": "01.1.1. 위치 통계량",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:46.614Z",
+        "modified": "2025-07-10T08:08:46.614Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1.1. 위치 통계량.md",
+        "fileName": "01.1.1. 위치 통계량.md",
+        "fileSize": 1633,
+        "wordCount": 207
+      },
+      "indexedAt": "2025-07-10T08:08:47.558Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1.3. 모양 통계량.md": {
+      "fileHash": "9035bea18e1d2784041df35092a23578",
+      "metadata": {
+        "title": "01.1.3. 모양 통계량",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:47.242Z",
+        "modified": "2025-07-10T08:08:47.242Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1.3. 모양 통계량.md",
+        "fileName": "01.1.3. 모양 통계량.md",
+        "fileSize": 891,
+        "wordCount": 104
+      },
+      "indexedAt": "2025-07-10T08:08:47.720Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/선형회귀 1 - 기울기, 절편.md": {
+      "fileHash": "03f94ac0e445bf5d6e8cbc73bec07340",
+      "metadata": {
+        "title": "선형회귀 1 - 기울기, 절편",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:47.558Z",
+        "modified": "2025-07-10T08:08:47.558Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/05. 추론 통계/선형회귀 1 - 기울기, 절편.md",
+        "fileName": "선형회귀 1 - 기울기, 절편.md",
+        "fileSize": 1808,
+        "wordCount": 206
+      },
+      "indexedAt": "2025-07-10T08:08:47.880Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1. 분포분석.md": {
+      "fileHash": "51623d46906a9d05addc897021c1577f",
+      "metadata": {
+        "title": "01.1. 분포분석",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:47.880Z",
+        "modified": "2025-07-10T08:08:47.880Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/02. 분포 분석/01.1. 분포분석.md",
+        "fileName": "01.1. 분포분석.md",
+        "fileSize": 877,
+        "wordCount": 110
+      },
+      "indexedAt": "2025-07-10T08:08:48.040Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/03. 빈도 분석/빈도분석.md": {
+      "fileHash": "9c44534fcfcbedc3d589bb82a00e5a2a",
+      "metadata": {
+        "title": "빈도분석",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:08:47.880Z",
+        "modified": "2025-07-10T08:08:47.880Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/3. Study/Data Science/Statistics/04. Data Analysis/03. 빈도 분석/빈도분석.md",
+        "fileName": "빈도분석.md",
+        "fileSize": 332,
+        "wordCount": 45
+      },
+      "indexedAt": "2025-07-10T08:08:48.200Z",
       "version": "1.0.0"
     }
   }

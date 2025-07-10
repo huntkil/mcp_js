@@ -17,19 +17,8 @@ class EmbeddingSelector {
    * @returns {Object} 선택된 임베딩 서비스
    */
   selectService() {
-    const openaiKey = process.env.OPENAI_API_KEY;
-    const useLocal = process.env.USE_LOCAL_EMBEDDING === 'true';
-    
-    if (openaiKey && !useLocal) {
-      logger.info('OpenAI 임베딩 서비스 사용');
-      return openaiEmbeddingService;
-    } else if (useLocal) {
-      logger.info('로컬 임베딩 서비스 사용');
-      return localEmbeddingService;
-    } else {
-      logger.info('Mock 임베딩 서비스 사용 (API 키 없음)');
-      return openaiEmbeddingService; // Mock 모드로 동작
-    }
+    // 무조건 로컬 임베딩 서비스만 사용
+    return localEmbeddingService;
   }
 
   /**

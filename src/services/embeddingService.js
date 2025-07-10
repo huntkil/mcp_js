@@ -1,26 +1,15 @@
-import OpenAI from 'openai';
 import logger from '../utils/logger.js';
+import localEmbeddingService from './localEmbeddingService.js';
 
 class EmbeddingService {
   constructor() {
-    this.apiKey = process.env.OPENAI_API_KEY;
-    this.model = 'text-embedding-3-small'; // 최신 임베딩 모델
-    this.dimensions = 1536; // text-embedding-3-small의 차원
-    
-    // API 키가 있으면 OpenAI 클라이언트 초기화
-    if (this.apiKey) {
-      this.openai = new OpenAI({
-        apiKey: this.apiKey,
-      });
-      logger.info('OpenAI 임베딩 서비스 초기화 완료');
-    } else {
-      this.openai = null;
-      logger.warn('OpenAI API 키가 없습니다. Mock 모드로 동작합니다.');
-    }
+    this.model = 'local-embedding-v1';
+    this.dimensions = 1536;
+    this.localService = localEmbeddingService;
   }
 
   /**
-   * 텍스트를 벡터로 변환
+   * 텍스트를 벡터로 변환 (로컬 임베딩 사용)
    * @param {string} text - 임베딩할 텍스트
    * @returns {Promise<number[]>} 임베딩 벡터
    */
@@ -30,32 +19,22 @@ class EmbeddingService {
         throw new Error('텍스트가 비어있습니다.');
       }
 
-      // API 키가 없으면 Mock 임베딩 생성
-      if (!this.openai) {
-        logger.info(`Mock 텍스트 임베딩 시작: ${text.substring(0, 100)}...`);
-        return this.generateMockEmbedding(text);
-      }
-
-      logger.info(`텍스트 임베딩 시작: ${text.substring(0, 100)}...`);
+      logger.info(`로컬 텍스트 임베딩 시작: ${text.substring(0, 50)}...`);
       
-      const response = await this.openai.embeddings.create({
-        model: this.model,
-        input: text,
-        encoding_format: 'float',
-      });
-
-      const embedding = response.data[0].embedding;
-      logger.info(`임베딩 완료: ${embedding.length}차원 벡터 생성`);
+      // 로컬 임베딩 서비스 사용
+      const embedding = await this.localService.embedText(text);
+      
+      logger.info(`로컬 임베딩 완료: ${embedding.length}차원 벡터 생성`);
       
       return embedding;
     } catch (error) {
-      logger.error(`임베딩 실패: ${error.message}`);
+      logger.error(`로컬 임베딩 실패: ${error.message}`);
       throw error;
     }
   }
 
   /**
-   * 여러 텍스트를 배치로 임베딩
+   * 여러 텍스트를 배치로 임베딩 (로컬 임베딩 사용)
    * @param {string[]} texts - 임베딩할 텍스트 배열
    * @returns {Promise<number[][]>} 임베딩 벡터 배열
    */
@@ -65,26 +44,16 @@ class EmbeddingService {
         throw new Error('텍스트 배열이 비어있습니다.');
       }
 
-      // API 키가 없으면 Mock 임베딩 생성
-      if (!this.openai) {
-        logger.info(`Mock 배치 임베딩 시작: ${texts.length}개 텍스트`);
-        return texts.map(text => this.generateMockEmbedding(text));
-      }
-
-      logger.info(`배치 임베딩 시작: ${texts.length}개 텍스트`);
+      logger.info(`로컬 배치 임베딩 시작: ${texts.length}개 텍스트`);
       
-      const response = await this.openai.embeddings.create({
-        model: this.model,
-        input: texts,
-        encoding_format: 'float',
-      });
+      // 로컬 임베딩 서비스 사용
+      const embeddings = await this.localService.embedBatch(texts);
 
-      const embeddings = response.data.map(item => item.embedding);
-      logger.info(`배치 임베딩 완료: ${embeddings.length}개 벡터 생성`);
+      logger.info(`로컬 배치 임베딩 완료: ${embeddings.length}개 벡터 생성`);
       
       return embeddings;
     } catch (error) {
-      logger.error(`배치 임베딩 실패: ${error.message}`);
+      logger.error(`로컬 배치 임베딩 실패: ${error.message}`);
       throw error;
     }
   }
@@ -142,26 +111,6 @@ class EmbeddingService {
   }
 
   /**
-   * Mock 임베딩 생성 (API 키가 없을 때 사용)
-   * @param {string} text - 텍스트
-   * @returns {number[]} Mock 임베딩 벡터
-   */
-  generateMockEmbedding(text) {
-    // 텍스트 기반 해시 생성
-    const hash = text.split('').reduce((a, b) => {
-      a = ((a << 5) - a) + b.charCodeAt(0);
-      return a & a;
-    }, 0);
-    
-    // 1536차원 벡터 생성
-    const embedding = new Array(this.dimensions).fill(0).map((_, i) => {
-      return Math.sin(hash + i) * 0.1;
-    });
-    
-    return embedding;
-  }
-
-  /**
    * 서비스 상태 확인
    * @returns {Promise<boolean>} 서비스 상태
    */
@@ -170,9 +119,21 @@ class EmbeddingService {
       const testEmbedding = await this.embedText('test');
       return testEmbedding.length === this.dimensions;
     } catch (error) {
-      logger.error(`임베딩 서비스 헬스체크 실패: ${error.message}`);
+      logger.error(`로컬 임베딩 서비스 헬스체크 실패: ${error.message}`);
       return false;
     }
+  }
+
+  /**
+   * 모델 정보 반환
+   * @returns {Object} 모델 정보
+   */
+  getModelInfo() {
+    return {
+      model: this.model,
+      dimensions: this.dimensions,
+      type: 'local'
+    };
   }
 }
 
