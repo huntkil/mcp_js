@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2025-07-10T08:08:48.201Z",
+  "updatedAt": "2025-07-10T08:33:05.953Z",
   "notes": {
     "/Users/gukho/Desktop/git/mcp_js/test-vault/ai-technology.md": {
       "fileHash": "7832b91e781f57c281dbf9dd169b90c4",
@@ -4082,6 +4082,70 @@
         "wordCount": 45
       },
       "indexedAt": "2025-07-10T08:08:48.200Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/습관의_힘.md": {
+      "fileHash": "0411fd26901932abc3ac838d3e04a8a8",
+      "metadata": {
+        "title": "습관의_힘",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:27:30.967Z",
+        "modified": "2025-07-10T08:27:30.967Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/습관의_힘.md",
+        "fileName": "습관의_힘.md",
+        "fileSize": 958,
+        "wordCount": 107
+      },
+      "indexedAt": "2025-07-10T08:27:31.165Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/명상_Summary.md": {
+      "fileHash": "0ec5b5871587f14a94ebe839aa90b2c8",
+      "metadata": {
+        "title": "명상_Summary",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:27:30.967Z",
+        "modified": "2025-07-10T08:27:30.967Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/명상_Summary.md",
+        "fileName": "명상_Summary.md",
+        "fileSize": 4572,
+        "wordCount": 514
+      },
+      "indexedAt": "2025-07-10T08:27:31.335Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음근력_Summary.md": {
+      "fileHash": "54e48160272ff091dd103ca7716a9df1",
+      "metadata": {
+        "title": "마음근력_Summary",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:27:30.970Z",
+        "modified": "2025-07-10T08:27:30.970Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/Life_Philosophy/마음근력_Summary.md",
+        "fileName": "마음근력_Summary.md",
+        "fileSize": 7192,
+        "wordCount": 790
+      },
+      "indexedAt": "2025-07-10T08:27:31.510Z",
+      "version": "1.0.0"
+    },
+    "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/2025-07-10.md": {
+      "fileHash": "726630956e252cadd3d1218398d605e6",
+      "metadata": {
+        "title": "2025-07-10",
+        "tags": [],
+        "aliases": [],
+        "created": "2025-07-10T08:33:05.757Z",
+        "modified": "2025-07-10T08:33:05.757Z",
+        "filePath": "/Users/gukho/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Card/2025-07-10.md",
+        "fileName": "2025-07-10.md",
+        "fileSize": 243,
+        "wordCount": 30
+      },
+      "indexedAt": "2025-07-10T08:33:05.950Z",
       "version": "1.0.0"
     }
   }

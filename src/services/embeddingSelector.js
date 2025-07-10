@@ -1,5 +1,4 @@
 import logger from '../utils/logger.js';
-import openaiEmbeddingService from './embeddingService.js';
 import localEmbeddingService from './localEmbeddingService.js';
 
 /**

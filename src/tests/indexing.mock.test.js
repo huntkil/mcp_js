@@ -257,8 +257,8 @@ function createMockNoteIndexingService() {
         if (chunk.trim().length > 0) {
           chunks.push(chunk);
         }
-        
-        start = end - overlap;
+        // start 인덱스가 음수가 되지 않도록 보정
+        start = Math.max(end - overlap, end);
         if (start >= content.length) break;
       }
       

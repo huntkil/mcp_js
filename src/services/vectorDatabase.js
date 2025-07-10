@@ -54,35 +54,84 @@ class VectorDatabase {
   }
 
   async query(queryVector, topK = 10, filter = {}) {
-    // 간단한 코사인 유사도 기반 검색
-    function cosine(a, b) {
-      let dot = 0, normA = 0, normB = 0;
-      for (let i = 0; i < a.length; i++) {
-        dot += a[i] * b[i];
-        normA += a[i] * a[i];
-        normB += b[i] * b[i];
+    try {
+      // 입력 검증
+      if (!Array.isArray(queryVector)) {
+        logger.error('쿼리 벡터가 배열이 아님');
+        return [];
       }
-      return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+      
+      if (queryVector.length !== this.dimensions) {
+        logger.warn(`쿼리 벡터 차원 불일치: ${queryVector.length} (예상: ${this.dimensions})`);
+      }
+      
+      // 간단한 코사인 유사도 기반 검색
+      function cosine(a, b) {
+        if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
+          return 0;
+        }
+        
+        let dot = 0, normA = 0, normB = 0;
+        for (let i = 0; i < a.length; i++) {
+          dot += a[i] * b[i];
+          normA += a[i] * a[i];
+          normB += b[i] * b[i];
+        }
+        
+        const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+        return denominator === 0 ? 0 : dot / denominator;
+      }
+      
+      const results = [];
+      let processedCount = 0;
+      
+      for (const v of this.vectors.values()) {
+        try {
+          // 필터 적용
+          if (filter && filter.filePath && v.metadata && v.metadata.filePath && !v.metadata.filePath.includes(filter.filePath)) {
+            continue;
+          }
+          if (filter && filter.tags && v.metadata && v.metadata.tags) {
+            const hasTag = filter.tags.some(tag => v.metadata.tags.includes(tag));
+            if (!hasTag) continue;
+          }
+          
+          // 벡터 데이터 추출
+          const vector = v.values || v.vector;
+          if (!vector || !Array.isArray(vector)) {
+            logger.warn(`벡터 데이터 없음 또는 잘못된 형태: ${v.id}`);
+            continue;
+          }
+          
+          const score = cosine(queryVector, vector);
+          if (isNaN(score)) {
+            logger.warn(`유사도 점수가 NaN: ${v.id}`);
+            continue;
+          }
+          
+          results.push({ 
+            id: v.id, 
+            score, 
+            metadata: v.metadata || {} 
+          });
+          
+          processedCount++;
+        } catch (error) {
+          logger.error(`벡터 처리 중 오류 (${v.id}): ${error.message}`);
+        }
+      }
+      
+      // 점수순 정렬
+      results.sort((a, b) => b.score - a.score);
+      
+      const topResults = results.slice(0, topK);
+      logger.info(`로컬 벡터 검색 완료: ${topResults.length}개 결과 (처리: ${processedCount}개, 총 벡터: ${this.vectors.size}개)`);
+      
+      return topResults;
+    } catch (error) {
+      logger.error(`벡터 쿼리 중 오류: ${error.message}`);
+      return [];
     }
-    const results = [];
-    for (const v of this.vectors.values()) {
-      if (filter && filter.filePath && v.metadata.filePath && !v.metadata.filePath.includes(filter.filePath)) continue;
-      if (filter && filter.tags && v.metadata.tags) {
-        const hasTag = filter.tags.some(tag => v.metadata.tags.includes(tag));
-        if (!hasTag) continue;
-      }
-      // values 필드를 사용 (vector 대신)
-      const vector = v.values || v.vector;
-      if (!vector) {
-        logger.warn(`벡터 데이터 없음: ${v.id}`);
-        continue;
-      }
-      const score = cosine(queryVector, vector);
-      results.push({ id: v.id, score, metadata: v.metadata });
-    }
-    results.sort((a, b) => b.score - a.score);
-    logger.info(`로컬 벡터 검색 완료: ${results.length}개 결과`);
-    return results.slice(0, topK);
   }
 
   async delete(id) {

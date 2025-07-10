@@ -246,28 +246,58 @@ class SearchService {
   async processSearchResults(vectorResults, query, threshold) {
     const processedResults = [];
     
+    // 벡터 결과가 배열이 아닌 경우 처리
+    if (!Array.isArray(vectorResults)) {
+      logger.warn(`벡터 검색 결과가 배열이 아님: ${typeof vectorResults}`);
+      return processedResults;
+    }
+    
+    logger.info(`벡터 검색 결과 처리 시작: ${vectorResults.length}개 결과`);
+    
     for (const result of vectorResults) {
-      if (result.score >= threshold) {
-        // 벡터 결과의 메타데이터를 직접 사용
-        const metadata = result.metadata || {};
+      try {
+        // 결과 구조 검증
+        if (!result || typeof result !== 'object') {
+          logger.warn(`잘못된 벡터 결과 구조: ${typeof result}`);
+          continue;
+        }
         
-        processedResults.push({
-          id: result.id,
-          score: result.score,
-          metadata: {
-            title: metadata.title || 'Unknown Title',
-            tags: metadata.tags || [],
-            filePath: metadata.filePath || metadata.originalFilePath || result.id,
-            content: metadata.content || '',
-            chunkIndex: metadata.chunkIndex || 0
-          },
-          matchType: 'semantic',
-          highlights: this.extractSemanticHighlights(query, metadata),
-          vectorMetadata: metadata
-        });
+        if (typeof result.score !== 'number') {
+          logger.warn(`벡터 결과에 점수가 없음: ${result.id || 'unknown'}`);
+          continue;
+        }
+        
+        if (result.score >= threshold) {
+          // 벡터 결과의 메타데이터를 안전하게 추출
+          const metadata = result.metadata || {};
+          
+          // 필수 필드 검증
+          if (!metadata.filePath && !result.id) {
+            logger.warn(`벡터 결과에 파일 경로가 없음: ${JSON.stringify(result)}`);
+            continue;
+          }
+          
+          processedResults.push({
+            id: result.id,
+            score: result.score,
+            metadata: {
+              title: metadata.title || 'Unknown Title',
+              tags: metadata.tags || [],
+              filePath: metadata.filePath || metadata.originalFilePath || result.id,
+              content: metadata.content || '',
+              chunkIndex: metadata.chunkIndex || 0
+            },
+            matchType: 'semantic',
+            highlights: this.extractSemanticHighlights(query, metadata),
+            vectorMetadata: metadata
+          });
+        }
+      } catch (error) {
+        logger.error(`벡터 결과 처리 중 오류: ${error.message}`, { result });
       }
     }
     
+    logger.info(`벡터 검색 결과 처리 완료: ${processedResults.length}개 유효한 결과`);
     return processedResults;
   }
 

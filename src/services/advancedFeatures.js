@@ -321,9 +321,15 @@ class AdvancedFeatures {
         nodeConnections.set(edge.target, (nodeConnections.get(edge.target) || 0) + 1);
       });
       
-      const filteredNodes = nodes.filter(node => 
-        (nodeConnections.get(node.id) || 0) >= minConnections
-      );
+      let filteredNodes;
+      if (minConnections <= 1) {
+        // 연결 수와 상관없이 모든 노트 노드는 남긴다
+        filteredNodes = nodes.filter(node => node.type === 'note');
+      } else {
+        filteredNodes = nodes.filter(node => 
+          (nodeConnections.get(node.id) || 0) >= minConnections
+        );
+      }
       
       const filteredEdges = edges.filter(edge => 
         filteredNodes.some(n => n.id === edge.source) && 

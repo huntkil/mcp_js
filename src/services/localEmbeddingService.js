@@ -141,7 +141,7 @@ class LocalEmbeddingService {
     const embedding = new Array(this.dimensions).fill(0);
     const wordEntries = Object.entries(wordFreq);
     
-    wordEntries.forEach(([word, freq], index) => {
+    wordEntries.forEach(([word, freq], _index) => {
       const positions = this.getWordPositions(word, this.dimensions);
       positions.forEach(pos => {
         embedding[pos] += freq * 0.01;
