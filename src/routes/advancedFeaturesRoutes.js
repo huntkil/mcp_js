@@ -6,6 +6,8 @@ import noteIndexingService from '../services/noteIndexingService.js';
 import logger from '../utils/logger.js';
 import knowledgeGraphService from '../services/knowledgeGraphService.js';
 import recommendationService from '../services/recommendationService.js';
+import learningPatternService from '../services/learningPatternService.js';
+import personalizedInsightsService from '../services/personalizedInsightsService.js';
 
 const router = express.Router();
 
@@ -1025,6 +1027,78 @@ router.post('/recommendations/strengthen-connections', async (req, res) => {
     res.status(500).json({
       success: false,
       error: '노트 연결 강화 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+// 학습 패턴 분석
+router.post('/learning-patterns/analyze', async (req, res) => {
+  try {
+    const { vaultPath, options = {} } = req.body;
+    
+    if (!vaultPath) {
+      return res.status(400).json({
+        success: false,
+        error: 'Vault 경로가 필요합니다.'
+      });
+    }
+
+    logger.info('학습 패턴 분석 요청:', vaultPath);
+    
+    const result = await learningPatternService.analyzeLearningPatterns(vaultPath, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result.data
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('학습 패턴 분석 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '학습 패턴 분석 중 오류가 발생했습니다.'
+    });
+  }
+});
+
+// 개인화 인사이트 생성
+router.post('/personalized-insights/generate', async (req, res) => {
+  try {
+    const { vaultPath, userProfile = {}, options = {} } = req.body;
+    
+    if (!vaultPath) {
+      return res.status(400).json({
+        success: false,
+        error: 'Vault 경로가 필요합니다.'
+      });
+    }
+
+    logger.info('개인화 인사이트 생성 요청:', vaultPath);
+    
+    const result = await personalizedInsightsService.generatePersonalizedInsights(vaultPath, userProfile, options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        data: result.data
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error
+      });
+    }
+  } catch (error) {
+    logger.error('개인화 인사이트 API 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: '개인화 인사이트 생성 중 오류가 발생했습니다.'
     });
   }
 });

@@ -223,11 +223,11 @@ class EmbeddingRequestHandler(BaseHTTPRequestHandler):
 
 def main():
     """메인 함수"""
-    port = 8000
+    port = 5001
     server_address = ('', port)
     
     logger.info(f"Starting Simple Korean Embedding Server on port {port}")
-    logger.info("Model: simple-korean-embedding (768D)")
+    logger.info("Model: simple-korean-embedding (1536D)")
     logger.info("=" * 50)
     
     httpd = HTTPServer(server_address, EmbeddingRequestHandler)

@@ -41,7 +41,7 @@ class RecommendationService {
           fileName: vector.metadata.fileName,
           title: vector.metadata.title,
           content: vector.metadata.content,
-          embedding: vector.embedding
+          embedding: vector.values
         }));
       } else {
         // 후보 노트들 임베딩 생성
@@ -58,9 +58,27 @@ class RecommendationService {
       // 유사도 계산
       const similarities = [];
       logger.info(`유사도 계산 시작: ${notesToCompare.length}개 노트 비교`);
+      logger.info(`대상 노트: ${targetNote.fileName}`);
+      
+      // 경로를 제외한 파일명만 추출
+      const getBaseFileName = (fileName) => {
+        if (!fileName) return '';
+        return fileName.split('/').pop();
+      };
+      const targetBaseFileName = getBaseFileName(targetNote.fileName);
       
       for (const note of notesToCompare) {
-        if (note.fileName === targetNote.fileName) continue;
+        const noteBaseFileName = getBaseFileName(note.fileName);
+        if (noteBaseFileName === targetBaseFileName) {
+          logger.debug(`자기 자신 제외: ${note.fileName}`);
+          continue;
+        }
+        
+        // 벡터 검증
+        if (!note.embedding || !Array.isArray(note.embedding) || note.embedding.length === 0) {
+          logger.warn(`유효하지 않은 벡터 건너뛰기: ${note.fileName}`);
+          continue;
+        }
         
         const similarity = this.calculateCosineSimilarity(targetEmbedding, note.embedding);
         logger.debug(`유사도 계산: ${note.fileName} = ${similarity}`);

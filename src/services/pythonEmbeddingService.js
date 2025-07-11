@@ -2,7 +2,7 @@ import logger from '../utils/logger.js';
 
 class PythonEmbeddingService {
   constructor() {
-    this.baseUrl = process.env.PYTHON_EMBEDDING_URL || 'http://localhost:8000';
+    this.baseUrl = process.env.PYTHON_EMBEDDING_URL || 'http://localhost:5001';
     this.isAvailable = false;
     this.modelInfo = null;
     this.checkHealth();

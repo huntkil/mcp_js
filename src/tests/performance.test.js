@@ -17,7 +17,8 @@ describe('Performance Optimizer Tests', () => {
       memoryUsage: [],
       cpuUsage: [],
       requestCount: 0,
-      errorCount: 0
+      errorCount: 0,
+      startTime: Date.now() // Add startTime to prevent NaN in uptime calculation
     };
   });
   
@@ -88,13 +89,16 @@ describe('Performance Optimizer Tests', () => {
   });
   
   describe('Performance Statistics', () => {
-    test('should return performance stats', () => {
+    test('should return performance stats', async () => {
       const startTime = Date.now();
       
       // Add some test data
       performanceOptimizer.recordMetric('search', startTime, true);
       performanceOptimizer.recordMetric('search', startTime, true);
       performanceOptimizer.recordMetric('search', startTime, true);
+      
+      // Add a small delay to ensure uptime is greater than 0
+      await new Promise(resolve => setTimeout(resolve, 10));
       
       const stats = performanceOptimizer.getPerformanceStats();
       
