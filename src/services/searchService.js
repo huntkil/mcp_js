@@ -2,6 +2,7 @@ import embeddingService from './embeddingService.js';
 import vectorDatabase from './vectorDatabase.js';
 import noteIndexingService from './noteIndexingService.js';
 import logger from '../utils/logger.js';
+import performanceOptimizer from './performanceOptimizer.js';
 
 class SearchService {
   constructor() {
@@ -9,155 +10,161 @@ class SearchService {
     this.vectorDatabase = vectorDatabase;
     this.cache = new Map(); // 검색 결과 캐시
     this.cacheTimeout = 5 * 60 * 1000; // 5분 캐시
+    this.performanceOptimizer = performanceOptimizer;
   }
 
   /**
-   * 개선된 의미론적 검색
+   * 의미론적 검색 (캐시 적용)
    */
   async semanticSearch(query, options = {}) {
-    const {
-      limit = 10,
-      threshold = 0.3,
-      filter = {},
-      useWeightedEmbedding = true
-    } = options;
-
+    const startTime = Date.now();
+    const { topK = 10, threshold = 0.7 } = options;
+    
     try {
-      // 쿼리 전처리
-      const processedQuery = this.embeddingService.preprocessText(query);
+      // 캐시 키 생성
+      const cacheKey = `semantic_${query}_${topK}_${threshold}`;
       
-      // 쿼리 임베딩 생성
-      const queryEmbedding = await this.embeddingService.embedText(processedQuery);
-      
-      // 벡터 데이터베이스에서 유사한 벡터 검색
-      const results = await this.vectorDatabase.query(queryEmbedding, limit * 2, filter);
-
-      // 디버깅을 위한 점수 로그
-      if (results.length > 0) {
-        logger.info(`[SEARCH][DEBUG] 벡터 검색 결과 점수: ${results.slice(0, 5).map(r => `${r.id}: ${r.score.toFixed(4)}`).join(', ')}`);
-      } else {
-        logger.info(`[SEARCH][DEBUG] 벡터 검색 결과 없음`);
+      // 캐시에서 결과 확인
+      const cachedResult = this.performanceOptimizer.getCached(cacheKey);
+      if (cachedResult) {
+        this.performanceOptimizer.recordMetric('search', startTime, true);
+        return {
+          ...cachedResult,
+          cached: true,
+          latency: Date.now() - startTime
+        };
       }
       
-      // 결과 후처리 및 가중치 적용
-      const processedResults = await this.processSearchResults(results, {
-        query: processedQuery,
-        useWeightedEmbedding
-      });
-
-      // 최종 필터링 및 정렬
-      const finalResults = processedResults
-        .filter(result => result.score >= threshold)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, limit);
-
-      return {
-        success: true,
-        query: query,
-        results: finalResults,
-        totalFound: finalResults.length,
-        searchType: 'semantic',
+      logger.info(`의미론적 검색 시작: "${query}"`);
+      
+      // 임베딩 생성
+      const queryEmbedding = await embeddingService.embedText(query);
+      if (!queryEmbedding) {
+        throw new Error('쿼리 임베딩 생성 실패');
+      }
+      
+      // 벡터 검색
+      const searchResults = await vectorDatabase.search(queryEmbedding, topK, threshold);
+      
+      // 결과 후처리
+      const processedResults = await this.processSearchResults(searchResults, query);
+      
+      const result = {
+        query,
+        results: processedResults,
+        total: processedResults.length,
+        searchTime: Date.now() - startTime,
         metadata: {
-          queryEmbedding: queryEmbedding.length,
+          embeddingModel: embeddingService.getCurrentModel(),
           threshold,
-          filter,
-          processedQuery
+          topK
         }
       };
-
+      
+      // 결과를 캐시에 저장 (10분 TTL)
+      this.performanceOptimizer.setCached(cacheKey, result, 600000);
+      
+      this.performanceOptimizer.recordMetric('search', startTime, true);
+      return result;
+      
     } catch (error) {
-      logger.error('Semantic search failed:', error);
-      return {
-        success: false,
-        error: error.message,
-        query: query
-      };
+      logger.error('의미론적 검색 오류:', error);
+      this.performanceOptimizer.recordMetric('search', startTime, false);
+      throw error;
     }
   }
 
   /**
-   * 키워드 검색 (기존 텍스트 검색)
-   * @param {string} query - 검색 쿼리
-   * @param {Object} options - 검색 옵션
+   * 키워드 검색 (캐시 적용)
    */
   async keywordSearch(query, options = {}) {
-    const {
-      topK = 10,
-      caseSensitive = false,
-      useRegex = false,
-      filter = {},
-      useCache = true,
-      searchContent = true // 본문 내용 검색 추가
-    } = options;
-
+    const startTime = Date.now();
+    const { topK = 10, searchInContent = true } = options;
+    
     try {
+      // 캐시 키 생성
+      const cacheKey = `keyword_${query}_${topK}_${searchInContent}`;
+      
+      // 캐시에서 결과 확인
+      const cachedResult = this.performanceOptimizer.getCached(cacheKey);
+      if (cachedResult) {
+        this.performanceOptimizer.recordMetric('search', startTime, true);
+        return {
+          ...cachedResult,
+          cached: true,
+          latency: Date.now() - startTime
+        };
+      }
+      
       logger.info(`키워드 검색 시작: "${query}"`);
       
-      // 캐시 확인
-      const cacheKey = this.generateCacheKey('keyword', query, options);
-      if (useCache && this.cache.has(cacheKey)) {
-        const cached = this.cache.get(cacheKey);
-        if (Date.now() - cached.timestamp < this.cacheTimeout) {
-          logger.info('캐시된 키워드 검색 결과 반환');
-          return cached.results;
-        }
-      }
-      
-      // 인덱스된 노트에서 키워드 검색
-      const indexedNotes = noteIndexingService.getIndexedNotes();
+      const queryLower = query.toLowerCase();
       const results = [];
       
-      for (const [filePath, note] of indexedNotes) {
-        try {
-          const score = this.calculateKeywordScore(query, note, caseSensitive, useRegex, searchContent);
-          
-          if (score > 0) {
-            // 필터 적용
-            if (this.applyFilter(note.metadata, filter)) {
-              results.push({
-                id: filePath,
-                score,
-                metadata: note.metadata,
-                matchType: 'keyword',
-                highlights: this.extractHighlights(query, note.metadata, caseSensitive, useRegex, searchContent)
-              });
+      // 노트 인덱스에서 검색
+      const notes = await noteIndexingService.getAllNotes();
+      
+      for (const note of notes) {
+        let score = 0;
+        let matches = [];
+        
+        // 제목 검색
+        if (note.title && note.title.toLowerCase().includes(queryLower)) {
+          score += 10;
+          matches.push({ field: 'title', text: note.title });
+        }
+        
+        // 메타데이터 검색
+        if (note.metadata) {
+          for (const [key, value] of Object.entries(note.metadata)) {
+            if (typeof value === 'string' && value.toLowerCase().includes(queryLower)) {
+              score += 5;
+              matches.push({ field: key, text: value });
             }
           }
-        } catch (error) {
-          logger.warn(`키워드 검색 중 오류 (${filePath}): ${error.message}`);
+        }
+        
+        // 본문 검색 (옵션)
+        if (searchInContent && note.content && note.content.toLowerCase().includes(queryLower)) {
+          score += 3;
+          matches.push({ field: 'content', text: note.content.substring(0, 100) + '...' });
+        }
+        
+        if (score > 0) {
+          results.push({
+            note,
+            score,
+            matches,
+            highlights: this.generateHighlights(note, query)
+          });
         }
       }
       
-      // 점수순 정렬
-      results.sort((a, b) => b.score - a.score);
+      // 점수순 정렬 및 상위 결과 반환
+      const sortedResults = results
+        .sort((a, b) => b.score - a.score)
+        .slice(0, topK);
       
-      // 상위 결과만 반환
-      const topResults = results.slice(0, topK);
-      
-      // 캐시 저장
-      if (useCache) {
-        this.cache.set(cacheKey, {
-          results: topResults,
-          timestamp: Date.now()
-        });
-      }
-      
-      logger.info(`키워드 검색 완료: ${topResults.length}개 결과`);
-      
-      return {
+      const result = {
         query,
-        results: topResults,
-        totalFound: results.length,
-        searchType: 'keyword',
+        results: sortedResults,
+        total: sortedResults.length,
+        searchTime: Date.now() - startTime,
         metadata: {
-          caseSensitive,
-          useRegex,
-          filter,
-          searchContent
+          searchInContent,
+          totalNotes: notes.length
         }
       };
+      
+      // 결과를 캐시에 저장 (5분 TTL)
+      this.performanceOptimizer.setCached(cacheKey, result, 300000);
+      
+      this.performanceOptimizer.recordMetric('search', startTime, true);
+      return result;
+      
     } catch (error) {
-      logger.error(`키워드 검색 실패: ${error.message}`);
+      logger.error('키워드 검색 오류:', error);
+      this.performanceOptimizer.recordMetric('search', startTime, false);
       throw error;
     }
   }
@@ -747,4 +754,6 @@ class SearchService {
   }
 }
 
-export default new SearchService(); 
+const searchService = new SearchService();
+export default searchService;
+export { searchService }; 

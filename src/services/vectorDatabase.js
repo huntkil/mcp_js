@@ -226,4 +226,6 @@ class VectorDatabase {
   }
 }
 
-export default new VectorDatabase(); 
+const vectorDatabase = new VectorDatabase();
+export default vectorDatabase;
+export { vectorDatabase }; 

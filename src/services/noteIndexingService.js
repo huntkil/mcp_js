@@ -561,4 +561,6 @@ class NoteIndexingService {
   }
 }
 
-export default new NoteIndexingService(); 
+const noteIndexingService = new NoteIndexingService();
+export default noteIndexingService;
+export { noteIndexingService }; 

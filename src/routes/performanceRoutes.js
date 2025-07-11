@@ -3,6 +3,7 @@ import performanceOptimizer from '../services/performanceOptimizer.js';
 import vectorDatabase from '../services/vectorDatabase.js';
 import noteIndexingService from '../services/noteIndexingService.js';
 import logger from '../utils/logger.js';
+import { performanceTestRunner } from '../services/performanceTestRunner.js';
 
 const router = express.Router();
 
@@ -132,91 +133,35 @@ router.post('/cache-hit-rate', async (req, res) => {
 });
 
 /**
- * @swagger
- * /api/performance/stats:
- *   get:
- *     summary: 성능 통계 조회
- *     description: 현재 성능 통계를 조회합니다.
- *     tags: [Performance]
- *     responses:
- *       200:
- *         description: 성능 통계 조회 성공
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 uptime:
- *                   type: object
- *                   properties:
- *                     total:
- *                       type: number
- *                     formatted:
- *                       type: string
- *                 search:
- *                   type: object
- *                   properties:
- *                     averageLatency:
- *                       type: number
- *                     minLatency:
- *                       type: number
- *                     maxLatency:
- *                       type: number
- *                     totalRequests:
- *                       type: number
- *                 cache:
- *                   type: object
- *                   properties:
- *                     hitRate:
- *                       type: number
- *                     hitRatePercentage:
- *                       type: string
- *                 requests:
- *                   type: object
- *                   properties:
- *                     total:
- *                       type: number
- *                     errors:
- *                       type: number
- *                     successRate:
- *                       type: string
- *                 memory:
- *                   type: object
- *                   properties:
- *                     rss:
- *                       type: string
- *                     heapUsed:
- *                       type: string
- *                     heapTotal:
- *                       type: string
- *                     heapUsagePercentage:
- *                       type: string
- *                 optimizations:
- *                   type: object
- *       500:
- *         description: 서버 오류
+ * 성능 통계 조회
  */
 router.get('/stats', async (req, res) => {
   try {
-    logger.info('성능 통계 조회');
+    const uptime = performanceOptimizer.getUptime();
+    const searchMetrics = performanceOptimizer.getSearchMetrics();
+    const cacheStats = performanceOptimizer.getCacheStats();
+    const memoryUsage = performanceOptimizer.getMemoryUsage();
+    const requestMetrics = performanceOptimizer.getRequestMetrics();
+    const optimizations = performanceOptimizer.getOptimizationSettings();
     
-    const stats = performanceOptimizer.getPerformanceStats();
-    
-    // 추가 정보 가져오기
-    const totalNotes = await noteIndexingService.getTotalNotes();
-    const vectorCount = await vectorDatabase.getVectorCount();
+    // 노트 및 벡터 수 조회
+    const totalNotes = noteIndexingService ? noteIndexingService.getTotalNotes() : 0;
+    const vectorCount = vectorDatabase ? vectorDatabase.getVectorCount() : 0;
     
     res.json({
       success: true,
-      ...stats,
+      uptime,
+      search: searchMetrics,
+      cache: cacheStats,
+      memory: memoryUsage,
+      requests: requestMetrics,
+      optimizations,
       totalNotes,
       vectorCount,
-      status: 'healthy' // 기본 상태
+      status: 'healthy'
     });
   } catch (error) {
-    logger.error(`성능 통계 조회 오류: ${error.message}`);
+    logger.error('성능 통계 조회 오류:', error);
     res.status(500).json({
       success: false,
       error: error.message
@@ -225,45 +170,14 @@ router.get('/stats', async (req, res) => {
 });
 
 /**
- * @swagger
- * /api/performance/recommendations:
- *   get:
- *     summary: 성능 최적화 권장사항 조회
- *     description: 현재 성능 상태를 분석하여 최적화 권장사항을 제공합니다.
- *     tags: [Performance]
- *     responses:
- *       200:
- *         description: 권장사항 조회 성공
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 recommendations:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       type:
- *                         type: string
- *                         enum: [info, warning, error]
- *                       category:
- *                         type: string
- *                       message:
- *                         type: string
- *                       priority:
- *                         type: string
- *                         enum: [low, medium, high, critical]
- *       500:
- *         description: 서버 오류
+ * 성능 최적화 권장사항 조회
  */
 router.get('/recommendations', async (req, res) => {
   try {
-    logger.info('성능 최적화 권장사항 조회');
-    
-    const recommendations = performanceOptimizer.generateOptimizationRecommendations();
+    const recommendations = [
+      ...performanceOptimizer.generateOptimizationRecommendations(),
+      ...performanceOptimizer.generateMemoryOptimizations()
+    ];
     
     res.json({
       success: true,
@@ -271,7 +185,7 @@ router.get('/recommendations', async (req, res) => {
       totalRecommendations: recommendations.length
     });
   } catch (error) {
-    logger.error(`성능 최적화 권장사항 조회 오류: ${error.message}`);
+    logger.error('성능 권장사항 조회 오류:', error);
     res.status(500).json({
       success: false,
       error: error.message
@@ -280,47 +194,18 @@ router.get('/recommendations', async (req, res) => {
 });
 
 /**
- * @swagger
- * /api/performance/auto-optimize:
- *   post:
- *     summary: 자동 성능 최적화 적용
- *     description: 성능 분석 결과에 따라 자동으로 최적화 설정을 적용합니다.
- *     tags: [Performance]
- *     requestBody:
- *       required: false
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               force:
- *                 type: boolean
- *                 description: 강제 최적화 적용 여부
- *                 default: false
- *                 example: false
- *     responses:
- *       200:
- *         description: 자동 최적화 적용 성공
- *       500:
- *         description: 서버 오류
+ * 캐시 통계 조회
  */
-router.post('/auto-optimize', async (req, res) => {
+router.get('/cache', async (req, res) => {
   try {
-    // const { force = false } = req.body; // Unused variable removed
-    
-    logger.info('자동 성능 최적화 적용');
-    
-    const changes = performanceOptimizer.applyAutoOptimizations();
+    const cacheStats = performanceOptimizer.getCacheStats();
     
     res.json({
       success: true,
-      message: '자동 최적화가 적용되었습니다.',
-      changes,
-      totalChanges: changes.length,
-      optimizations: performanceOptimizer.optimizations
+      cache: cacheStats
     });
   } catch (error) {
-    logger.error(`자동 성능 최적화 적용 오류: ${error.message}`);
+    logger.error('캐시 통계 조회 오류:', error);
     res.status(500).json({
       success: false,
       error: error.message
@@ -329,45 +214,18 @@ router.post('/auto-optimize', async (req, res) => {
 });
 
 /**
- * @swagger
- * /api/performance/monitoring/start:
- *   post:
- *     summary: 성능 모니터링 시작
- *     description: 실시간 성능 모니터링을 시작합니다.
- *     tags: [Performance]
- *     requestBody:
- *       required: false
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               interval:
- *                 type: number
- *                 description: 모니터링 간격 (밀리초)
- *                 default: 5000
- *                 example: 10000
- *     responses:
- *       200:
- *         description: 모니터링 시작 성공
- *       500:
- *         description: 서버 오류
+ * 메모리 사용량 조회
  */
-router.post('/monitoring/start', async (req, res) => {
+router.get('/memory', async (req, res) => {
   try {
-    const { interval = 5000 } = req.body;
-    
-    logger.info('성능 모니터링 시작');
-    
-    performanceOptimizer.startMonitoring(interval);
+    const memoryUsage = performanceOptimizer.getMemoryUsage();
     
     res.json({
       success: true,
-      message: '성능 모니터링이 시작되었습니다.',
-      interval
+      memory: memoryUsage
     });
   } catch (error) {
-    logger.error(`성능 모니터링 시작 오류: ${error.message}`);
+    logger.error('메모리 사용량 조회 오류:', error);
     res.status(500).json({
       success: false,
       error: error.message
@@ -376,30 +234,48 @@ router.post('/monitoring/start', async (req, res) => {
 });
 
 /**
- * @swagger
- * /api/performance/monitoring/stop:
- *   post:
- *     summary: 성능 모니터링 중지
- *     description: 실시간 성능 모니터링을 중지합니다.
- *     tags: [Performance]
- *     responses:
- *       200:
- *         description: 모니터링 중지 성공
- *       500:
- *         description: 서버 오류
+ * 캐시 정리
  */
-router.post('/monitoring/stop', async (req, res) => {
+router.post('/cache/clear', async (req, res) => {
   try {
-    logger.info('성능 모니터링 중지');
-    
-    performanceOptimizer.stopMonitoring();
+    performanceOptimizer.clearCache();
     
     res.json({
       success: true,
-      message: '성능 모니터링이 중지되었습니다.'
+      message: '캐시가 성공적으로 정리되었습니다.'
     });
   } catch (error) {
-    logger.error(`성능 모니터링 중지 오류: ${error.message}`);
+    logger.error('캐시 정리 오류:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 성능 최적화 설정 업데이트
+ */
+router.post('/optimizations', async (req, res) => {
+  try {
+    const { enableCaching, enableCompression, enableBatchProcessing, enableParallelProcessing, cacheSize, maxConcurrentRequests } = req.body;
+    
+    performanceOptimizer.updateOptimizationSettings({
+      enableCaching,
+      enableCompression,
+      enableBatchProcessing,
+      enableParallelProcessing,
+      cacheSize,
+      maxConcurrentRequests
+    });
+    
+    res.json({
+      success: true,
+      message: '성능 최적화 설정이 업데이트되었습니다.',
+      settings: performanceOptimizer.getOptimizationSettings()
+    });
+  } catch (error) {
+    logger.error('성능 최적화 설정 업데이트 오류:', error);
     res.status(500).json({
       success: false,
       error: error.message
@@ -499,6 +375,177 @@ router.post('/test', async (req, res) => {
     logger.error(`성능 테스트 실행 오류: ${error.message}`);
     res.status(500).json({
       success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 전체 성능 테스트 스위트 실행
+ */
+router.post('/test-suite', async (req, res) => {
+  try {
+    logger.info('전체 성능 테스트 스위트 실행 요청');
+    const results = await performanceTestRunner.runFullTestSuite();
+    
+    res.json({
+      success: true,
+      message: '전체 성능 테스트 스위트가 완료되었습니다.',
+      results
+    });
+  } catch (error) {
+    logger.error('전체 성능 테스트 스위트 실행 오류:', error);
+    res.status(500).json({
+      success: false,
+      message: '성능 테스트 스위트 실행 중 오류가 발생했습니다.',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 개별 성능 테스트 실행
+ */
+router.post('/test/:testType', async (req, res) => {
+  try {
+    const { testType } = req.params;
+    const { config } = req.body;
+    
+    logger.info(`${testType} 성능 테스트 실행 요청`);
+    
+    let results;
+    switch (testType) {
+      case 'search':
+        results = await performanceTestRunner.runSearchPerformanceTests();
+        break;
+      case 'indexing':
+        results = await performanceTestRunner.runIndexingPerformanceTests();
+        break;
+      case 'memory':
+        results = await performanceTestRunner.runMemoryUsageTests();
+        break;
+      case 'stress':
+        results = await performanceTestRunner.runStressTests();
+        break;
+      case 'cache':
+        results = await performanceTestRunner.runCachePerformanceTests();
+        break;
+      case 'vectorDB':
+        results = await performanceTestRunner.runVectorDBPerformanceTests();
+        break;
+      default:
+        return res.status(400).json({
+          success: false,
+          message: '지원하지 않는 테스트 타입입니다.',
+          supportedTypes: ['search', 'indexing', 'memory', 'stress', 'cache', 'vectorDB']
+        });
+    }
+    
+    res.json({
+      success: true,
+      message: `${testType} 성능 테스트가 완료되었습니다.`,
+      results
+    });
+  } catch (error) {
+    logger.error(`${req.params.testType} 성능 테스트 실행 오류:`, error);
+    res.status(500).json({
+      success: false,
+      message: '성능 테스트 실행 중 오류가 발생했습니다.',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 테스트 결과 조회
+ */
+router.get('/test-results', async (req, res) => {
+  try {
+    const results = performanceTestRunner.getTestResults();
+    
+    res.json({
+      success: true,
+      message: '테스트 결과를 조회했습니다.',
+      results,
+      count: results.length
+    });
+  } catch (error) {
+    logger.error('테스트 결과 조회 오류:', error);
+    res.status(500).json({
+      success: false,
+      message: '테스트 결과 조회 중 오류가 발생했습니다.',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 최근 테스트 결과 조회
+ */
+router.get('/test-results/latest', async (req, res) => {
+  try {
+    const latestResult = performanceTestRunner.getLatestTestResult();
+    
+    if (!latestResult) {
+      return res.status(404).json({
+        success: false,
+        message: '실행된 테스트 결과가 없습니다.'
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: '최근 테스트 결과를 조회했습니다.',
+      result: latestResult
+    });
+  } catch (error) {
+    logger.error('최근 테스트 결과 조회 오류:', error);
+    res.status(500).json({
+      success: false,
+      message: '최근 테스트 결과 조회 중 오류가 발생했습니다.',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 테스트 결과 정리
+ */
+router.delete('/test-results', async (req, res) => {
+  try {
+    performanceTestRunner.clearTestResults();
+    
+    res.json({
+      success: true,
+      message: '모든 테스트 결과가 정리되었습니다.'
+    });
+  } catch (error) {
+    logger.error('테스트 결과 정리 오류:', error);
+    res.status(500).json({
+      success: false,
+      message: '테스트 결과 정리 중 오류가 발생했습니다.',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * 성능 테스트 설정 조회
+ */
+router.get('/test-config', async (req, res) => {
+  try {
+    const config = performanceTestRunner.testConfig;
+    
+    res.json({
+      success: true,
+      message: '성능 테스트 설정을 조회했습니다.',
+      config
+    });
+  } catch (error) {
+    logger.error('성능 테스트 설정 조회 오류:', error);
+    res.status(500).json({
+      success: false,
+      message: '성능 테스트 설정 조회 중 오류가 발생했습니다.',
       error: error.message
     });
   }
