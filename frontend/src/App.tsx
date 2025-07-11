@@ -1,401 +1,383 @@
-import React, { useState, useEffect } from 'react'
-import { Moon, Sun, Github, ExternalLink, Copy, Check, Search, BarChart3, Sparkles, Settings, Database, Cpu, Zap } from 'lucide-react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu'
-
-import MainTabs from '@/components/MainTabs'
-import Sidebar from '@/components/Sidebar'
-import Dashboard from '@/components/Dashboard'
-import EnhancedSearch from '@/components/EnhancedSearch'
-import './index.css'
+import { Progress } from '@/components/ui/progress'
+import { Search, FileText, Settings, BarChart3, Plus, Upload } from 'lucide-react'
+import { ThemeToggle } from './components/ThemeToggle'
+import { useToast } from '@/hooks/use-toast'
+import { Toaster } from '@/components/ui/toaster'
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
-  const [copiedCode, setCopiedCode] = useState<string | null>(null)
-  const [viewMode, setViewMode] = useState<'landing' | 'app'>('app')
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
-  const [activeTab, setActiveTab] = useState('dashboard')
-
-  useEffect(() => {
-    const root = document.documentElement
-    if (theme === 'dark') {
-      root.classList.add('dark')
-    } else {
-      root.classList.remove('dark')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [activeTab, setActiveTab] = useState('search')
+  const [settings, setSettings] = useState<{
+    apiUrl: string
+    embeddingService: string
+    autoIndex: boolean
+    darkMode: boolean
+  }>(() => {
+    const saved = localStorage.getItem('app-settings')
+    return saved ? JSON.parse(saved) : {
+      apiUrl: 'http://localhost:8080',
+      embeddingService: 'local',
+      autoIndex: true,
+      darkMode: false
     }
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
-
-  const copyToClipboard = async (text: string, id: string) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopiedCode(id)
-      setTimeout(() => setCopiedCode(null), 2000)
-    } catch (err) {
-      console.error('Failed to copy text: ', err)
-    }
-  }
-
-  const CodeBlock = ({ code, language = 'bash', id }: { code: string; language?: string; id: string }) => (
-    <Card className="relative group">
-      <div className="absolute right-2 top-2 code-copy-btn z-10">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => copyToClipboard(code, id)}
-          className="h-8 w-8 p-0 btn-animate"
-        >
-          {copiedCode === id ? (
-            <Check className="h-4 w-4 success" />
-          ) : (
-            <Copy className="h-4 w-4" />
-          )}
-        </Button>
-      </div>
-      <CardContent className="p-4">
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto border">
-          <code className={`language-${language}`}>{code}</code>
-        </pre>
-      </CardContent>
-    </Card>
-  )
-
-  const features = [
-    {
-      icon: Search,
-      title: 'Advanced Search',
-      description: 'Powerful semantic search with vector embeddings and natural language processing',
-      color: 'text-blue-600'
-    },
-    {
-      icon: Zap,
-      title: 'High Performance',
-      description: 'Optimized indexing and search algorithms for lightning-fast results',
-      color: 'text-green-600'
-    },
-    {
-      icon: Sparkles,
-      title: 'AI Integration',
-      description: 'Built-in AI features for content analysis, recommendations, and summarization',
-      color: 'text-purple-600'
-    },
-    {
-      icon: Settings,
-      title: 'Developer Friendly',
-      description: 'RESTful API, comprehensive documentation, and easy integration',
-      color: 'text-orange-600'
-    },
-    {
-      icon: BarChart3,
-      title: 'Analytics Dashboard',
-      description: 'Real-time performance metrics and usage analytics',
-      color: 'text-indigo-600'
-    },
-    {
-      icon: Database,
-      title: 'Secure & Private',
-      description: 'Local processing with optional cloud features for enhanced privacy',
-      color: 'text-red-600'
-    }
-  ]
-
-  const apiEndpoints = [
-    {
-      method: 'GET',
-      path: '/api/search',
-      description: 'Search notes and content',
-      example: `curl -X GET "http://localhost:3000/api/search?q=artificial intelligence" \\
-  -H "Content-Type: application/json"`
-    },
-    {
-      method: 'POST',
-      path: '/api/index',
-      description: 'Index new content',
-      example: `curl -X POST "http://localhost:3000/api/index" \\
-  -H "Content-Type: application/json" \\
-  -d '{"content": "Your content here", "metadata": {...}}'`
-    },
-    {
-      method: 'GET',
-      path: '/api/health',
-      description: 'Check service health',
-      example: `curl -X GET "http://localhost:3000/api/health"`
-    }
-  ]
-
-  const stats = [
-    { value: '10K+', label: 'Notes Indexed', icon: Database, color: 'text-blue-600' },
-    { value: '99.9%', label: 'Uptime', icon: Cpu, color: 'text-green-600' },
-    { value: '<100ms', label: 'Search Speed', icon: Zap, color: 'text-purple-600' }
-  ]
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'dashboard':
-        return <Dashboard />
-      case 'search':
-        return <EnhancedSearch />
-      case 'recommendations':
-      case 'advanced':
-      case 'performance':
-        return <MainTabs />
-      default:
-        return <Dashboard />
-    }
-  }
+  })
+  const [isSaving, setIsSaving] = useState(false)
+  const { toast } = useToast()
 
   return (
-    <>
-      {viewMode === 'app' ? (
-        <div className="flex h-screen bg-background">
-          {/* 사이드바 */}
-          <Sidebar
-            isCollapsed={isSidebarCollapsed}
-            onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-            activeTab={activeTab}
-            onTabChange={setActiveTab}
-          />
-
-          {/* 메인 콘텐츠 */}
-          <div className="flex-1 flex flex-col overflow-hidden">
-            {/* 헤더 */}
-            <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <div className="flex h-14 items-center justify-between px-4">
-                <div className="flex items-center space-x-4">
-                  <h1 className="text-lg font-semibold">
-                    {activeTab === 'dashboard' && '대시보드'}
-                    {activeTab === 'search' && '검색'}
-                    {activeTab === 'recommendations' && 'AI 추천'}
-                    {activeTab === 'advanced' && '고급 기능'}
-                    {activeTab === 'performance' && '성능'}
-                    {activeTab === 'notes' && '노트 관리'}
-                    {activeTab === 'tags' && '태그'}
-                    {activeTab === 'insights' && '인사이트'}
-                    {activeTab === 'settings' && '설정'}
-                  </h1>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={() => setViewMode('landing')}
-                  >
-                    랜딩 보기
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={toggleTheme}>
-                    {theme === 'light' ? (
-                      <Moon className="h-4 w-4" />
-                    ) : (
-                      <Sun className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
-              </div>
-            </header>
-
-            {/* 콘텐츠 영역 */}
-            <main className="flex-1 overflow-auto">
-              {renderContent()}
-            </main>
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto p-6">
+        {/* Header */}
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Markdown MCP Dashboard</h1>
+            <p className="text-muted-foreground">Manage and search your markdown files with AI-powered insights</p>
           </div>
+          <ThemeToggle />
         </div>
-      ) : (
-        <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--background))' }}>
-          {/* Header */}
-          <Card className="sticky top-0 z-50 w-full border-b rounded-none" style={{ backgroundColor: 'hsl(var(--background) / 0.95)', backdropFilter: 'blur(12px)' }}>
-            <CardContent className="p-0">
-              <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <h1 className="text-xl font-bold gradient-text">
-                    MCP JS
-                  </h1>
-                  <Separator orientation="vertical" className="h-6" />
-                  <span className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>AI-Powered Knowledge Management</span>
+
+        {/* Main Content */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="search" className="flex items-center gap-2">
+              <Search className="h-4 w-4" />
+              Search
+            </TabsTrigger>
+            <TabsTrigger value="files" className="flex items-center gap-2">
+              <FileText className="h-4 w-4" />
+              Files
+            </TabsTrigger>
+            <TabsTrigger value="analytics" className="flex items-center gap-2">
+              <BarChart3 className="h-4 w-4" />
+              Analytics
+            </TabsTrigger>
+            <TabsTrigger value="settings" className="flex items-center gap-2">
+              <Settings className="h-4 w-4" />
+              Settings
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Search Tab */}
+          <TabsContent value="search" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Search Documents</CardTitle>
+                <CardDescription>
+                  Search through your markdown files using semantic search and AI-powered insights
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex gap-2">
+                  <div className="flex-1">
+                    <Label htmlFor="search" className="sr-only">Search</Label>
+                                         <Input
+                       id="search"
+                       placeholder="Search your documents..."
+                       value={searchQuery}
+                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+                       className="w-full"
+                     />
+                  </div>
+                  <Button>
+                    <Search className="h-4 w-4 mr-2" />
+                    Search
+                  </Button>
                 </div>
                 
-                <nav className="hidden md:flex items-center space-x-6">
-                  <NavigationMenu>
-                    <NavigationMenuList>
-                      <NavigationMenuItem>
-                        <NavigationMenuTrigger>Features</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                          <div className="grid gap-3 p-4 w-[400px]">
-                            <div className="grid grid-cols-2 gap-2">
-                              {features.slice(0, 4).map((feature) => (
-                                <a
-                                  key={feature.title}
-                                  href="#features"
-                                  className="block p-3 rounded-md transition-colors"
-                                  style={{ '--tw-bg-opacity': '0.5' } as React.CSSProperties}
-                                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'hsl(var(--accent))'}
-                                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                                >
-                                  <div className="text-2xl mb-2">{feature.icon && <feature.icon className="h-6 w-6" />}</div>
-                                  <div className="font-medium text-sm">{feature.title}</div>
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        </NavigationMenuContent>
-                      </NavigationMenuItem>
-                      <NavigationMenuItem>
-                        <NavigationMenuLink href="#api" className="nav-item px-4 py-2 rounded-md">
-                          API
-                        </NavigationMenuLink>
-                      </NavigationMenuItem>
-                      <NavigationMenuItem>
-                        <NavigationMenuLink href="#installation" className="nav-item px-4 py-2 rounded-md">
-                          Installation
-                        </NavigationMenuLink>
-                      </NavigationMenuItem>
-                    </NavigationMenuList>
-                  </NavigationMenu>
-                </nav>
-
-                <div className="flex items-center space-x-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={() => setViewMode('app')}
-                  >
-                    앱 보기
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={toggleTheme}>
-                    {theme === 'light' ? (
-                      <Moon className="h-4 w-4" />
-                    ) : (
-                      <Sun className="h-4 w-4" />
-                    )}
-                  </Button>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <Card>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="secondary">AI Technology</Badge>
+                        <span className="text-xs text-muted-foreground">2 days ago</span>
+                      </div>
+                      <h3 className="font-semibold mb-1">Artificial Intelligence Overview</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        Comprehensive guide to artificial intelligence concepts, applications, and future trends...
+                      </p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="secondary">Machine Learning</Badge>
+                        <span className="text-xs text-muted-foreground">1 week ago</span>
+                      </div>
+                      <h3 className="font-semibold mb-1">Machine Learning Fundamentals</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        Introduction to machine learning algorithms, supervised and unsupervised learning...
+                      </p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="secondary">Psychology</Badge>
+                        <span className="text-xs text-muted-foreground">3 days ago</span>
+                      </div>
+                      <h3 className="font-semibold mb-1">Mental Strength Development</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        Techniques and strategies for building mental resilience and emotional intelligence...
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-          {/* Hero Section */}
-          <section className="py-20 px-4">
-            <div className="container mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-                AI-Powered Knowledge Management
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Transform your notes into intelligent insights with advanced search, AI recommendations, and powerful analytics.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="text-lg px-8 py-6">
-                  Get Started
-                  <ExternalLink className="ml-2 h-5 w-5" />
-                </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                  <Github className="mr-2 h-5 w-5" />
-                  View on GitHub
-                </Button>
-              </div>
-            </div>
-          </section>
-
-          {/* Features Section */}
-          <section id="features" className="py-20 px-4 bg-muted/50">
-            <div className="container mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Features</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {features.map((feature) => (
-                  <Card key={feature.title} className="group hover:shadow-lg transition-all duration-300">
-                    <CardHeader>
-                      <div className={`text-3xl mb-4 ${feature.color}`}>
-                        {feature.icon && <feature.icon className="h-8 w-8" />}
-                      </div>
-                      <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Stats Section */}
-          <section className="py-20 px-4">
-            <div className="container mx-auto">
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="space-y-2">
-                    <div className={`text-4xl font-bold ${stat.color}`}>
-                      {stat.icon && <stat.icon className="h-12 w-12 mx-auto mb-4" />}
-                      {stat.value}
-                    </div>
-                    <p className="text-muted-foreground">{stat.label}</p>
+          {/* Files Tab */}
+          <TabsContent value="files" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Document Management</CardTitle>
+                    <CardDescription>
+                      Upload, organize, and manage your markdown files
+                    </CardDescription>
                   </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* API Section */}
-          <section id="api" className="py-20 px-4 bg-muted/50">
-            <div className="container mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">API Reference</h2>
-              <div className="space-y-6">
-                {apiEndpoints.map((endpoint, index) => (
-                  <Card key={index}>
-                    <CardHeader>
-                      <div className="flex items-center space-x-2">
-                        <Badge variant={endpoint.method === 'GET' ? 'default' : 'secondary'}>
-                          {endpoint.method}
-                        </Badge>
-                        <code className="text-sm bg-muted px-2 py-1 rounded">
-                          {endpoint.path}
-                        </code>
+                  <div className="flex gap-2">
+                    <Button variant="outline">
+                      <Upload className="h-4 w-4 mr-2" />
+                      Import
+                    </Button>
+                    <Button>
+                      <Plus className="h-4 w-4 mr-2" />
+                      New File
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <FileText className="h-5 w-5 text-muted-foreground" />
+                      <div>
+                        <h4 className="font-medium">ai-technology.md</h4>
+                        <p className="text-sm text-muted-foreground">AI Technology Overview</p>
                       </div>
-                      <CardDescription>{endpoint.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <CodeBlock code={endpoint.example} language="bash" id={`api-${index}`} />
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
+                    </div>
+                    <Badge variant="outline">2.3 KB</Badge>
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <FileText className="h-5 w-5 text-muted-foreground" />
+                      <div>
+                        <h4 className="font-medium">machine-learning.md</h4>
+                        <p className="text-sm text-muted-foreground">Machine Learning Fundamentals</p>
+                      </div>
+                    </div>
+                    <Badge variant="outline">1.8 KB</Badge>
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <FileText className="h-5 w-5 text-muted-foreground" />
+                      <div>
+                        <h4 className="font-medium">mind-strength.md</h4>
+                        <p className="text-sm text-muted-foreground">Mental Strength Development</p>
+                      </div>
+                    </div>
+                    <Badge variant="outline">3.1 KB</Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-          {/* Installation Section */}
-          <section id="installation" className="py-20 px-4">
-            <div className="container mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Quick Installation</h2>
-              <div className="max-w-2xl mx-auto space-y-6">
-                <CodeBlock 
-                  code={`npm install mcp-js
-npm run dev`} 
-                  language="bash" 
-                  id="install" 
-                />
-                <p className="text-center text-muted-foreground">
-                  That's it! Your AI-powered knowledge management system is ready to use.
-                </p>
-              </div>
+          {/* Analytics Tab */}
+          <TabsContent value="analytics" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Total Files</CardTitle>
+                  <FileText className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">24</div>
+                  <p className="text-xs text-muted-foreground">
+                    +2 from last month
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Total Words</CardTitle>
+                  <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">12,847</div>
+                  <p className="text-xs text-muted-foreground">
+                    +1,234 from last month
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Search Queries</CardTitle>
+                  <Search className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">156</div>
+                  <p className="text-xs text-muted-foreground">
+                    +23 from last week
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Storage Used</CardTitle>
+                  <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">2.4 MB</div>
+                  <Progress value={65} className="mt-2" />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    65% of available space
+                  </p>
+                </CardContent>
+              </Card>
             </div>
-          </section>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Activity</CardTitle>
+                <CardDescription>
+                  Your recent document activities and searches
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-sm">Searched for "machine learning"</span>
+                    <span className="text-xs text-muted-foreground ml-auto">2 hours ago</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm">Updated ai-technology.md</span>
+                    <span className="text-xs text-muted-foreground ml-auto">1 day ago</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span className="text-sm">Created new file mind-strength.md</span>
+                    <span className="text-xs text-muted-foreground ml-auto">3 days ago</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-          {/* Footer */}
-          <footer className="py-12 px-4 border-t">
-            <div className="container mx-auto text-center">
-              <p className="text-muted-foreground">
-                Built with ❤️ using React, TypeScript, and Tailwind CSS
-              </p>
-            </div>
-          </footer>
-        </div>
-      )}
-    </>
+          {/* Settings Tab */}
+          <TabsContent value="settings" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Application Settings</CardTitle>
+                <CardDescription>
+                  Configure your markdown management preferences
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="api-url">API Server URL</Label>
+                  <Input
+                    id="api-url"
+                    placeholder="http://localhost:8080"
+                    value={settings.apiUrl}
+                    onChange={(e) => setSettings(prev => ({ ...prev, apiUrl: e.target.value }))}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="embedding-service">Embedding Service</Label>
+                  <select
+                    id="embedding-service"
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md"
+                    value={settings.embeddingService}
+                    onChange={(e) => setSettings(prev => ({ ...prev, embeddingService: e.target.value }))}
+                  >
+                    <option value="local">Local Embedding Service</option>
+                    <option value="python">Python Embedding Server</option>
+                  </select>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="auto-index"
+                    className="rounded border-gray-300"
+                    checked={settings.autoIndex}
+                    onChange={(e) => setSettings(prev => ({ ...prev, autoIndex: e.target.checked }))}
+                  />
+                  <Label htmlFor="auto-index">Auto-index new files</Label>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="dark-mode"
+                    className="rounded border-gray-300"
+                    checked={settings.darkMode}
+                    onChange={(e) => setSettings(prev => ({ ...prev, darkMode: e.target.checked }))}
+                  />
+                  <Label htmlFor="dark-mode">Dark mode</Label>
+                </div>
+                
+                <Button 
+                  className="w-full" 
+                  onClick={async () => {
+                    setIsSaving(true)
+                    try {
+                      // 로컬 스토리지에 설정 저장
+                      localStorage.setItem('app-settings', JSON.stringify(settings))
+                      
+                      // 실제로는 여기서 백엔드 API에 설정을 저장
+                      await new Promise(resolve => setTimeout(resolve, 1000)) // 시뮬레이션
+                      console.log('Settings saved:', settings)
+                      toast({
+                        title: "Settings saved",
+                        description: "Your settings have been saved successfully.",
+                      })
+                    } catch (error) {
+                      console.error('Failed to save settings:', error)
+                      toast({
+                        title: "Error",
+                        description: "Failed to save settings. Please try again.",
+                        variant: "destructive",
+                      })
+                    } finally {
+                      setIsSaving(false)
+                    }
+                  }}
+                  disabled={isSaving}
+                >
+                  {isSaving ? 'Saving...' : 'Save Settings'}
+                </Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
+      <Toaster />
+    </div>
   )
 }
 

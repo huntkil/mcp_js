@@ -2,203 +2,170 @@
 
 ## 2025-07-11
 
-### 완료된 작업
+### 프론트엔드 대시보드 구현 완료
 
-#### 1. 기능 테스트 및 버그 수정
-- **Lint 에러 완전 해결**: 모든 ESLint 에러 수정 완료
-  - 사용되지 않는 변수 제거
-  - `prefer-const` 적용
-  - 테스트 파일의 `afterEach` 정의 추가
-- **테스트 통과**: 7개 테스트 스위트 모두 통과 (165개 테스트)
-  - `tests/ObsidianManager.test.js` ✅
-  - `tests/MarkdownManager.test.js` ✅
-  - `src/tests/indexing.mock.test.js` ✅
-  - `src/tests/search.test.js` ✅
-  - `src/tests/advancedFeatures.test.js` ✅
-  - `src/tests/performance.test.js` ✅
-  - `tests/server.test.js` ✅
+#### ✅ 완료된 기능들
 
-#### 2. 백엔드 API 수정
-- **추천 API 400 에러 수정**: `calculateSimilarityBreakdown` 메서드의 벡터 계산 오류 해결
-- **벡터 데이터베이스 개선**: `getAllVectors` 메서드 추가
-- **고급 기능 기본값 조정**: 테스트 기대값에 맞게 기본값을 `false`로 설정
+1. **ShadCN UI 설정**
+   - ShadCN UI 컴포넌트 라이브러리 설치 및 설정
+   - Tailwind CSS 설정 완료
+   - 컴포넌트: Button, Card, Input, Label, Tabs, Badge, Separator, Progress, DropdownMenu, Toast
 
-#### 3. 프론트엔드 UI 개선
-- **Tabs 컴포넌트 구조 수정**: `TabsContent` 컴포넌트를 올바른 컨텍스트 내에 배치
-- **다크모드 최적화**: 모든 UI 컴포넌트의 다크모드 지원 개선
-- **반응형 디자인**: 모바일 및 데스크톱 환경에 최적화된 레이아웃
+2. **다크모드 시스템**
+   - Zustand를 사용한 테마 상태 관리
+   - 라이트/다크/시스템 모드 지원
+   - 로컬 스토리지에 설정 저장
+   - ThemeToggle 컴포넌트 구현
+   - ThemeProvider로 전역 테마 관리
 
-#### 4. 시스템 상태
-- **백엔드 서버**: 포트 8080에서 정상 실행 중
-- **프론트엔드 서버**: 포트 5182에서 정상 실행 중
-- **벡터 데이터베이스**: 601개 벡터 정상 로드
-- **Python 임베딩 서버**: simple-korean-embedding (1536D) 모델 활성화
+3. **메인 대시보드 UI**
+   - 4개 탭 구조: Search, Files, Analytics, Settings
+   - 반응형 디자인 적용
+   - 현대적인 카드 기반 레이아웃
+   - Lucide React 아이콘 사용
 
-### 현재 구현된 기능
+4. **설정 관리 시스템**
+   - API 서버 URL 설정
+   - 임베딩 서비스 선택
+   - 자동 인덱싱 설정
+   - 다크모드 설정
+   - 로컬 스토리지 저장
+   - 토스트 알림 시스템
 
-#### 검색 기능
-- ✅ 의미론적 검색 (Semantic Search)
-- ✅ 키워드 검색 (Keyword Search)
-- ✅ 검색 결과 하이라이팅
+5. **테스트 환경 구축**
+   - Vitest + React Testing Library 설정
+   - jsdom 환경 구성
+   - 기본 렌더링 테스트 구현
+   - ESLint 설정 최적화
 
-#### 성능 모니터링
-- ✅ 서버 업타임 추적
-- ✅ 검색 통계 수집
-- ✅ 캐시 히트율 모니터링
-- ✅ 성능 최적화 권장사항
+#### 🔧 기술적 구현 사항
 
-#### 고급 기능
-- ✅ 자동 요약 (Auto Summarization)
-- ✅ 스마트 태깅 (Smart Tagging)
-- ✅ 유사 노트 추천 (Similar Notes)
-- ✅ 지식 그래프 (Knowledge Graph)
-- ✅ 자동 백링크 (Auto Backlinks)
-- ✅ 스마트 템플릿 (Smart Templates)
+- **상태 관리**: Zustand로 테마 및 설정 상태 관리
+- **타입 안전성**: TypeScript로 전체 프로젝트 타입 정의
+- **빌드 최적화**: Vite로 빠른 개발 및 빌드
+- **코드 품질**: ESLint로 코드 스타일 통일
+- **테스트**: Vitest로 컴포넌트 테스트
 
-#### 추천 시스템
-- ✅ 유사 노트 추천 API
-- ✅ 콘텐츠 기반 필터링
-- ✅ 유사도 계산 및 랭킹
+#### 🎨 UI/UX 개선사항
 
-### 다음 단계 계획
+- **다크모드**: 사용자 선호도에 따른 테마 자동 적용
+- **토스트 알림**: 설정 저장 시 사용자 피드백
+- **반응형 디자인**: 모바일/태블릿/데스크톱 최적화
+- **접근성**: 스크린 리더 지원 및 키보드 네비게이션
 
-#### 2단계: 새로운 기능 추가
-- 실시간 협업 기능
-- 고급 분석 대시보드
-- AI 기반 기능 확장
-- 데이터 내보내기/가져오기
-- 고급 검색 기능
+#### 📁 파일 구조
 
-#### 3단계: 성능 최적화
-- 캐시 전략 개선
-- 데이터베이스 인덱싱 최적화
-- 병렬 처리 구현
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── ui/           # ShadCN UI 컴포넌트
+│   │   ├── ThemeToggle.tsx
+│   │   └── ThemeProvider.tsx
+│   ├── hooks/
+│   │   └── use-toast.ts
+│   ├── lib/
+│   │   ├── utils.ts
+│   │   └── theme.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── vitest.config.ts
+├── eslint.config.js
+└── package.json
+```
 
-#### 4단계: 데이터베이스 확장
-- 더 많은 노트 데이터 추가
-- 벡터 데이터베이스 확장
-- 외부 데이터 소스 연동
+#### 🚀 다음 단계
 
-#### 5단계: API 확장
-- 웹훅 지원
-- 실시간 알림
-- 외부 서비스 연동
-
-### 기술 스택
-
-#### 백엔드
-- **Node.js** + **Express.js**
-- **Python** (임베딩 서버)
-- **벡터 데이터베이스** (로컬 JSON 기반)
-- **CORS** 지원
-
-#### 프론트엔드
-- **React** + **TypeScript**
-- **Vite** (빌드 도구)
-- **Tailwind CSS** (스타일링)
-- **ShadCN UI** (컴포넌트 라이브러리)
-- **Lucide React** (아이콘)
-- **React Query** (상태 관리)
-
-#### 개발 도구
-- **ESLint** (코드 품질)
-- **Jest** (테스트 프레임워크)
-- **Nodemon** (개발 서버)
-- **Docker** (컨테이너화)
-
-### API 엔드포인트
-
-#### 검색 API
-- `POST /api/search/semantic` - 의미론적 검색
-- `POST /api/search/keyword` - 키워드 검색
-
-#### 고급 기능 API
-- `POST /api/advanced/summarize` - 자동 요약
-- `POST /api/advanced/smart-tags` - 스마트 태깅
-- `POST /api/advanced/recommendations/similar-notes` - 유사 노트 추천
-
-#### 성능 모니터링 API
-- `GET /api/performance/stats` - 성능 통계
-- `GET /api/performance/recommendations` - 최적화 권장사항
-- `GET /api/advanced/features/status` - 기능 상태
-
-### 데이터베이스 구조
-
-#### 벡터 데이터베이스
-- **총 벡터 수**: 601개
-- **임베딩 차원**: 1536D
-- **저장 형식**: JSON
-- **인덱싱**: 메모리 기반
-
-#### 노트 데이터
-- **총 노트 수**: 266개
-- **형식**: Markdown
-- **메타데이터**: 제목, 경로, 태그, 생성일
-
-### 성능 지표
-
-#### 검색 성능
-- **의미론적 검색**: 평균 200ms
-- **키워드 검색**: 평균 50ms
-- **캐시 히트율**: 85%
-
-#### 시스템 리소스
-- **메모리 사용량**: ~150MB
-- **CPU 사용률**: 낮음
-- **디스크 사용량**: ~50MB
+1. **백엔드 연동**: 실제 API 엔드포인트 연결
+2. **검색 기능**: 의미론적 검색 UI 구현
+3. **파일 업로드**: 드래그 앤 드롭 파일 업로드
+4. **실시간 데이터**: WebSocket을 통한 실시간 업데이트
+5. **성능 최적화**: 코드 스플리팅 및 지연 로딩
 
 ---
 
-## 2025-07-11 (2차 업데이트)
+## 2025-07-10
 
-### 주요 변경 및 개선 내역
+### 백엔드 API 개발
 
-#### 1. 백엔드 ESM 모듈 통일 및 import/export 오류 해결
-- 모든 서비스/유틸 파일을 ESM(named export, default export) 방식으로 통일
-- logger, noteIndexingService, performanceOptimizer, searchService, vectorDatabase 등 import/export 충돌 완전 해결
-- require → import, module.exports → export로 일괄 변경
+#### ✅ 완료된 기능들
 
-#### 2. 성능/테스트 API 확장 및 자동화
-- `/api/performance/test` (POST) : 성능 테스트 자동 실행 (search, indexing, processing 등)
-- `/api/performance/test-suite` : 전체 성능 테스트 스위트 실행 및 결과 저장
-- `/api/performance/test/:testType` : 개별 성능 테스트 실행 (search, indexing, memory, stress, cache, vectorDB)
-- `/api/performance/test-results`, `/test-results/latest`, `/test-results`(DELETE) : 테스트 결과 이력 관리/조회/정리
-- `/api/performance/report` : 성능 리포트 생성 (권장사항, 통계, 개선점 포함)
-- `/api/performance/stats` : 실시간 성능/리소스/캐시/요청 통계
-- `/api/performance/memory/optimize` : 메모리 최적화 실행
+1. **검색 API**
+   - 의미론적 검색 (`/api/search/semantic`)
+   - 키워드 검색 (`/api/search/keyword`)
+   - 하이브리드 검색 (`/api/search/hybrid`)
 
-#### 3. 프론트엔드 대시보드 준비
-- ShadCN UI 기반 실시간 성능 대시보드 컴포넌트(PerformanceDashboard.tsx) 추가
-- Lucide 아이콘, 타입스크립트 타입, 실시간 API 연동 준비
+2. **인덱싱 API**
+   - 전체 Vault 인덱싱 (`/api/index`)
+   - 폴더별 인덱싱 (`/api/index/folder`)
 
-#### 4. 테스트 및 검증
-- 모든 주요 API POST/GET 방식 정상 동작 확인 (curl로 직접 테스트)
-- search, indexing, processing 등 성능 테스트 평균/최소/최대/성공률 등 통계 확인
-- 테스트 결과 이력 관리 및 최신 결과 조회 기능 검증
+3. **고급 기능 API**
+   - 자동 요약 (`/api/advanced/summarize`)
+   - 지식 그래프 (`/api/advanced/knowledge-graph`)
+   - 스마트 태깅 (`/api/advanced/tagging`)
 
-#### 5. 기타
-- 불필요한 require, module.exports, CommonJS 코드 완전 제거
-- 코드 일관성 및 유지보수성 향상
-- 프론트엔드/백엔드 통합 자동화 기반 마련
+4. **성능 모니터링**
+   - 벡터 DB 상태 확인
+   - 임베딩 서버 헬스 체크
+   - 성능 메트릭 수집
+
+#### 🔧 기술적 구현 사항
+
+- **임베딩 서비스**: Python sentence-transformers 기반
+- **벡터 DB**: 로컬 JSON 파일 기반 (Pinecone 지원 예정)
+- **로깅**: 구조화된 로깅 시스템
+- **에러 처리**: 포괄적인 에러 핸들링
 
 ---
 
-## 2025-07-11 (3차 업데이트)
+## 2025-07-09
 
-### 주요 변경 및 개선 내역
+### 프로젝트 초기 설정
 
-#### 1. Lint 및 코드 품질 개선
-- ESLint 전체 오류(미사용 변수, prefer-const, 중복 함수 등) 모두 수정
-- 불필요한 import 및 변수 제거, let→const 적용
-- 코드 일관성 및 가독성 향상
+#### ✅ 완료된 작업들
 
-#### 2. 테스트 환경 개선 및 통과
-- Jest ESM 환경 완전 대응 (package.json, jest.config.mjs, import/export 통일)
-- 모든 테스트 스위트 정상 실행 및 주요 테스트(Performance, Search 등) 통과 확인
-- 테스트 실패 원인(메트릭 초기화, 평균 계산, 권장사항 생성 등) 상세 분석 및 수정
+1. **프로젝트 구조 설정**
+   - Node.js 백엔드 서버
+   - Python 임베딩 서버
+   - Docker 컨테이너화
 
-#### 3. 개발 워크플로우 안정화
-- lint → test → git 커밋/푸시 자동화 가능 상태 확보
-- 코드/테스트 품질 기반 안전한 기능 추가 및 배포 가능
+2. **환경 설정**
+   - 환경 변수 관리
+   - 로깅 시스템 구축
+   - 기본 API 엔드포인트
 
-*마지막 업데이트: 2025-07-11 10:45* 
+3. **임베딩 모델 설정**
+   - 한국어 최적화 모델 선택
+   - 벡터 차원 및 성능 최적화
+   - 로컬 임베딩 서비스 구현
+
+#### 🔧 기술 스택
+
+- **백엔드**: Node.js + Express
+- **임베딩**: Python + sentence-transformers
+- **데이터베이스**: 로컬 JSON (벡터 저장)
+- **컨테이너**: Docker + Docker Compose
+- **로깅**: Winston
+
+---
+
+## 향후 계획
+
+### 단기 목표 (1-2주)
+- [ ] 백엔드-프론트엔드 연동
+- [ ] 실시간 검색 기능
+- [ ] 파일 업로드 시스템
+- [ ] 사용자 인증
+
+### 중기 목표 (1개월)
+- [ ] 고급 분석 기능
+- [ ] 성능 최적화
+- [ ] 모바일 앱
+- [ ] API 문서화
+
+### 장기 목표 (3개월)
+- [ ] 클라우드 배포
+- [ ] 다중 사용자 지원
+- [ ] 고급 AI 기능
+- [ ] 커뮤니티 기능 
