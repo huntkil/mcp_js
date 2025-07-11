@@ -476,6 +476,7 @@ app.get('/', (req, res) => {
       'POST /api/search/semantic - 의미론적 검색',
       'POST /api/search/keyword - 키워드 검색',
       'POST /api/search/hybrid - 하이브리드 검색',
+      'GET /api/search/recommendations - AI 추천 시스템',
       'POST /api/advanced/summarize - 자동 요약 생성',
       'POST /api/advanced/smart-tags - 스마트 태그 생성',
       'POST /api/advanced/similar-notes - 유사 노트 찾기',

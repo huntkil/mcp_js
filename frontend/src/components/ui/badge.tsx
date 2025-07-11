@@ -3,12 +3,14 @@ import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
 import { badgeVariants } from "./badge-variants"
 
+type BadgeVariant = "default" | "secondary" | "destructive" | "outline"
+
 function Badge({
   className,
   variant,
   asChild = false,
   ...props
-}: React.ComponentProps<"span"> & { variant?: string; asChild?: boolean }) {
+}: React.ComponentProps<"span"> & { variant?: BadgeVariant; asChild?: boolean }) {
   const Comp = asChild ? Slot : "span"
 
   return (

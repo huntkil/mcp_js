@@ -462,6 +462,238 @@ router.post('/cache/clear', async (req, res) => {
 });
 
 /**
+ * @swagger
+ * /api/recommendations:
+ *   get:
+ *     summary: 추천 시스템 데이터 조회
+ *     description: AI 추천 시스템의 추천 목록과 통계를 조회합니다.
+ *     tags: [Search]
+ *     parameters:
+ *       - in: query
+ *         name: category
+ *         schema:
+ *           type: string
+ *         description: 추천 카테고리 필터
+ *         example: "content"
+ *       - in: query
+ *         name: sortBy
+ *         schema:
+ *           type: string
+ *           enum: [confidence, date, impact]
+ *         description: 정렬 기준
+ *         default: "confidence"
+ *         example: "confidence"
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *           enum: [all, new, viewed, applied]
+ *         description: 상태 필터
+ *         default: "all"
+ *         example: "new"
+ *     responses:
+ *       200:
+ *         description: 추천 데이터 조회 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 recommendations:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       title:
+ *                         type: string
+ *                       description:
+ *                         type: string
+ *                       type:
+ *                         type: string
+ *                       confidence:
+ *                         type: number
+ *                       tags:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                       relatedNotes:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                       impact:
+ *                         type: string
+ *                       effort:
+ *                         type: string
+ *                       category:
+ *                         type: string
+ *                       createdAt:
+ *                         type: string
+ *                       status:
+ *                         type: string
+ *                 totalCount:
+ *                   type: integer
+ *                 categories:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                 stats:
+ *                   type: object
+ *                   properties:
+ *                     totalRecommendations:
+ *                       type: integer
+ *                     appliedCount:
+ *                       type: integer
+ *                     averageConfidence:
+ *                       type: number
+ *                     topCategories:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           count:
+ *                             type: integer
+ *       400:
+ *         description: 잘못된 요청
+ *       500:
+ *         description: 서버 오류
+ */
+router.get('/recommendations', async (req, res) => {
+  try {
+    const { category, sortBy = 'confidence', status = 'all' } = req.query;
+    
+    logger.info('추천 시스템 데이터 조회 요청');
+    
+    // 샘플 추천 데이터 생성 (실제로는 recommendationService에서 가져와야 함)
+    const sampleRecommendations = [
+      {
+        id: '1',
+        title: 'AI 기술 관련 노트 연결',
+        description: '머신러닝과 딥러닝 노트들을 연결하여 지식 그래프를 강화하세요.',
+        type: 'connection',
+        confidence: 0.85,
+        tags: ['AI', '머신러닝', '딥러닝'],
+        relatedNotes: ['machine-learning.md', 'deep-learning.md', 'neural-networks.md'],
+        impact: '높음',
+        effort: 'medium',
+        category: 'knowledge-graph',
+        createdAt: new Date().toISOString(),
+        status: 'new'
+      },
+      {
+        id: '2',
+        title: '마음근력 노트 요약 생성',
+        description: '긴 마음근력 노트를 요약하여 핵심 내용을 빠르게 파악하세요.',
+        type: 'content',
+        confidence: 0.92,
+        tags: ['마음근력', '요약', '개인개발'],
+        relatedNotes: ['mind-strength.md'],
+        impact: '중간',
+        effort: 'low',
+        category: 'summarization',
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        status: 'viewed'
+      },
+      {
+        id: '3',
+        title: '태그 시스템 개선',
+        description: '일관된 태그 시스템을 구축하여 노트 검색과 분류를 개선하세요.',
+        type: 'improvement',
+        confidence: 0.78,
+        tags: ['태그', '분류', '검색'],
+        relatedNotes: ['tagging-system.md', 'search-optimization.md'],
+        impact: '높음',
+        effort: 'high',
+        category: 'organization',
+        createdAt: new Date(Date.now() - 172800000).toISOString(),
+        status: 'applied'
+      },
+      {
+        id: '4',
+        title: '새로운 연구 주제 발견',
+        description: '기존 노트들을 분석하여 새로운 연구 주제와 아이디어를 발견하세요.',
+        type: 'discovery',
+        confidence: 0.88,
+        tags: ['연구', '아이디어', '발견'],
+        relatedNotes: ['research-ideas.md', 'innovation.md'],
+        impact: '높음',
+        effort: 'medium',
+        category: 'research',
+        createdAt: new Date(Date.now() - 259200000).toISOString(),
+        status: 'new'
+      }
+    ];
+    
+    // 필터링
+    let filteredRecommendations = sampleRecommendations;
+    
+    if (category && category !== 'all') {
+      filteredRecommendations = filteredRecommendations.filter(rec => rec.category === category);
+    }
+    
+    if (status && status !== 'all') {
+      filteredRecommendations = filteredRecommendations.filter(rec => rec.status === status);
+    }
+    
+    // 정렬
+    filteredRecommendations.sort((a, b) => {
+      switch (sortBy) {
+        case 'confidence':
+          return b.confidence - a.confidence;
+        case 'date':
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                 case 'impact':
+           const impactOrder = { '높음': 3, '중간': 2, '낮음': 1 };
+           return impactOrder[b.impact] - impactOrder[a.impact];
+        default:
+          return 0;
+      }
+    });
+    
+    // 통계 계산
+    const totalRecommendations = sampleRecommendations.length;
+    const appliedCount = sampleRecommendations.filter(rec => rec.status === 'applied').length;
+    const averageConfidence = sampleRecommendations.reduce((sum, rec) => sum + rec.confidence, 0) / totalRecommendations;
+    
+         const categoryCounts = sampleRecommendations.reduce((acc, rec) => {
+       acc[rec.category] = (acc[rec.category] || 0) + 1;
+       return acc;
+     }, {});
+    
+    const topCategories = Object.entries(categoryCounts)
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+    
+    const categories = [...new Set(sampleRecommendations.map(rec => rec.category))];
+    
+    res.json({
+      success: true,
+      recommendations: filteredRecommendations,
+      totalCount: filteredRecommendations.length,
+      categories,
+      stats: {
+        totalRecommendations,
+        appliedCount,
+        averageConfidence: Math.round(averageConfidence * 100) / 100,
+        topCategories
+      }
+    });
+  } catch (error) {
+    logger.error(`추천 시스템 데이터 조회 오류: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
  * 검색 제안 생성
  * @param {string} query - 검색 쿼리
  * @param {number} limit - 제안 개수

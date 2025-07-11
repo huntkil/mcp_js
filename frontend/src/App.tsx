@@ -1,353 +1,511 @@
-import { useState, useEffect } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useQuery } from '@tanstack/react-query'
-import { Toaster } from '@/components/ui/sonner'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import React, { useState, useEffect } from 'react'
+import { Moon, Sun, Github, ExternalLink, ChevronRight, Copy, Check, Search, BarChart3, Sparkles, Settings, Database, Cpu, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { 
-  Search, 
-  FileText, 
-  Sparkles,
-  Target,
-  TrendingUp,
-  Moon,
-  Sun,
-  HelpCircle,
-  AlertTriangle,
-  CheckCircle,
-  XCircle
-} from 'lucide-react'
-import SearchTab from './components/SearchTab'
-import RecommendationsTab from './components/RecommendationsTab'
-import AdvancedFeaturesTab from './components/AdvancedFeaturesTab'
-import PerformanceTab from './components/PerformanceTab'
-
-const queryClient = new QueryClient()
-
-// 상태 컴포넌트
-const StatusIndicator = ({ status, label, details }: { status: 'online' | 'offline' | 'warning'; label: string; details?: string }) => {
-  const getStatusConfig = (status: string) => {
-    switch (status) {
-      case 'online':
-        return {
-          icon: CheckCircle,
-          color: 'text-green-500',
-          bgColor: 'bg-green-500/10',
-          borderColor: 'border-green-500/20'
-        }
-      case 'warning':
-        return {
-          icon: AlertTriangle,
-          color: 'text-yellow-500',
-          bgColor: 'bg-yellow-500/10',
-          borderColor: 'border-yellow-500/20'
-        }
-      default:
-        return {
-          icon: XCircle,
-          color: 'text-red-500',
-          bgColor: 'bg-red-500/10',
-          borderColor: 'border-red-500/20'
-        }
-    }
-  }
-
-  const config = getStatusConfig(status)
-  const Icon = config.icon
-
-  return (
-    <div className="group relative">
-      <Badge 
-        variant="outline" 
-        className={`${config.bgColor} ${config.color} ${config.borderColor} cursor-help`}
-      >
-        <Icon className="w-3 h-3 mr-1" />
-        {label}
-      </Badge>
-      {details && (
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
-          {details}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-// 시스템 상태 컴포넌트
-const SystemStatus = () => {
-  const { data: stats } = useQuery({
-    queryKey: ['system-status'],
-    queryFn: async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/performance/stats')
-        if (!response.ok) throw new Error('Server not responding')
-        return response.json()
-      } catch {
-        return null
-      }
-    },
-    refetchInterval: 10000, // 10초마다 갱신
-  })
-
-  const serverStatus = stats ? 'online' : 'offline'
-  const aiStatus = stats?.vectorCount > 0 ? 'online' : 'warning'
-  const dbStatus = stats?.status === 'healthy' ? 'online' : 'warning'
-
-  return (
-    <div className="flex items-center gap-2">
-      <StatusIndicator 
-        status={serverStatus}
-        label="Server"
-        details={serverStatus === 'online' ? '백엔드 서버 정상 동작' : '백엔드 서버 연결 실패'}
-      />
-      <StatusIndicator 
-        status={aiStatus}
-        label="AI"
-        details={aiStatus === 'online' ? `${stats?.vectorCount || 0}개 벡터 로드됨` : 'AI 모델 로드 필요'}
-      />
-      <StatusIndicator 
-        status={dbStatus}
-        label="DB"
-        details={dbStatus === 'online' ? '벡터 데이터베이스 정상' : '데이터베이스 상태 확인 필요'}
-      />
-    </div>
-  )
-}
+import { Separator } from '@/components/ui/separator'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu'
+import './index.css'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('search')
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [showHelp, setShowHelp] = useState(false)
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [copiedCode, setCopiedCode] = useState<string | null>(null)
 
-  // 다크모드 상태 초기화 및 로컬 스토리지에서 복원
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
-    if (savedDarkMode !== null) {
-      setIsDarkMode(savedDarkMode === 'true')
+    const root = document.documentElement
+    if (theme === 'dark') {
+      root.classList.add('dark')
     } else {
-      setIsDarkMode(prefersDark)
+      root.classList.remove('dark')
     }
-  }, [])
+  }, [theme])
 
-  // 다크모드 상태 변경 시 HTML 클래스 및 로컬 스토리지 업데이트
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-    localStorage.setItem('darkMode', isDarkMode.toString())
-  }, [isDarkMode])
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-  const getTabInfo = (tab: string) => {
-    const tabs = {
-      search: {
-        title: '검색',
-        description: '의미론적, 키워드, 하이브리드 검색',
-        icon: Search,
-        color: 'from-blue-500 to-cyan-500'
-      },
-      recommendations: {
-        title: '추천',
-        description: 'AI 기반 유사 노트 추천',
-        icon: Sparkles,
-        color: 'from-purple-500 to-pink-500'
-      },
-      advanced: {
-        title: '고급 기능',
-        description: '요약, 태깅, 지식 그래프',
-        icon: Target,
-        color: 'from-orange-500 to-red-500'
-      },
-      performance: {
-        title: '성능',
-        description: '실시간 성능 모니터링',
-        icon: TrendingUp,
-        color: 'from-green-500 to-emerald-500'
-      }
+  const copyToClipboard = async (text: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedCode(id)
+      setTimeout(() => setCopiedCode(null), 2000)
+    } catch (err) {
+      console.error('Failed to copy text: ', err)
     }
-    return tabs[tab as keyof typeof tabs]
   }
 
-  const tabInfo = getTabInfo(activeTab)
-  const TabIcon = tabInfo.icon
+  const CodeBlock = ({ code, language = 'bash', id }: { code: string; language?: string; id: string }) => (
+    <Card className="relative group">
+      <div className="absolute right-2 top-2 code-copy-btn z-10">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => copyToClipboard(code, id)}
+          className="h-8 w-8 p-0 btn-animate"
+        >
+          {copiedCode === id ? (
+            <Check className="h-4 w-4 success" />
+          ) : (
+            <Copy className="h-4 w-4" />
+          )}
+        </Button>
+      </div>
+      <CardContent className="p-4">
+        <pre className="bg-muted p-4 rounded-lg overflow-x-auto border">
+          <code className={`language-${language}`}>{code}</code>
+        </pre>
+      </CardContent>
+    </Card>
+  )
+
+  const features = [
+    {
+      icon: Search,
+      title: 'Advanced Search',
+      description: 'Powerful semantic search with vector embeddings and natural language processing',
+      color: 'text-blue-600'
+    },
+    {
+      icon: Zap,
+      title: 'High Performance',
+      description: 'Optimized indexing and search algorithms for lightning-fast results',
+      color: 'text-green-600'
+    },
+    {
+      icon: Sparkles,
+      title: 'AI Integration',
+      description: 'Built-in AI features for content analysis, recommendations, and summarization',
+      color: 'text-purple-600'
+    },
+    {
+      icon: Settings,
+      title: 'Developer Friendly',
+      description: 'RESTful API, comprehensive documentation, and easy integration',
+      color: 'text-orange-600'
+    },
+    {
+      icon: BarChart3,
+      title: 'Analytics Dashboard',
+      description: 'Real-time performance metrics and usage analytics',
+      color: 'text-indigo-600'
+    },
+    {
+      icon: Database,
+      title: 'Secure & Private',
+      description: 'Local processing with optional cloud features for enhanced privacy',
+      color: 'text-red-600'
+    }
+  ]
+
+  const apiEndpoints = [
+    {
+      method: 'GET',
+      path: '/api/search',
+      description: 'Search notes and content',
+      example: `curl -X GET "http://localhost:3000/api/search?q=artificial intelligence" \\
+  -H "Content-Type: application/json"`
+    },
+    {
+      method: 'POST',
+      path: '/api/index',
+      description: 'Index new content',
+      example: `curl -X POST "http://localhost:3000/api/index" \\
+  -H "Content-Type: application/json" \\
+  -d '{"content": "Your content here", "metadata": {...}}'`
+    },
+    {
+      method: 'GET',
+      path: '/api/health',
+      description: 'Check service health',
+      example: `curl -X GET "http://localhost:3000/api/health"`
+    }
+  ]
+
+  const stats = [
+    { value: '10K+', label: 'Notes Indexed', icon: Database, color: 'text-blue-600' },
+    { value: '99.9%', label: 'Uptime', icon: Cpu, color: 'text-green-600' },
+    { value: '<100ms', label: 'Search Speed', icon: Zap, color: 'text-purple-600' }
+  ]
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 dark:from-slate-900 dark:via-slate-800/50 dark:to-slate-900">
-        {/* Header */}
-        <header className="border-b border-slate-200/50 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              {/* Logo and Title */}
-              <div className="flex items-center gap-4">
-                <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg shadow-lg">
-                  <FileText className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Markdown MCP Server
-                  </h1>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
-                    AI-Powered Vault Management
-                  </p>
-                </div>
+    <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--background))' }}>
+      {/* Header */}
+      <Card className="sticky top-0 z-50 w-full border-b rounded-none" style={{ backgroundColor: 'hsl(var(--background) / 0.95)', backdropFilter: 'blur(12px)' }}>
+        <CardContent className="p-0">
+          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h1 className="text-xl font-bold gradient-text">
+                MCP JS
+              </h1>
+              <Separator orientation="vertical" className="h-6" />
+              <span className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>AI-Powered Knowledge Management</span>
+            </div>
+            
+            <nav className="hidden md:flex items-center space-x-6">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Features</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid gap-3 p-4 w-[400px]">
+                        <div className="grid grid-cols-2 gap-2">
+                          {features.slice(0, 4).map((feature) => (
+                            <a
+                              key={feature.title}
+                              href="#features"
+                              className="block p-3 rounded-md transition-colors"
+                              style={{ '--tw-bg-opacity': '0.5' } as React.CSSProperties}
+                              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'hsl(var(--accent))'}
+                              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                            >
+                              <div className="text-2xl mb-2">{feature.icon && <feature.icon className="h-6 w-6" />}</div>
+                              <div className="font-medium text-sm">{feature.title}</div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="#api" className="nav-item px-4 py-2 rounded-md">
+                      API
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="#installation" className="nav-item px-4 py-2 rounded-md">
+                      Installation
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </nav>
+
+            <div className="flex items-center space-x-2">
+              <Button variant="outline" size="sm" onClick={toggleTheme}>
+                {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4 mr-2" />
+                  GitHub
+                </a>
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <ScrollArea className="h-[calc(100vh-4rem)]">
+        <div className="container mx-auto px-4 py-8 space-y-16">
+          {/* Hero Section */}
+          <Card className="text-center p-8">
+            <CardContent className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="hero-title gradient-text">
+                  MCP JS
+                </h1>
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                  Next-generation knowledge management system powered by AI and vector search
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="btn-animate" asChild>
+                  <a href="#installation">
+                    Get Started
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button variant="outline" size="lg" className="btn-animate" asChild>
+                  <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4" />
+                    View on GitHub
+                  </a>
+                </Button>
               </div>
 
-              {/* Status and Controls */}
-              <div className="flex items-center gap-4">
-                <SystemStatus />
-                
-                {/* Help Button */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowHelp(!showHelp)}
-                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all duration-200"
-                >
-                  <HelpCircle className="w-4 h-4 mr-2" />
-                  도움말
-                </Button>
-                
-                {/* Dark Mode Toggle */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={toggleDarkMode}
-                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all duration-200"
-                >
-                  {isDarkMode ? (
-                    <>
-                      <Sun className="w-4 h-4 mr-2" />
-                      Light
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="w-4 h-4 mr-2" />
-                      Dark
-                    </>
-                  )}
-                </Button>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                {stats.map((stat, index) => (
+                  <Card key={index} className="card-hover">
+                    <CardContent className="text-center p-4">
+                      <div className="flex items-center justify-center mb-2">
+                        <stat.icon className={`h-8 w-8 ${stat.color}`} />
+                      </div>
+                      <div className="text-3xl font-bold stat-counter" style={{ color: stat.color.replace('text-', '#').replace('-600', '') }}>
+                        {stat.value}
+                      </div>
+                      <div className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                        {stat.label}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Features Section */}
+          <div id="features" className="space-y-8">
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle className="section-title">Features</CardTitle>
+                <CardDescription className="max-w-2xl mx-auto">
+                  Everything you need to build a powerful knowledge management system
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((feature) => (
+                <Card key={feature.title} className="card-hover group fade-in">
+                  <CardHeader>
+                    <div className="flex items-center space-x-2">
+                      <feature.icon className={`h-8 w-8 ${feature.color}`} />
+                      <CardTitle className="text-lg">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>{feature.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* API Documentation */}
+          <div id="api" className="space-y-8">
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle className="section-title">API Documentation</CardTitle>
+                <CardDescription>
+                  Simple and powerful REST API for integrating with your applications
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  {apiEndpoints.map((endpoint, index) => (
+                    <AccordionItem key={index} value={`item-${index}`}>
+                      <AccordionTrigger className="text-left">
+                        <div className="flex items-center space-x-4">
+                          <Badge className={`github-badge ${endpoint.method.toLowerCase()}`}>
+                            {endpoint.method}
+                          </Badge>
+                          <code className="text-sm font-mono">{endpoint.path}</code>
+                          <span style={{ color: 'hsl(var(--muted-foreground))' }}>{endpoint.description}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <CodeBlock 
+                          code={endpoint.example} 
+                          language="bash" 
+                          id={`api-${index}`}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Installation Guide */}
+          <div id="installation" className="space-y-8">
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle className="section-title">Installation</CardTitle>
+                <CardDescription>
+                  Get started with MCP JS in minutes
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="subsection-title">Quick Start</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CodeBlock 
+                      code={`# Clone the repository
+git clone https://github.com/your-repo/mcp-js.git
+cd mcp-js
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev`} 
+                      language="bash"
+                      id="install-1"
+                    />
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="subsection-title">Environment Variables</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CodeBlock 
+                      code={`# .env
+PORT=3000
+NODE_ENV=development
+OPENAI_API_KEY=your_openai_api_key
+VECTOR_DB_PATH=./data/vector-db.json`} 
+                      language="bash"
+                      id="env-1"
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="subsection-title">Docker Installation</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CodeBlock 
+                      code={`# Using Docker Compose
+docker-compose up -d
+
+# Or build manually
+docker build -t mcp-js .
+docker run -p 3000:3000 mcp-js`} 
+                      language="bash"
+                      id="docker-1"
+                    />
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="subsection-title">Configuration</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CodeBlock 
+                      code={`{
+  "search": {
+    "maxResults": 50,
+    "threshold": 0.7
+  },
+  "indexing": {
+    "batchSize": 100,
+    "autoIndex": true
+  }
+}`} 
+                      language="json"
+                      id="config-1"
+                    />
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
-        </header>
 
-        {/* Main Content */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Current Tab Info */}
-          <div className="mb-6">
-            <div className="flex items-center gap-3 mb-2">
-              <div className={`p-2 bg-gradient-to-br ${tabInfo.color} rounded-lg`}>
-                <TabIcon className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                {tabInfo.title}
-              </h2>
-            </div>
-            <p className="text-slate-600 dark:text-slate-400">
-              {tabInfo.description}
-            </p>
+          {/* Project Structure */}
+          <div className="space-y-8">
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle className="section-title">Project Structure</CardTitle>
+                <CardDescription>
+                  Understanding the codebase organization
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div className="file-tree space-y-1">
+                  <div className="file-tree-item">
+                    <span className="file-tree-icon text-blue-600">📁</span>
+                    <span className="file-tree-name">mcp-js/</span>
+                  </div>
+                  <div className="ml-4 space-y-1">
+                    <div className="file-tree-item">
+                      <span className="file-tree-icon text-green-600">📁</span>
+                      <span className="file-tree-name">frontend/</span>
+                      <span className="file-tree-comment"># React frontend application</span>
+                    </div>
+                    <div className="file-tree-item">
+                      <span className="file-tree-icon text-green-600">📁</span>
+                      <span className="file-tree-name">src/</span>
+                      <span className="file-tree-comment"># Backend source code</span>
+                    </div>
+                    <div className="file-tree-item">
+                      <span className="file-tree-icon text-green-600">📁</span>
+                      <span className="file-tree-name">services/</span>
+                      <span className="file-tree-comment"># Core services</span>
+                    </div>
+                    <div className="file-tree-item">
+                      <span className="file-tree-icon text-green-600">📁</span>
+                      <span className="file-tree-name">routes/</span>
+                      <span className="file-tree-comment"># API routes</span>
+                    </div>
+                    <div className="file-tree-item">
+                      <span className="file-tree-icon text-green-600">📁</span>
+                      <span className="file-tree-name">tests/</span>
+                      <span className="file-tree-comment"># Test files</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
+        </div>
 
-          {/* Navigation Tabs */}
-          <div className="mb-8">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-4 h-12 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 rounded-xl p-1 shadow-lg">
-                <TabsTrigger 
-                  value="search" 
-                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-200 rounded-lg"
-                >
-                  <Search className="w-4 h-4" />
-                  <span className="hidden sm:inline">Search</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="recommendations" 
-                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-200 rounded-lg"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span className="hidden sm:inline">Recommendations</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="advanced" 
-                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-200 rounded-lg"
-                >
-                  <Target className="w-4 h-4" />
-                  <span className="hidden sm:inline">Advanced</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="performance" 
-                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-200 rounded-lg"
-                >
-                  <TrendingUp className="w-4 h-4" />
-                  <span className="hidden sm:inline">Performance</span>
-                </TabsTrigger>
-              </TabsList>
-
-              {/* Tab Content */}
-              <div className="space-y-6 mt-6">
-                <TabsContent value="search" className="mt-0">
-                  <SearchTab />
-                </TabsContent>
-
-                <TabsContent value="recommendations" className="mt-0">
-                  <RecommendationsTab />
-                </TabsContent>
-
-                <TabsContent value="advanced" className="mt-0">
-                  <AdvancedFeaturesTab />
-                </TabsContent>
-
-                <TabsContent value="performance" className="mt-0">
-                  <PerformanceTab />
-                </TabsContent>
+        {/* Footer */}
+        <Card className="border-t mt-16 rounded-none" style={{ backgroundColor: 'hsl(var(--muted) / 0.5)' }}>
+          <CardContent className="p-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="font-semibold mb-4">MCP JS</h3>
+                <p className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                  Next-generation knowledge management system powered by AI and vector search.
+                </p>
               </div>
-            </Tabs>
-          </div>
-        </main>
-
-        {/* Help Modal */}
-        {showHelp && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">사용법 가이드</h3>
-                <Button variant="outline" size="sm" onClick={() => setShowHelp(false)}>
-                  닫기
-                </Button>
+              <div>
+                <h3 className="font-semibold mb-4">Links</h3>
+                <div className="space-y-2 text-sm">
+                  <a href="#" className="block footer-link" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                    Documentation
+                  </a>
+                  <a href="#" className="block footer-link" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                    API Reference
+                  </a>
+                  <a href="#" className="block footer-link" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                    Contributing
+                  </a>
+                </div>
               </div>
-              <div className="space-y-4 text-sm">
-                <div>
-                  <h4 className="font-medium mb-2">🔍 검색</h4>
-                  <p>의미론적, 키워드, 하이브리드 검색을 통해 노트를 찾을 수 있습니다. 최근 검색어는 자동으로 저장됩니다.</p>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">✨ 추천</h4>
-                  <p>AI가 유사한 노트를 추천해줍니다. 유사도 점수와 함께 관련 노트를 확인할 수 있습니다.</p>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">🎯 고급 기능</h4>
-                  <p>텍스트 요약, 스마트 태깅, 지식 그래프 생성 등 AI 기반 고급 기능을 활용하세요.</p>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">📊 성능</h4>
-                  <p>실시간 성능 모니터링과 최적화 권장사항을 확인할 수 있습니다.</p>
+              <div>
+                <h3 className="font-semibold mb-4">Connect</h3>
+                <div className="space-y-2 text-sm">
+                  <a href="https://github.com/your-repo" className="flex items-center footer-link" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                    <Github className="mr-2 h-4 w-4" />
+                    GitHub
+                  </a>
+                  <a href="mailto:contact@example.com" className="flex items-center footer-link" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Contact
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
-      <Toaster />
-    </QueryClientProvider>
+            <Separator className="my-6" />
+            <div className="text-center text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
+              © 2024 MCP JS. MIT License.
+            </div>
+          </CardContent>
+        </Card>
+      </ScrollArea>
+    </div>
   )
 }
 
