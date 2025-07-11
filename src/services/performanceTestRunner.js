@@ -1,7 +1,4 @@
-import { performanceOptimizer } from './performanceOptimizer.js';
 import { searchService } from './searchService.js';
-import { noteIndexingService } from './noteIndexingService.js';
-import { vectorDatabase } from './vectorDatabase.js';
 import logger from '../utils/logger.js';
 
 class PerformanceTestRunner {

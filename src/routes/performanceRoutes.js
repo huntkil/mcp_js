@@ -409,7 +409,6 @@ router.post('/test-suite', async (req, res) => {
 router.post('/test/:testType', async (req, res) => {
   try {
     const { testType } = req.params;
-    const { config } = req.body;
     
     logger.info(`${testType} 성능 테스트 실행 요청`);
     

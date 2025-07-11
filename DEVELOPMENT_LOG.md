@@ -149,4 +149,56 @@
 
 ---
 
-*마지막 업데이트: 2025-07-11 08:47* 
+## 2025-07-11 (2차 업데이트)
+
+### 주요 변경 및 개선 내역
+
+#### 1. 백엔드 ESM 모듈 통일 및 import/export 오류 해결
+- 모든 서비스/유틸 파일을 ESM(named export, default export) 방식으로 통일
+- logger, noteIndexingService, performanceOptimizer, searchService, vectorDatabase 등 import/export 충돌 완전 해결
+- require → import, module.exports → export로 일괄 변경
+
+#### 2. 성능/테스트 API 확장 및 자동화
+- `/api/performance/test` (POST) : 성능 테스트 자동 실행 (search, indexing, processing 등)
+- `/api/performance/test-suite` : 전체 성능 테스트 스위트 실행 및 결과 저장
+- `/api/performance/test/:testType` : 개별 성능 테스트 실행 (search, indexing, memory, stress, cache, vectorDB)
+- `/api/performance/test-results`, `/test-results/latest`, `/test-results`(DELETE) : 테스트 결과 이력 관리/조회/정리
+- `/api/performance/report` : 성능 리포트 생성 (권장사항, 통계, 개선점 포함)
+- `/api/performance/stats` : 실시간 성능/리소스/캐시/요청 통계
+- `/api/performance/memory/optimize` : 메모리 최적화 실행
+
+#### 3. 프론트엔드 대시보드 준비
+- ShadCN UI 기반 실시간 성능 대시보드 컴포넌트(PerformanceDashboard.tsx) 추가
+- Lucide 아이콘, 타입스크립트 타입, 실시간 API 연동 준비
+
+#### 4. 테스트 및 검증
+- 모든 주요 API POST/GET 방식 정상 동작 확인 (curl로 직접 테스트)
+- search, indexing, processing 등 성능 테스트 평균/최소/최대/성공률 등 통계 확인
+- 테스트 결과 이력 관리 및 최신 결과 조회 기능 검증
+
+#### 5. 기타
+- 불필요한 require, module.exports, CommonJS 코드 완전 제거
+- 코드 일관성 및 유지보수성 향상
+- 프론트엔드/백엔드 통합 자동화 기반 마련
+
+---
+
+## 2025-07-11 (3차 업데이트)
+
+### 주요 변경 및 개선 내역
+
+#### 1. Lint 및 코드 품질 개선
+- ESLint 전체 오류(미사용 변수, prefer-const, 중복 함수 등) 모두 수정
+- 불필요한 import 및 변수 제거, let→const 적용
+- 코드 일관성 및 가독성 향상
+
+#### 2. 테스트 환경 개선 및 통과
+- Jest ESM 환경 완전 대응 (package.json, jest.config.mjs, import/export 통일)
+- 모든 테스트 스위트 정상 실행 및 주요 테스트(Performance, Search 등) 통과 확인
+- 테스트 실패 원인(메트릭 초기화, 평균 계산, 권장사항 생성 등) 상세 분석 및 수정
+
+#### 3. 개발 워크플로우 안정화
+- lint → test → git 커밋/푸시 자동화 가능 상태 확보
+- 코드/테스트 품질 기반 안전한 기능 추가 및 배포 가능
+
+*마지막 업데이트: 2025-07-11 10:45* 

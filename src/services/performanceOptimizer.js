@@ -134,6 +134,16 @@ class PerformanceOptimizer {
   recordMetric(operation, startTime, success = true) {
     const duration = Date.now() - startTime;
     
+    // searchLatency 배열이 없으면 초기화
+    if (!this.metrics.searchLatency) {
+      this.metrics.searchLatency = [];
+    }
+    
+    // memoryUsage 배열이 없으면 초기화
+    if (!this.metrics.memoryUsage) {
+      this.metrics.memoryUsage = [];
+    }
+    
     if (operation === 'search') {
       this.metrics.searchLatency.push(duration);
       
@@ -193,6 +203,11 @@ class PerformanceOptimizer {
       this.metrics.searchLatency = [];
     }
     
+    // memoryUsage 배열이 없으면 초기화
+    if (!this.metrics.memoryUsage) {
+      this.metrics.memoryUsage = [];
+    }
+    
     const avgSearchLatency = this.metrics.searchLatency.length > 0 
       ? this.metrics.searchLatency.reduce((a, b) => a + b, 0) / this.metrics.searchLatency.length 
       : 0;
@@ -209,7 +224,7 @@ class PerformanceOptimizer {
       ? this.metrics.memoryUsage[this.metrics.memoryUsage.length - 1] 
       : null;
     
-    const uptime = Date.now() - this.startTime;
+    const uptime = Date.now() - this.metrics.startTime;
     
     return {
       uptime: {
@@ -248,7 +263,6 @@ class PerformanceOptimizer {
    */
   generateOptimizationRecommendations() {
     const recommendations = [];
-    const stats = this.getPerformanceStats();
     const searchMetrics = this.getSearchMetrics();
     const memoryUsage = this.getMemoryUsage();
 
@@ -584,11 +598,28 @@ class PerformanceOptimizer {
    * 검색 메트릭 조회
    */
   getSearchMetrics() {
+    // searchLatency 배열이 없으면 초기화
+    if (!this.metrics.searchLatency) {
+      this.metrics.searchLatency = [];
+    }
+    
+    const avgSearchLatency = this.metrics.searchLatency.length > 0 
+      ? this.metrics.searchLatency.reduce((a, b) => a + b, 0) / this.metrics.searchLatency.length 
+      : 0;
+    
+    const minSearchLatency = this.metrics.searchLatency.length > 0 
+      ? Math.min(...this.metrics.searchLatency) 
+      : 0;
+    
+    const maxSearchLatency = this.metrics.searchLatency.length > 0 
+      ? Math.max(...this.metrics.searchLatency) 
+      : 0;
+    
     return {
-      averageLatency: this.metrics.averageLatency,
-      minLatency: this.metrics.minLatency === Infinity ? 0 : this.metrics.minLatency,
-      maxLatency: this.metrics.maxLatency,
-      totalRequests: this.metrics.requestCount
+      averageLatency: avgSearchLatency,
+      minLatency: minSearchLatency,
+      maxLatency: maxSearchLatency,
+      totalRequests: this.metrics.searchLatency.length
     };
   }
 
@@ -649,25 +680,7 @@ class PerformanceOptimizer {
     logger.info('캐시가 완전히 정리되었습니다.');
   }
 
-  /**
-   * 메트릭 기록
-   */
-  recordMetric(type, startTime, success = true) {
-    const latency = Date.now() - startTime;
-    
-    this.metrics.requestCount++;
-    if (!success) {
-      this.metrics.errorCount++;
-    }
-    
-    // 검색 지연시간 통계 업데이트
-    if (type === 'search') {
-      this.metrics.averageLatency = 
-        (this.metrics.averageLatency * (this.metrics.requestCount - 1) + latency) / this.metrics.requestCount;
-      this.metrics.minLatency = Math.min(this.metrics.minLatency, latency);
-      this.metrics.maxLatency = Math.max(this.metrics.maxLatency, latency);
-    }
-  }
+
 
   /**
    * 메모리 최적화 실행

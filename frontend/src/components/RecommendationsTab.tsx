@@ -3,465 +3,323 @@ import { useMutation } from '@tanstack/react-query'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Sparkles, Link, Target, Users, TrendingUp, Search, FileText, Settings } from 'lucide-react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { 
+  Sparkles, 
+  FileText, 
+  Copy, 
+  Loader2,
+  Calendar,
+  Tag
+} from 'lucide-react'
 import { toast } from 'sonner'
 import axios from 'axios'
 
 interface Recommendation {
-  note: {
-    fileName: string
-    title: string
-    content: string
-  }
-  similarity: number
-  breakdown: {
-    content: number
-    tags: number
-    title: number
-  }
-}
-
-interface BacklinkSuggestion {
-  sourceNote: {
-    title: string
-    fileName: string
-  }
-  targetNote: {
-    title: string
-    fileName: string
-  }
+  id: string
+  fileName: string
+  title: string
   similarity: number
   reason: string
-  suggestedLink: string
+  tags?: string[]
+  lastModified?: string
+  content?: string
 }
 
-interface ConnectionSuggestion {
-  targetNote: {
-    title: string
-    fileName: string
-  }
-  similarity: number
-  reason: string
-  impact: number
-  priority: number
-  suggestedActions: string[]
+interface RecommendationResponse {
+  success: boolean
+  recommendations: Recommendation[]
+  totalFound: number
+  processingTime?: number
 }
 
 const API_BASE_URL = 'http://localhost:8080'
 
 const RecommendationsTab = () => {
-  const [targetNote, setTargetNote] = useState({
-    fileName: '마음근력.md',
-    title: '마음근력',
-    content: '마음근력은 긍정적인 마음가짐과 인내심을 기르는 것이다. 일상생활에서 스트레스와 어려움을 견뎌내는 능력을 말한다. 마음근력을 기르기 위해서는 명상, 운동, 충분한 휴식이 필요하다.'
-  })
-  const [candidateNotes, setCandidateNotes] = useState('')
-  const [options, setOptions] = useState({
-    similarityThreshold: 0.3,
-    maxRecommendations: 5
-  })
-  const [activeTab, setActiveTab] = useState('similar')
+  const [query, setQuery] = useState('')
+  const [showDetail, setShowDetail] = useState(false)
+  const [selectedRecommendation, setSelectedRecommendation] = useState<Recommendation | null>(null)
 
-  const similarNotesMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await axios.post(`${API_BASE_URL}/api/advanced/recommendations/similar-notes`, data)
+  const recommendationMutation = useMutation({
+    mutationFn: async (searchQuery: string) => {
+      const response = await axios.post(`${API_BASE_URL}/api/recommendations`, {
+        query: searchQuery,
+        maxResults: 10
+      })
       return response.data
     },
-    onSuccess: (data) => {
+    onSuccess: (data: RecommendationResponse) => {
       if (data.success) {
-        toast.success(`Found ${data.data.recommendations.length} similar notes`)
-        setActiveTab('similar')
+        toast.success(`${data.totalFound}개의 추천 노트를 찾았습니다`)
       } else {
-        toast.error('Failed to get recommendations')
+        toast.error('추천 검색에 실패했습니다')
       }
     },
-    onError: (error) => {
-      toast.error('Failed to get recommendations: ' + error.message)
+    onError: (error: Error) => {
+      toast.error('추천 검색 실패: ' + error.message)
     }
   })
 
-  const backlinksMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await axios.post(`${API_BASE_URL}/api/advanced/recommendations/backlinks`, data)
-      return response.data
-    },
-    onSuccess: (data) => {
-      if (data.success) {
-        toast.success(`Found ${data.data.suggestions.length} backlink suggestions`)
-        setActiveTab('backlinks')
-      } else {
-        toast.error('Failed to get backlink suggestions')
-      }
-    },
-    onError: (error) => {
-      toast.error('Failed to get backlink suggestions: ' + error.message)
-    }
-  })
-
-  const connectionsMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await axios.post(`${API_BASE_URL}/api/advanced/recommendations/strengthen-connections`, data)
-      return response.data
-    },
-    onSuccess: (data) => {
-      if (data.success) {
-        toast.success(`Found ${data.data.suggestions.length} connection suggestions`)
-        setActiveTab('connections')
-      } else {
-        toast.error('Failed to get connection suggestions')
-      }
-    },
-    onError: (error) => {
-      toast.error('Failed to get connection suggestions: ' + error.message)
-    }
-  })
-
-  const handleSimilarNotes = () => {
-    if (!targetNote.content.trim()) {
-      toast.error('Please enter target note content')
+  const handleSearch = () => {
+    if (!query.trim()) {
+      toast.error('검색어를 입력해주세요')
       return
     }
-
-    const candidateNotesArray = candidateNotes.trim() 
-      ? candidateNotes.split('\n').map(note => {
-          const [fileName, title, content] = note.split('|').map(s => s.trim())
-          return { fileName, title, content }
-        })
-      : []
-
-    similarNotesMutation.mutate({
-      targetNote,
-      candidateNotes: candidateNotesArray,
-      options
-    })
+    recommendationMutation.mutate(query.trim())
   }
 
-  const handleBacklinks = () => {
-    if (!targetNote.content.trim()) {
-      toast.error('Please enter target note content')
-      return
-    }
-
-    const allNotes = candidateNotes.trim() 
-      ? candidateNotes.split('\n').map(note => {
-          const [fileName, title, content] = note.split('|').map(s => s.trim())
-          return { fileName, title, content }
-        })
-      : []
-
-    backlinksMutation.mutate({
-      targetNote,
-      allNotes,
-      options
-    })
+  const handleShowDetail = (recommendation: Recommendation) => {
+    setSelectedRecommendation(recommendation)
+    setShowDetail(true)
   }
 
-  const handleConnections = () => {
-    if (!targetNote.content.trim()) {
-      toast.error('Please enter target note content')
-      return
-    }
-
-    const allNotes = candidateNotes.trim() 
-      ? candidateNotes.split('\n').map(note => {
-          const [fileName, title, content] = note.split('|').map(s => s.trim())
-          return { fileName, title, content }
-        })
-      : []
-
-    connectionsMutation.mutate({
-      targetNote,
-      allNotes,
-      options
-    })
+  const handleCopyContent = (content: string) => {
+    navigator.clipboard.writeText(content)
+    toast.success('내용이 클립보드에 복사되었습니다')
   }
 
   const getSimilarityColor = (similarity: number) => {
-    if (similarity > 0.8) return 'bg-green-100 text-green-800 border-green-200'
-    if (similarity > 0.6) return 'bg-blue-100 text-blue-800 border-blue-200'
-    if (similarity > 0.4) return 'bg-yellow-100 text-yellow-800 border-yellow-200'
-    return 'bg-gray-100 text-gray-800 border-gray-200'
+    if (similarity >= 0.8) return 'text-green-600 dark:text-green-400'
+    if (similarity >= 0.6) return 'text-yellow-600 dark:text-yellow-400'
+    return 'text-red-600 dark:text-red-400'
   }
 
-  const getImpactColor = (impact: number) => {
-    if (impact > 80) return 'bg-red-100 text-red-800 border-red-200'
-    if (impact > 60) return 'bg-orange-100 text-orange-800 border-orange-200'
-    if (impact > 40) return 'bg-yellow-100 text-yellow-800 border-yellow-200'
-    return 'bg-green-100 text-green-800 border-green-200'
+  const getSimilarityBadge = (similarity: number) => {
+    if (similarity >= 0.8) return <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">매우 유사</Badge>
+    if (similarity >= 0.6) return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400">유사</Badge>
+    return <Badge className="bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400">관련</Badge>
   }
+
+  const recommendations = recommendationMutation.data?.recommendations || []
 
   return (
-    <div className="space-y-6">
-      {/* Input Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5" />
-            AI-Powered Recommendations
+    <div className="space-y-8">
+      {/* 추천 검색 */}
+      <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-slate-200/50 dark:border-slate-700/50 shadow-xl">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-3 text-xl">
+            <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+            AI 추천 시스템
           </CardTitle>
-          <CardDescription>
-            Get intelligent recommendations for similar notes, backlinks, and connections using advanced AI analysis
+          <CardDescription className="text-base">
+            현재 노트와 유사한 다른 노트들을 AI가 추천해드립니다
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <CardContent className="space-y-6">
+          <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Target Note File Name</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
+                기준 노트 또는 주제
+              </label>
               <Input
-                placeholder="e.g., 마음근력.md"
-                value={targetNote.fileName}
-                onChange={(e) => setTargetNote(prev => ({ ...prev, fileName: e.target.value }))}
+                placeholder="추천을 받고 싶은 노트의 제목이나 주제를 입력하세요..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                className="h-12 text-lg bg-white/50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-600 focus:ring-2 focus:ring-purple-500"
               />
             </div>
-            <div>
-              <label className="text-sm font-medium">Target Note Title</label>
-              <Input
-                placeholder="e.g., 마음근력"
-                value={targetNote.title}
-                onChange={(e) => setTargetNote(prev => ({ ...prev, title: e.target.value }))}
-              />
-            </div>
-          </div>
-          
-          <div>
-            <label className="text-sm font-medium">Target Note Content</label>
-            <Textarea
-              placeholder="Enter the content of the target note..."
-              value={targetNote.content}
-              onChange={(e) => setTargetNote(prev => ({ ...prev, content: e.target.value }))}
-              rows={4}
-            />
-          </div>
-
-          <div>
-            <label className="text-sm font-medium">Candidate Notes (Optional)</label>
-            <Textarea
-              placeholder="Enter candidate notes in format: fileName|title|content (one per line)"
-              value={candidateNotes}
-              onChange={(e) => setCandidateNotes(e.target.value)}
-              rows={3}
-            />
-            <p className="text-xs text-slate-500 mt-1">
-              Format: fileName|title|content (one per line). Leave empty to use indexed notes.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-medium">Similarity Threshold</label>
-              <Input
-                type="number"
-                step="0.1"
-                value={options.similarityThreshold}
-                onChange={(e) => setOptions(prev => ({ ...prev, similarityThreshold: parseFloat(e.target.value) }))}
-                min="0"
-                max="1"
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium">Max Recommendations</label>
-              <Input
-                type="number"
-                value={options.maxRecommendations}
-                onChange={(e) => setOptions(prev => ({ ...prev, maxRecommendations: parseInt(e.target.value) }))}
-                min="1"
-                max="20"
-              />
-            </div>
+            
+            <Button 
+              onClick={handleSearch}
+              disabled={recommendationMutation.isPending}
+              className="w-full h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl transition-all duration-200"
+            >
+              {recommendationMutation.isPending ? (
+                <div className="flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  추천 검색 중...
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  추천 검색
+                </div>
+              )}
+            </Button>
           </div>
         </CardContent>
       </Card>
 
-      {/* Action Buttons */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Button 
-          onClick={handleSimilarNotes}
-          disabled={similarNotesMutation.isPending}
-          className="flex items-center gap-2"
-        >
-          <Users className="w-4 h-4" />
-          {similarNotesMutation.isPending ? 'Finding...' : 'Find Similar Notes'}
-        </Button>
-        
-        <Button 
-          onClick={handleBacklinks}
-          disabled={backlinksMutation.isPending}
-          className="flex items-center gap-2"
-          variant="outline"
-        >
-          <Link className="w-4 h-4" />
-          {backlinksMutation.isPending ? 'Finding...' : 'Suggest Backlinks'}
-        </Button>
-        
-        <Button 
-          onClick={handleConnections}
-          disabled={connectionsMutation.isPending}
-          className="flex items-center gap-2"
-          variant="outline"
-        >
-          <TrendingUp className="w-4 h-4" />
-          {connectionsMutation.isPending ? 'Finding...' : 'Strengthen Connections'}
-        </Button>
-      </div>
-
-      {/* Results */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="similar" className="flex items-center gap-2">
-            <Search className="w-4 h-4" />
-            Similar Notes
-          </TabsTrigger>
-          <TabsTrigger value="backlinks" className="flex items-center gap-2">
-            <Link className="w-4 h-4" />
-            Backlinks
-          </TabsTrigger>
-          <TabsTrigger value="connections" className="flex items-center gap-2">
-            <TrendingUp className="w-4 h-4" />
-            Connections
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="similar">
-          {similarNotesMutation.data && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
-                  Similar Notes
-                </CardTitle>
-                <CardDescription>
-                  Found {similarNotesMutation.data.data?.recommendations?.length || 0} similar notes
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {similarNotesMutation.data.data?.recommendations?.map((rec: Recommendation, index: number) => (
-                  <Card key={index} className="mb-4 border-l-4 border-l-green-500">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg">{rec.note.title}</h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                            {rec.note.fileName}
-                          </p>
-                          <p className="text-sm text-slate-700 dark:text-slate-300 line-clamp-2">
-                            {rec.note.content.substring(0, 200)}...
-                          </p>
-                          <div className="flex items-center gap-2 mt-2">
-                            <Badge className={getSimilarityColor(rec.similarity)}>
-                              Similarity: {(rec.similarity * 100).toFixed(1)}%
-                            </Badge>
-                            <Badge variant="outline">Content: {(rec.breakdown.content * 100).toFixed(1)}%</Badge>
-                            <Badge variant="outline">Tags: {(rec.breakdown.tags * 100).toFixed(1)}%</Badge>
-                          </div>
-                        </div>
+      {/* 추천 결과 */}
+      {recommendationMutation.data && (
+        <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-slate-200/50 dark:border-slate-700/50 shadow-xl">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <FileText className="w-5 h-5 text-purple-500" />
+                추천 결과
+              </div>
+              <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20 dark:bg-purple-500/20 dark:text-purple-400 dark:border-purple-500/30">
+                {recommendationMutation.data.totalFound}개 추천
+              </Badge>
+            </CardTitle>
+            <CardDescription>
+              "{query}"와 유사한 노트들을 찾았습니다
+              {recommendationMutation.data.processingTime && (
+                <span className="ml-2 text-slate-500">
+                  (처리 시간: {recommendationMutation.data.processingTime.toFixed(2)}초)
+                </span>
+              )}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {recommendationMutation.isPending ? (
+              // 로딩 스켈레톤
+              <div className="space-y-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white/50 dark:bg-slate-700/50 animate-pulse">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-4 bg-slate-200 dark:bg-slate-600 rounded"></div>
+                        <div className="w-20 h-4 bg-slate-200 dark:bg-slate-600 rounded"></div>
                       </div>
-                    </CardContent>
-                  </Card>
+                      <div className="w-32 h-3 bg-slate-200 dark:bg-slate-600 rounded"></div>
+                    </div>
+                    <div className="w-3/4 h-5 bg-slate-200 dark:bg-slate-600 rounded mb-2"></div>
+                    <div className="w-full h-4 bg-slate-200 dark:bg-slate-600 rounded mb-2"></div>
+                    <div className="w-2/3 h-4 bg-slate-200 dark:bg-slate-600 rounded"></div>
+                  </div>
                 ))}
-              </CardContent>
-            </Card>
-          )}
-        </TabsContent>
-
-        <TabsContent value="backlinks">
-          {backlinksMutation.data && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Link className="w-5 h-5" />
-                  Backlink Suggestions
-                </CardTitle>
-                <CardDescription>
-                  Found {backlinksMutation.data.data?.suggestions?.length || 0} backlink suggestions
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {backlinksMutation.data.data?.suggestions?.map((suggestion: BacklinkSuggestion, index: number) => (
-                  <Card key={index} className="mb-4 border-l-4 border-l-blue-500">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg">{suggestion.targetNote.title}</h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                            {suggestion.targetNote.fileName}
-                          </p>
-                          <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">
-                            {suggestion.reason}
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <Badge className={getSimilarityColor(suggestion.similarity)}>
-                              Similarity: {(suggestion.similarity * 100).toFixed(1)}%
-                            </Badge>
-                            <Badge variant="outline">{suggestion.suggestedLink}</Badge>
-                          </div>
-                        </div>
+              </div>
+            ) : recommendations.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 mx-auto mb-4 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center">
+                  <Sparkles className="w-8 h-8 text-slate-400" />
+                </div>
+                <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2">추천할 노트를 찾을 수 없습니다</h3>
+                <p className="text-slate-500 dark:text-slate-400">다른 검색어를 시도해보세요</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {recommendations.map((recommendation) => (
+                  <div 
+                    key={recommendation.id} 
+                    className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white/50 dark:bg-slate-700/50 hover:bg-white dark:hover:bg-slate-600 transition-colors duration-200 cursor-pointer"
+                    onClick={() => handleShowDetail(recommendation)}
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        {getSimilarityBadge(recommendation.similarity)}
+                        <span className={`text-sm font-medium ${getSimilarityColor(recommendation.similarity)}`}>
+                          {(recommendation.similarity * 100).toFixed(1)}% 유사
+                        </span>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </CardContent>
-            </Card>
-          )}
-        </TabsContent>
-
-        <TabsContent value="connections">
-          {connectionsMutation.data && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5" />
-                  Connection Suggestions
-                </CardTitle>
-                <CardDescription>
-                  Found {connectionsMutation.data.data?.suggestions?.length || 0} connection suggestions
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {connectionsMutation.data.data?.suggestions?.map((suggestion: ConnectionSuggestion, index: number) => (
-                  <Card key={index} className="mb-4 border-l-4 border-l-purple-500">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg">{suggestion.targetNote.title}</h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                            {suggestion.targetNote.fileName}
-                          </p>
-                          <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">
-                            {suggestion.reason}
-                          </p>
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge className={getSimilarityColor(suggestion.similarity)}>
-                              Similarity: {(suggestion.similarity * 100).toFixed(1)}%
-                            </Badge>
-                            <Badge className={getImpactColor(suggestion.impact)}>
-                              Impact: {suggestion.impact.toFixed(1)}%
-                            </Badge>
-                            <Badge variant="outline">Priority: {suggestion.priority.toFixed(2)}</Badge>
+                      <span className="text-xs text-slate-400 dark:text-slate-500">
+                        {recommendation.fileName}
+                      </span>
+                    </div>
+                    
+                    <h3 className="font-medium text-slate-900 dark:text-slate-100 mb-2">
+                      {recommendation.title}
+                    </h3>
+                    
+                    <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 line-clamp-2">
+                      {recommendation.reason}
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                        {recommendation.lastModified && (
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {new Date(recommendation.lastModified).toLocaleDateString()}
                           </div>
-                          <div className="mt-2">
-                            <p className="text-xs font-medium text-slate-600 mb-1">Suggested Actions:</p>
-                            <ul className="text-xs text-slate-600 space-y-1">
-                              {suggestion.suggestedActions.map((action, idx) => (
-                                <li key={idx} className="flex items-center gap-1">
-                                  <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
-                                  {action}
-                                </li>
-                              ))}
-                            </ul>
+                        )}
+                        {recommendation.tags && recommendation.tags.length > 0 && (
+                          <div className="flex items-center gap-1">
+                            <Tag className="w-3 h-3" />
+                            {recommendation.tags.length}개 태그
                           </div>
-                        </div>
+                        )}
                       </div>
-                    </CardContent>
-                  </Card>
+                      
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          if (recommendation.content) {
+                            handleCopyContent(recommendation.content)
+                          }
+                        }}
+                        className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm"
+                      >
+                        <Copy className="w-3 h-3 mr-1" />
+                        복사
+                      </Button>
+                    </div>
+                  </div>
                 ))}
-              </CardContent>
-            </Card>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* 상세 보기 모달 */}
+      <Dialog open={showDetail} onOpenChange={setShowDetail}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <FileText className="w-5 h-5" />
+              {selectedRecommendation?.title}
+            </DialogTitle>
+            <DialogDescription>
+              {selectedRecommendation?.fileName} • {(selectedRecommendation?.similarity || 0) * 100}% 유사
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedRecommendation && (
+            <div className="space-y-4">
+              <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg">
+                <h4 className="font-medium mb-2">추천 이유</h4>
+                <p className="text-sm leading-relaxed">{selectedRecommendation.reason}</p>
+              </div>
+              
+              {selectedRecommendation.content && (
+                <div>
+                  <h4 className="font-medium mb-2">노트 내용</h4>
+                  <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700 max-h-96 overflow-y-auto">
+                    <pre className="text-sm whitespace-pre-wrap font-sans">{selectedRecommendation.content}</pre>
+                  </div>
+                </div>
+              )}
+              
+              {selectedRecommendation.tags && selectedRecommendation.tags.length > 0 && (
+                <div>
+                  <h4 className="font-medium mb-2">태그</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedRecommendation.tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary" className="text-sm">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              <div className="flex gap-2 pt-4 border-t">
+                {selectedRecommendation.content && (
+                  <Button
+                    onClick={() => handleCopyContent(selectedRecommendation.content!)}
+                    className="flex-1"
+                  >
+                    <Copy className="w-4 h-4 mr-2" />
+                    내용 복사
+                  </Button>
+                )}
+                <Button variant="outline" onClick={() => setShowDetail(false)}>
+                  닫기
+                </Button>
+              </div>
+            </div>
           )}
-        </TabsContent>
-      </Tabs>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

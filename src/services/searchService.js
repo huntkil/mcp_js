@@ -44,7 +44,7 @@ class SearchService {
       }
       
       // 벡터 검색
-      const searchResults = await vectorDatabase.search(queryEmbedding, topK, threshold);
+      const searchResults = await vectorDatabase.query(queryEmbedding, topK);
       
       // 결과 후처리
       const processedResults = await this.processSearchResults(searchResults, query);
@@ -55,7 +55,7 @@ class SearchService {
         total: processedResults.length,
         searchTime: Date.now() - startTime,
         metadata: {
-          embeddingModel: embeddingService.getCurrentModel(),
+          embeddingModel: embeddingService.getModelInfo(),
           threshold,
           topK
         }
@@ -106,7 +106,7 @@ class SearchService {
       
       for (const note of notes) {
         let score = 0;
-        let matches = [];
+        const matches = [];
         
         // 제목 검색
         if (note.title && note.title.toLowerCase().includes(queryLower)) {
